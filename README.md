@@ -91,6 +91,101 @@ Although your friend has an excellent understanding of property prices in her ow
 
 * List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
 
+## Decision during Feature engineering
+
+
+Whether you should transform the zeros depends on:
+
+- The nature of the feature (binary, categorical, or continuous).
+
+- The interpretation of zeros (absence vs. a true zero value).
+
+- The impact of zeros on the target variable (do they have predictive power?).
+
+The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). I don't need to transform them. There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is.
+
+
+### 1. Categorical Encoding
+
+Categorical variables represent discrete categories, such as "Low", "Medium", or "High". Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form.
+
+Common Encoding Methods:
+
+- One-Hot Encoding: Creates a binary column for each category.
+
+- Label Encoding: Assigns each category a unique integer.
+
+- Target Encoding: Replaces categories with the mean of the target variable.
+
+Within this project the endcoding method has been applied in the jupyter notebook '02_data cleaning'. The following parameters has been transformed for correlation analysis: 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
+
+
+### 2. Numerical Transformation
+
+Numerical features often need to be transformed to improve model performance, especially if their distribution is skewed.
+Common Transformation Techniques:
+
+- Normalization: Scaling the values to a range, typically between 0 and 1.
+
+- Standardization: Scaling the values to have a mean of 0 and a standard deviation of 1.
+
+- Log Transformation: Helps with highly skewed data by compressing the range.
+
+Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since thir distribution is skewed.
+
+
+### 3. Smart Correlation Selection
+
+In a dataset, some features may be highly correlated with others. Keeping highly correlated features in a model can lead to multicollinearity, which can negatively impact model performance.
+Method to Select Features Based on Correlation:
+
+- Correlation Matrix: You can compute the correlation matrix to find highly correlated pairs.
+
+- Threshold-based Feature Removal: Remove features that have a correlation higher than a certain threshold, e.g., 0.8 or -0.8.
+
+Within this project, based on the correlation analysis for salePrice and further interpretation of the context the following parameters will be ignored:
+'TotalBsmtSF', '1stFlrSF', 'YearRemodAdd', 'GarageYrBlt', 'MasVnrArea', 'BsmtFinSF1', '2ndFlrSF'
+
+
+
+### 4. Discretization (Binning)
+
+Discretization (or binning) is the process of transforming continuous variables into categorical ones. This is useful if you want to reduce the impact of outliers or make certain trends more interpretable.
+
+Ideas: 
+'EnlosedPorch': 1. Yes, 2. No
+'MasVnrArea': 1. Yes, 2. No
+
+
+
+### 5. Outlier Detection and Treatment
+
+Outliers can distort model performance and lead to incorrect predictions. Various methods can be used to detect and handle outliers.
+Common Outlier Detection Methods:
+
+- IQR (Interquartile Range) Method: Detect outliers based on the IQR, typically using a threshold of 1.5 * IQR.
+
+- Z-score Method: Detect outliers based on the Z-score (values above a certain threshold).
+
+
+Since the outliers for SalePrice represent real, valid data points, I keep them in the model. The dataset contains examples of extreme property prices, the model should be trained on those extreme values. This ensures the model can predict for higher prices in the future. Example: If you have properties worth $1,000,000 or more, and they are valid sales, it’s important to include them.
+
+A log transformation to the target variable SalePrice is used for Numerical Transformation. This transformation will compress the high values, making the distribution more symmetric and reducing the effect of extreme values, but still allowing the model to learn the overall patterns.
+
+Some machine learning models are more robust to outliers than others. For instance: Random Forest, Gradient Boosting (like XGBoost), and Decision Trees handle outliers relatively well. Linear regression models, however, are more sensitive to extreme outliers and might give distorted results when exposed to such values. Therefore, a more robust ML model is selected.
+
+### Feature Engineering Spreadsheet summary:
+
+- Categorical Encoding (already done in 02_data_cleaning)
+- Numerical Transformation (log transformation)
+- Smart Correlated Seelction
+
+
+| variabels | comment | correlation with SalePrice | Potential Feature Engineering Transformers |
+| Sale Price | | 1| Numerical Transformation |
+|
+
+
 ## ML Business Case
 
 * In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
