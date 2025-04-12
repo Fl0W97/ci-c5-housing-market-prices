@@ -4,9 +4,8 @@
 
 Welcome,
 
-This is the Code Institute student template for the Heritage Housing project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+this is my project 5 - hose market pricing...
 
-You can safely delete the Template Instructions section of this README.md file,  and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
 
 ## How to use this repo
 
@@ -30,6 +29,7 @@ You can safely delete the Template Instructions section of this README.md file, 
 
 Note that the kernel says Python 3.12.2 as it inherits from the workspace so it will be Python-3.12.2 as installed by our template. To confirm this you can use `! python --version` in a notebook code cell.
 
+
 ## Cloud IDE Reminders
 
 To log into the Heroku toolbelt CLI:
@@ -42,10 +42,11 @@ To log into the Heroku toolbelt CLI:
 
 You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
 
+
 ## Dataset Content
 
-* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
-* The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
+* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). A fictitious user story is applied where predictive analytics can be applied in a real project in the workplace.
+* The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (i.e. Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
 
 |Variable|Meaning|Units|
 |:----|:----|:----|
@@ -74,51 +75,87 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 |YearRemodAdd|Remodel date (same as construction date if no remodelling or additions)|1950 - 2010|
 |SalePrice|Sale Price|34900 - 755000|
 
+
 ## Business Requirements
 
-As a good friend, you are requested by your friend, who has received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
+My friend received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
 
-Although your friend has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and will provide you with that.
+Although my friend has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and will provide you with that.
 
 * 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
 * 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
 
-## Hypothesis and how to validate?
 
-* List here your project hypothesis(es) and how you envision validating it (them).
+## Hypothesis and how to validate
+
+### Hypothesis: Larger square footage often correlates with higher prices.
+I suspect the sales price correlates with a high amount of ground living area.
+
+How to validate: 
+    - Analyse the dataset and provide a correlation analysis about sales price. See [02_data_cleaning](jupyter_notebooks/02b_mouse_market_study.ipynb)
+    - Plot a scatter plot of price vs square_footage. See [02_data_cleaning](jupyter_notebooks/02b_mouse_market_study.ipynb)
+
+### Hypothesis: More bedrooms, higher value.
+
+How to validate:
+
+    - Use boxplots or groupby().mean() to compare average prices across different numbers of bedrooms.
+
+### Hypothesis: Renovated houses sell for more
+
+How to validate: 
+    - Compare average prices of renovated vs not renovated homes.
+    - Check if the year of renovation is recent, and see if it correlates with price increase.
+
+### Hypothesis: Newer houses are more expensive
+
+How to validate:
+    - Analyze the relationship between year_built and price.
+    - Convert year to age of house (current_year - year_built) if needed.
+    - Run correlation and scatterplots, or use regression analysis.
+
+### Hypothesis: Luxury or convenience features often raise prices
+* A house market study showed the sales price correlates with \n "
+* A house with a value between $100.000 - $150.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
+* A house with a value between $150.000 - $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
+* A house with a value min. $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
+
+
+How to validate:
+  - Analyze certain attributes such as 'OverallQual', 'GarageSF', 'EnclosedPorch' and ceate the clusters low-, mid- and high_price
+
+
+This insight will be used by the survey team for further discussions and investigations.
+
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
-* List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+
+|  Business requierement | relevant section of visualisations and ML task |
+| --- | --- |
+| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
+| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
+
 
 ## Decision during Feature engineering
 
+### Zeros in the dataset
 
-Whether you should transform the zeros depends on:
+The analysis shows that there are zeros in the dataset. Whether those should be transformed depends on:
 
 - The nature of the feature (binary, categorical, or continuous).
-
 - The interpretation of zeros (absence vs. a true zero value).
-
 - The impact of zeros on the target variable (do they have predictive power?).
 
-The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). I don't need to transform them. There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is.
-
+The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). I don't need to transform them. There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is. (!!add decision!!)
 
 ### 1. Categorical Encoding
 
-Categorical variables represent discrete categories, such as "Low", "Medium", or "High". Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form.
+Categorical variables represent discrete categories. Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form. For the convertion the Label Encoding has been applied. It assigns each category a unique integer.
 
-Common Encoding Methods:
-
-- One-Hot Encoding: Creates a binary column for each category.
-
-- Label Encoding: Assigns each category a unique integer.
-
-- Target Encoding: Replaces categories with the mean of the target variable.
-
-Within this project the endcoding method has been applied in the jupyter notebook '02_data cleaning'. The following parameters has been transformed for correlation analysis: 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
-
+In the jupyter notebook '02_data cleaning'. The following parameters has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
+In jupyter notebook '04_modeling_and_evaluation'. The following parameters has been transformed (for pipeline model): (...).
 
 ### 2. Numerical Transformation
 
@@ -126,9 +163,7 @@ Numerical features often need to be transformed to improve model performance, es
 Common Transformation Techniques:
 
 - Normalization: Scaling the values to a range, typically between 0 and 1.
-
 - Standardization: Scaling the values to have a mean of 0 and a standard deviation of 1.
-
 - Log Transformation: Helps with highly skewed data by compressing the range.
 
 Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since thir distribution is skewed.
@@ -140,13 +175,10 @@ In a dataset, some features may be highly correlated with others. Keeping highly
 Method to Select Features Based on Correlation:
 
 - Correlation Matrix: You can compute the correlation matrix to find highly correlated pairs.
-
 - Threshold-based Feature Removal: Remove features that have a correlation higher than a certain threshold, e.g., 0.8 or -0.8.
 
 Within this project, based on the correlation analysis for salePrice and further interpretation of the context the following parameters will be ignored:
 'TotalBsmtSF', '1stFlrSF', 'YearRemodAdd', 'GarageYrBlt', 'MasVnrArea', 'BsmtFinSF1', '2ndFlrSF'
-
-
 
 ### 4. Discretization (Binning)
 
@@ -155,8 +187,7 @@ Discretization (or binning) is the process of transforming continuous variables 
 Ideas: 
 'EnlosedPorch': 1. Yes, 2. No
 'MasVnrArea': 1. Yes, 2. No
-
-
+(in progress)
 
 ### 5. Outlier Detection and Treatment
 
@@ -164,9 +195,7 @@ Outliers can distort model performance and lead to incorrect predictions. Variou
 Common Outlier Detection Methods:
 
 - IQR (Interquartile Range) Method: Detect outliers based on the IQR, typically using a threshold of 1.5 * IQR.
-
 - Z-score Method: Detect outliers based on the Z-score (values above a certain threshold).
-
 
 Since the outliers for SalePrice represent real, valid data points, I keep them in the model. The dataset contains examples of extreme property prices, the model should be trained on those extreme values. This ensures the model can predict for higher prices in the future. Example: If you have properties worth $1,000,000 or more, and they are valid sales, it’s important to include them.
 
@@ -177,23 +206,60 @@ Some machine learning models are more robust to outliers than others. For instan
 ### Feature Engineering Spreadsheet summary:
 
 - Categorical Encoding (already done in 02_data_cleaning)
-- Numerical Transformation (log transformation)
-- Smart Correlated Seelction
+- Numerical Transformation (log transformation): 'SalePrice', 'GrLivArea'
+- Smart Correlated Selection (there are a various varables with can be dropped due to a high correlation match): ['TotalBsmtSF', '1stFlrSF', 'GarageArea', 'GrLivArea', '2ndFlrSF', 'SalePrice', 'KitchenQual', 'YearBuilt']
 
 
 | variabels | comment | correlation with SalePrice | Potential Feature Engineering Transformers |
-| Sale Price | | 1| Numerical Transformation |
-|
+| --- | --- | --- | --- |
+|Sale Price| | 1 | Numerical Transformation |
+|1stFlrSF|  |  |  |
+|2ndFlrSF|  |  |  |
+|BedroomAbvGr|  |  |  |
+|BsmtExposure|  |  |  |
+|BsmtFinType1|  |  |  |
+|BsmtFinSF1|  |  |  |
+|BsmtUnfSF|  |  |  |
+|TotalBsmtSF|  |  |  |
+|GarageArea|  |  |  |
+|GarageFinish|  |  |  |
+|GarageYrBlt|  |  |  |
+|GrLivArea|  |  |  |
+|KitchenQual|  |  |  |
+|LotArea|  |  |  |
+|LotFrontage|  |  |  |
+|MasVnrArea|  |  |  |
+|EnclosedPorch|  |  |  |
+|OpenPorchSF|  |  |  |
+|OverallCond|  |  |  |
+|OverallQual|  |  |  |
+|WoodDeckSF|  |  |  |
+|YearBuilt|  |  |  |
+|YearRemodAdd|  |  |  |
 
 
 ## ML Business Case
 
 * In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
 
+The ML task was done by following the CRISP-DM workflow.
+
+<img src="images/crisp-dm_workflow.PNG" alt="crisp-dm_workflow" width="700">
+
+
 ## Dashboard Design
 
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
-* Eventually, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but eventually you needed to use another plot type)
+
+| Dashboard page name | Screenshot | Content | Comment |
+| --- | --- | --- | --- | --- |
+| page_project summary |  |  |  |
+| page_house_market_study |  |  |  |
+| page_project_hypothesis_and_validation |  |  |  |
+| page_sales_price_predictor |  |  |  |
+| page_pipeline_performance |  |  |  |
+
+
 
 ## Unfixed Bugs
 
@@ -218,6 +284,21 @@ Some machine learning models are more robust to outliers than others. For instan
 
 * Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
 
+- numpy==1.26.1
+- pandas==2.1.1
+- matplotlib==3.8.0
+- seaborn==0.13.2
+- ydata-profiling==4.12.0 # can be removed from requirements before deployment
+- plotly==5.17.0
+- ppscore==1.1.0 # can be removed from requirements before deployment (tbc)
+- streamlit==1.40.2
+- feature-engine==1.6.1
+- imbalanced-learn==0.11.0 (tbc)
+- scikit-learn==1.3.1
+- xgboost==1.7.6 (tbc)
+- yellowbrick==1.5 # can be removed from requirements before deployment (tbc)
+- Pillow==10.0.1 # can be removed from requirements before deployment (tbc)
+
 ## Credits
 
 * In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism.
@@ -225,14 +306,18 @@ Some machine learning models are more robust to outliers than others. For instan
 
 ### Content
 
-* The text for the Home page was taken from Wikipedia Article A
-* Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-* The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+* The text for the Dahsboard was taken partly from Code Institute Walkthorugh 02
+* 
+* Ideas and supprot of plot analysis was taken from [Specific YouTube Tutorial](https://www.youtube.com/) (to be added)
+* The icons in the footer were taken from [Font Awesome](https://fontawesome.com/) (to be added)
+* The template for this project was provided by Code Institute
+* 
 
 ### Media
 
 * The photos used on the home and sign-up page are from This Open Source site
-* The images used for the gallery page were taken from this other open-source site
+* The images used for the gallery page were taken from the Code Institute Course 'Delivering Data Science Projects Data Culture and CRISP-DM Workflow CRISP-DM Workflow'
+* The images used for the dashboard page XY were taken from (to be added)
 
 ## Acknowledgements (optional)
 
