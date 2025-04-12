@@ -216,16 +216,16 @@ Some machine learning models are more robust to outliers than others. For instan
 |1stFlrSF|  |  |  |
 |2ndFlrSF|  |  |  |
 |BedroomAbvGr|  |  |  |
-|BsmtExposure|  |  |  |
+|BsmtExposure| identified as dtype='object' |  |  |
 |BsmtFinType1|  |  |  |
-|BsmtFinSF1|  |  |  |
+|BsmtFinSF1| identified as dtype='object' |  |  |
 |BsmtUnfSF|  |  |  |
 |TotalBsmtSF|  |  |  |
 |GarageArea|  |  |  |
-|GarageFinish|  |  |  |
+|GarageFinish| identified as dtype='object' |  |  |
 |GarageYrBlt|  |  |  |
 |GrLivArea|  |  |  |
-|KitchenQual|  |  |  |
+|KitchenQual| identified as dtype='object' |  |  |
 |LotArea|  |  |  |
 |LotFrontage|  |  |  |
 |MasVnrArea|  |  |  |
