@@ -88,33 +88,49 @@ Although my friend has an excellent understanding of property prices in her own 
 
 ## Hypothesis and how to validate
 
-### Hypothesis: Larger square footage often correlates with higher prices.
+### Hypothesis: Larger square footage often correlates with higher sales prices. (Correct.)
 I suspect the sales price correlates with a high amount of ground living area.
 
 How to validate: 
-    - Analyse the dataset and provide a correlation analysis about sales price. See [02_data_cleaning](jupyter_notebooks/02b_mouse_market_study.ipynb)
-    - Plot a scatter plot of price vs square_footage. See [02_data_cleaning](jupyter_notebooks/02b_mouse_market_study.ipynb)
+    - Analyse the dataset and provide a correlation analysis about sales price. See [02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
+    - Plot a scatter plot of price vs square_footage. See [02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb) 
+<img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
 
-### Hypothesis: More bedrooms, higher value.
+
+### Hypothesis: More bedrooms, higher sales price. (Wrong.)
 
 How to validate:
 
-    - Use boxplots or groupby().mean() to compare average prices across different numbers of bedrooms.
+    - Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
+<img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
+Correlation value: 
 
-### Hypothesis: Renovated houses sell for more
+### Hypothesis: Better OverallCond, higher sales price. (Wrong.)
+
+How to validate:
+
+    - Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
+<img src="" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
+Correlation value:
+
+### Hypothesis: Renovated houses sell for more (Partly correct.)
 
 How to validate: 
     - Compare average prices of renovated vs not renovated homes.
     - Check if the year of renovation is recent, and see if it correlates with price increase.
+Correlation value:
 
-### Hypothesis: Newer houses are more expensive
+### Hypothesis: Newer houses are more expensive (Partly correct.)
 
 How to validate:
     - Analyze the relationship between year_built and price.
     - Convert year to age of house (current_year - year_built) if needed.
     - Run correlation and scatterplots, or use regression analysis.
+Correlation value:
 
-### Hypothesis: Luxury or convenience features often raise prices
+
+### Hypothesis: Luxury or convenience features often raise prices (GarageArea, OverallQual, OverallCond)
 * A house market study showed the sales price correlates with \n "
 * A house with a value between $100.000 - $150.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
 * A house with a value between $150.000 - $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
