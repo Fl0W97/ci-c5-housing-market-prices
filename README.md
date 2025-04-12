@@ -137,8 +137,50 @@ List of business requirements and a rationale to map them to the Data Visualisat
 | 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
 | 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
 
+## Data collection
+[01_data_collection](jupyter_notebooks/01_data_collection.ipynb)
 
-## Decision during Feature engineering
+The dataset is loaded into a pandas DataFrame and an initial inspection is performed to understand its structure, dimensions, and content (Load and inspect the Kaggle dataset). Data types of all columns are reviewed to distinguish between numerical and non-numerical features, which is essential for preprocessing and model selection. The following parameter do not have a numeric type: ['BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
+In addition, the dataset is analyzed to detect columns with missing values. The number of missing entries per column is calculated and presented in descending order to highlight areas requiring attention. The following columns have missing Values: ['EnclosedPorch', 'WoodDeckSF', 'LotFrontage ', 'GarageFinish', 'BsmtFinType1', 'BedroomAbvGr', '2ndFlrSF', 'GarageYrBlt', 'BsmtExposure', 'MasVnrArea']. Last but not least, columns containing zero values are identified and evaluated. The total number of zero values in the dataset is reported, along with a breakdown per column, to assess if zeros may represent missing or invalid data.
+The following columns have the value zero: ['MasVnrArea', '2ndFlrSF', 'openPorchSF', 'BsmtFinSF1', 'BsmtUnfSF', 'EnclosedPorch', 'GarageArea', 'WoodDeckSF', 'TotalBsmtSF', 'BedroomAbvGr']. All values should remain, since it is an indication that the relevatn attribute is not available.
+
+## Data cleaning
+[02_data_cleaning](jupyter_notebooks/02_data_cleaning.ipynb)
+
+### Handling missing values
+There are missing data. For cleaning it the function DataCleaningEffect() is used (from feature-engine lession)
+
+a. Drop Columns:
+If a column has a very high proportion of missing data such as 'EnclosedPorch' and 'WoodDeckSF', it may be best to drop the column altogether. As well as for LotFrontage (259 missing).
+
+b. Impute Missing Values:
+For columns with a moderate amount of missing data, imputation is a good strategy. There are different methods for imputing based on the nature of the data
+
+- For numeric columns (e.g., 2ndFlrSF, BedroomAbvGr, BsmtExposure, GarageYrBlt): You can impute the missing values using the mean, median, or mode (depending on the distribution of the data). The median is often a good choice for columns with skewed distributions or outliers.
+- For categorical columns (e.g., BsmtExposure, BsmtFinType1, GarageFinish): Impute the missing values with the mode (most frequent value) since these are categorical variables.
+- For columns like MasVnrArea (small number of missing values): Since MasVnrArea has only 8 missing values, impute using the mean or median, or even consider using the mode depending on the column’s nature. If the percentage is very small, drop rows with missing values in some cases.
+- For GarageYrBlt (81 missing): An imputation with with the mode or mean of the year values is not useful. Using a more sophisticated method, like predictive modeling or filling based on group statistics (e.g., grouping by the presence of a garage) is better.
+
+c. Fill Missing with Specific Values:
+For certain categorical columns, you might want to fill missing values with a specific placeholder like 'Unknown' or 'None' if that's a valid way to handle missing data for that variable.
+
+By using a machine learning model, more sophisticated imputation techniques can be used, such as:
+
+- K-Nearest Neighbors (KNN) imputation: Uses the values of the closest data points to impute missing values (source: YOUTUBE, add !!LINK!!).
+- Regression-based imputation: You can use a regression model to predict missing values based on other features in the dataset (source: YOUTUBE, add !!LINK!!).
+
+
+**Current approach:**
+- Drop columns with a very high percentage of missing values (e.g., EnclosedPorch, WoodDeckSF)
+- Impute missing values for columns with moderate missing data:
+  - Numeric columns (e.g., 2ndFlrSF, BedroomAbvGr) using the mean, median, or mode.
+  - Categorical columns (e.g., BsmtExposure, BsmtFinType1) using the mode (most frequent value).
+-  For small missing data counts (e.g., MasVnrArea), impute with the mean or median.
+
+Considering regression-based and model-based imputation for more advanced techniques (tbd!!MERIT!!)
+
+
+## Feature engineering
 
 ### Zeros in the dataset
 
