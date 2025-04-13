@@ -378,8 +378,7 @@ The ML task was done by following the CRISP-DM workflow.
 
 ### Heroku
 
-* The App live link is: <https://YOUR_APP_NAME.herokuapp.com/>
-* Set the .python-version Python version to a [Heroku-24](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
+* The App live link is: https://analyse-predict-house-market-5a00f7807683.herokuapp.com/
 * The project was deployed to Heroku using the following steps.
 
 ### Preparation
@@ -418,7 +417,7 @@ Make sure that the following files are created in the project environment before
     yellowbrick==1.5 (can be removed from requirements before deployment)
     Pillow==10.0.1 (can be removed from requirements before deployment)
 
-* Use .slugignore for reducing slug size
+* Using .slugignore for reducing slug size
 
 ### Deployment steps
 
