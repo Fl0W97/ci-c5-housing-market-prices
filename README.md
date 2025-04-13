@@ -382,6 +382,45 @@ The ML task was done by following the CRISP-DM workflow.
 * Set the .python-version Python version to a [Heroku-24](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
 * The project was deployed to Heroku using the following steps.
 
+### Preparation
+Make sure that the following files are created in the project environment before connect it with Heroku:
+
+* setup.sh
+    mkdir -p ~/.streamlit/
+    echo "\
+    [server]\n\
+    headless = true\n\
+    port = $PORT\n\
+    enableCORS = false\n\
+    \n\
+    " > ~/.streamlit/config.toml """ 
+
+* Procfile
+    web: sh setup.sh && streamlit run app.py
+
+* runtime.txt
+    python-3.12.8
+
+* requirements.txt
+    numpy==1.26.1
+    pandas==2.1.1
+    matplotlib==3.8.0
+    seaborn==0.13.2
+    ydata-profiling==4.12.0 (can be removed from requirements before deployment)
+    plotly==5.17.0
+    ppscore==1.1.0 (can be removed from requirements before deployment)
+    streamlit==1.40.2
+    feature-engine==1.6.1
+    imbalanced-learn==0.11.0
+    scikit-learn==1.3.1
+    xgboost==1.7.6
+    yellowbrick==1.5 (can be removed from requirements before deployment)
+    Pillow==10.0.1 (can be removed from requirements before deployment)
+
+* Use .slugignore for reducing slug size
+
+### Deployment steps
+
 1. Log in to Heroku and create an App
 2. At the Deploy tab, select GitHub as the deployment method.
 3. Select your repository name and click Search. Once it is found, click Connect.

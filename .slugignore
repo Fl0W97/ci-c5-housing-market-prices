@@ -1,0 +1,17 @@
+# Ignore data files
+
+# Ignore all notebooks EXCEPT
+*.ipynb
+!jupyter_notebooks/01_data_collection.ipynb
+
+# Ignore images and figures
+*.png
+
+# Ignore saved models and artifacts
+*.pkl
+!output/ml_pipeline/predict_SalePrice/v3
+
+# Ignore development files
+__pycache__/
+
+# Ignore notebooks and dev folders
