@@ -214,6 +214,20 @@ The analysis shows that there are zeros in the dataset. Whether those should be 
 
 The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). I don't need to transform them. There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is. (!!add decision!!)
 
+### YData Profiling Report
+
+The report enables to have a closer look at each variable. The following insighs are noticeable:
+
+| variable | comment |
+|--|--|
+| 2stFlrSF | ~59% zeros, only 41% of the houses have a 2st floor |
+| BsmtFinSF1 | 32% of the houses don't have a basement |
+| GarageArea | 94% of the houses have a garage, it seems a garage is not a convenient, but mandatory attribute in the market. If a garage is finished or unfinished is not correlating with sales price. |
+| TotalBsmtSF | THere are only 2,5% of the houses which don't have a basement. It seems a basement is a mandatory attribute. |
+| YearBuilt | A big amount of houses in the dataset has been built around 2000 (!! Details!!). It seems there are a lot new houses in the market. |
+| YearRemodAdd | A noticable amount of houses has been renovated around 2000. (!! Details!!) |
+
+
 ### 1. Categorical Encoding
 
 Categorical variables represent discrete categories. Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form. For the convertion the Label Encoding has been applied. It assigns each category a unique integer.
@@ -306,7 +320,7 @@ Some machine learning models are more robust to outliers than others. For instan
 
 
 | variabels | comment | correlation with SalePrice | Potential Feature Engineering Transformers |
-| --- | --- | --- | --- |
+|---|---|---|---|
 |Sale Price| | 1 | Numerical Transformation |
 |1stFlrSF|  |  |  |
 |2ndFlrSF| MIssing values are filled up by adding median()  |  |  |
@@ -359,6 +373,10 @@ The ML task was done by following the CRISP-DM workflow.
 ## Unfixed Bugs
 
 * You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
+
+|Error message | Code | Comment | Fix |
+|---|---|---|---|
+| KeyError: "['TotalArea'] not found in axis" | df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea']) | The variable 'TotalArea' is not existing (anymore) It was added to create a new varibale and combine other variable such as GrLivArea, 1stFlr, 2ndFllr. But it did not added value to the analysis. | The variable has been removed. |
 
 ## Deployment
 
