@@ -69,23 +69,6 @@ def page_house_market_study_body():
         ax.set_title("Correlation Matrix")
         st.pyplot(fig_all)
 
-        # inspect data
-    if st.checkbox("Focus only on SalePrice correlations"):
-        st.write(
-            f"* Find below the top 10 correlations")
-
-        top_corr = df.corr()['SalePrice'].sort_values(ascending=False)
-        top_vars = top_corr[0:10].index  # Top 10 (excluding SalePrice itself)
-        filtered_corr = df[top_vars].corr()
-
-        # Plot just this smaller matrix
-        correlation_matrix = df.corr()
-        fig_top, ax = plt.subplots(figsize=(10, 6))
-        sns.heatmap(filtered_corr, annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
-        ax.set_title("Top Correlated Features with SalePrice")
-        st.pyplot(fig_top)
-
-
     # Text based on "02 - Data Collection" notebook - "Conclusions and Next steps" section
     st.info(
         f"The correlation indications and plots below interpretation converge. "
