@@ -201,6 +201,9 @@ By using a machine learning model, more sophisticated imputation techniques can 
 
 Considering regression-based and model-based imputation for more advanced techniques (tbd!!MERIT!!)
 
+### Correlation matrix
+
+<img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
 
 ## Feature engineering
 
