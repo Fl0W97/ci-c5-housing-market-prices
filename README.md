@@ -104,7 +104,8 @@ How to validate:
 
     - Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
 <img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
-Correlation value: 
+
+Correlation value BedroomAbvGr/SalePrice: 0.161901
 
 ### Hypothesis: Better OverallCond, higher sales price. (Wrong.)
 
@@ -112,14 +113,17 @@ How to validate:
 
     - Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
 <img src="" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
-Correlation value:
+Correlation value OverallCond/SalePrice: -0.077856
 
 ### Hypothesis: Renovated houses sell for more (Partly correct.)
 
 How to validate: 
     - Compare average prices of renovated vs not renovated homes.
     - Check if the year of renovation is recent, and see if it correlates with price increase.
-Correlation value:
+<img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
+
+Correlation value YearRemodadd/SalePrice: 0.507101
+
 
 ### Hypothesis: Newer houses are more expensive (Partly correct.)
 
@@ -127,7 +131,9 @@ How to validate:
     - Analyze the relationship between year_built and price.
     - Convert year to age of house (current_year - year_built) if needed.
     - Run correlation and scatterplots, or use regression analysis.
-Correlation value:
+<img src="images/02b_distribution_of_yearbuilt_by_saleprice.PNG" alt="see distribution_of_yearbuilt_by_saleprice" width="700">
+
+Correlation value YearBuilt/SalePrice: 0.522897
 
 
 ### Hypothesis: Luxury or convenience features often raise prices (GarageArea, OverallQual, OverallCond)
@@ -303,26 +309,26 @@ Some machine learning models are more robust to outliers than others. For instan
 | --- | --- | --- | --- |
 |Sale Price| | 1 | Numerical Transformation |
 |1stFlrSF|  |  |  |
-|2ndFlrSF|  |  |  |
-|BedroomAbvGr|  |  |  |
-|BsmtExposure| identified as dtype='object' |  |  |
-|BsmtFinType1|  |  |  |
+|2ndFlrSF| MIssing values are filled up by adding median()  |  |  |
+|BedroomAbvGr| droped from dataset due to low correlation | | |
+|BsmtExposure| identified as dtype='object', droped from dataset due to low correlation | | |
+|BsmtFinType1| droped from dataset due to low correlation | | |
 |BsmtFinSF1| identified as dtype='object' |  |  |
-|BsmtUnfSF|  |  |  |
+|BsmtUnfSF| droped from dataset due to low correlation | | |
 |TotalBsmtSF|  |  |  |
 |GarageArea|  |  |  |
-|GarageFinish| identified as dtype='object' |  |  |
+|GarageFinish| identified as dtype='object', Missing values (NaNs) in the GarageFinish columns are filled wih the most frequent value found in that column.
 |GarageYrBlt|  |  |  |
 |GrLivArea|  |  |  |
 |KitchenQual| identified as dtype='object' |  |  |
-|LotArea|  |  |  |
+|LotArea|  droped from dataset due to low correlation | | |
 |LotFrontage|  |  |  |
-|MasVnrArea|  |  |  |
-|EnclosedPorch|  |  |  |
+|MasVnrArea| It fills all missing values in the MasVnrArea column with the mean of the existing (non-null) values in that column. |  |  |  |
+|EnclosedPorch| droped from dataset due to low correlation and high number of missing values.|  |  |
 |OpenPorchSF|  |  |  |
-|OverallCond|  |  |  |
-|OverallQual|  |  |  |
-|WoodDeckSF|  |  |  |
+|OverallCond| droped from dataset due to low correlation | | |
+|OverallQual|  | 0.790982 | | |
+|WoodDeckSF| droped from dataset due to low correlation and high number of missing values |  |  |
 |YearBuilt|  |  |  |
 |YearRemodAdd|  |  |  |
 
