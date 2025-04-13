@@ -383,6 +383,7 @@ The ML task was done by following the CRISP-DM workflow.
 * The project was deployed to Heroku using the following steps.
 
 ### Preparation
+
 Make sure that the following files are created in the project environment before connect it with Heroku:
 
 * setup.sh
@@ -393,7 +394,7 @@ Make sure that the following files are created in the project environment before
     port = $PORT\n\
     enableCORS = false\n\
     \n\
-    " > ~/.streamlit/config.toml """ 
+    " > ~/.streamlit/config.toml """
 
 * Procfile
     web: sh setup.sh && streamlit run app.py
