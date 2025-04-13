@@ -10,7 +10,7 @@ from app_pages.multipage import MultiPage
 from app_pages.page_project_summary import page_project_summary_body
 from app_pages.page_house_market_study import page_house_market_study_body
 
-app = MultiPage(app_name= "Sales_Price_Predictor") # Create an instance of the app 
+app = MultiPage(app_name= "House Market Analysis (Project 5)") # Create an instance of the app
 
 # Add your app pages here using .add_page()
 app.add_page("Quick Project Summary", page_project_summary_body)

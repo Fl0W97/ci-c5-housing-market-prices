@@ -5,5 +5,5 @@ import joblib
 
 @st.cache_data
 def load_house_market_data():
-    df = pd.read_csv("outputs/data_collected/house_pricing_data.csv")
+    df = pd.read_csv("outputs/data_cleaned/house_market_data_complete_cleaned.csv")
     return df
