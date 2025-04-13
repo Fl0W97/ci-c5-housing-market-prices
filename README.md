@@ -6,7 +6,6 @@ Welcome,
 
 this is my project 5 - hose market pricing...
 
-
 ## How to use this repo
 
 1. Use this template to create your GitHub project repo
@@ -23,12 +22,11 @@ this is my project 5 - hose market pricing...
 
 7. Open a new terminal and `pip3 install -r requirements.txt`
 
-11. Open the jupyter_notebooks directory and click on the notebook you want to open.
+8. Open the jupyter_notebooks directory and click on the notebook you want to open.
 
-12. Click the kernel button and choose Python Environments.
+9. Click the kernel button and choose Python Environments.
 
 Note that the kernel says Python 3.12.2 as it inherits from the workspace so it will be Python-3.12.2 as installed by our template. To confirm this you can use `! python --version` in a notebook code cell.
-
 
 ## Cloud IDE Reminders
 
@@ -41,7 +39,6 @@ To log into the Heroku toolbelt CLI:
 5. Paste in your API key when asked
 
 You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
-
 
 ## Dataset Content
 
@@ -75,7 +72,6 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 |YearRemodAdd|Remodel date (same as construction date if no remodelling or additions)|1950 - 2010|
 |SalePrice|Sale Price|34900 - 755000|
 
-
 ## Business Requirements
 
 My friend received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
@@ -85,24 +81,25 @@ Although my friend has an excellent understanding of property prices in her own 
 * 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
 * 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
 
-
 ## Hypothesis and how to validate
 
 ### Hypothesis: Larger square footage often correlates with higher sales prices. (Correct.)
+
 I suspect the sales price correlates with a high amount of ground living area.
 
-How to validate: 
-    - Analyse the dataset and provide a correlation analysis about sales price. See [02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
-    - Plot a scatter plot of price vs square_footage. See [02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb) 
-<img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
+How to validate:
 
+* Analyse the dataset and provide a correlation analysis about sales price. See [02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
+
+* Plot a scatter plot of price vs square_footage. See [02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
 
 ### Hypothesis: More bedrooms, higher sales price. (Wrong.)
 
 How to validate:
 
-    - Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
+* Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
 <img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
 Correlation value BedroomAbvGr/SalePrice: 0.161901
@@ -111,44 +108,44 @@ Correlation value BedroomAbvGr/SalePrice: 0.161901
 
 How to validate:
 
-    - Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
+* Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
 <img src="" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
+
 Correlation value OverallCond/SalePrice: -0.077856
 
 ### Hypothesis: Renovated houses sell for more (Partly correct.)
 
-How to validate: 
-    - Compare average prices of renovated vs not renovated homes.
-    - Check if the year of renovation is recent, and see if it correlates with price increase.
+How to validate:
+
+* Compare average prices of renovated vs not renovated homes.
+* Check if the year of renovation is recent, and see if it correlates with price increase.
 <img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
 
 Correlation value YearRemodadd/SalePrice: 0.507101
 
-
 ### Hypothesis: Newer houses are more expensive (Partly correct.)
 
 How to validate:
-    - Analyze the relationship between year_built and price.
-    - Convert year to age of house (current_year - year_built) if needed.
-    - Run correlation and scatterplots, or use regression analysis.
+
+* Analyze the relationship between year_built and price.
+* Convert year to age of house (current_year - year_built) if needed.
+* Run correlation and scatterplots, or use regression analysis.
 <img src="images/02b_distribution_of_yearbuilt_by_saleprice.PNG" alt="see distribution_of_yearbuilt_by_saleprice" width="700">
 
 Correlation value YearBuilt/SalePrice: 0.522897
 
-
 ### Hypothesis: Luxury or convenience features often raise prices (GarageArea, OverallQual, OverallCond)
+
 * A house market study showed the sales price correlates with \n "
 * A house with a value between $100.000 - $150.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
 * A house with a value between $150.000 - $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
 * A house with a value min. $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
 
-
 How to validate:
-  - Analyze certain attributes such as 'OverallQual', 'GarageSF', 'EnclosedPorch' and ceate the clusters low-, mid- and high_price
 
+* Analyze certain attributes such as 'OverallQual', 'GarageSF', 'EnclosedPorch' and ceate the clusters low-, mid- and high_price
 
 This insight will be used by the survey team for further discussions and investigations.
-
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
@@ -160,6 +157,7 @@ List of business requirements and a rationale to map them to the Data Visualisat
 | 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
 
 ## Data collection
+
 [01_data_collection](jupyter_notebooks/01_data_collection.ipynb)
 
 The dataset is loaded into a pandas DataFrame and an initial inspection is performed to understand its structure, dimensions, and content (Load and inspect the Kaggle dataset). Data types of all columns are reviewed to distinguish between numerical and non-numerical features, which is essential for preprocessing and model selection. The following parameter do not have a numeric type: ['BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
@@ -167,9 +165,11 @@ In addition, the dataset is analyzed to detect columns with missing values. The 
 The following columns have the value zero: ['MasVnrArea', '2ndFlrSF', 'openPorchSF', 'BsmtFinSF1', 'BsmtUnfSF', 'EnclosedPorch', 'GarageArea', 'WoodDeckSF', 'TotalBsmtSF', 'BedroomAbvGr']. All values should remain, since it is an indication that the relevatn attribute is not available.
 
 ## Data cleaning
+
 [02_data_cleaning](jupyter_notebooks/02_data_cleaning.ipynb)
 
 ### Handling missing values
+
 There are missing data. For cleaning it the function DataCleaningEffect() is used (from feature-engine lession)
 
 a. Drop Columns:
@@ -178,26 +178,26 @@ If a column has a very high proportion of missing data such as 'EnclosedPorch' a
 b. Impute Missing Values:
 For columns with a moderate amount of missing data, imputation is a good strategy. There are different methods for imputing based on the nature of the data
 
-- For numeric columns (e.g., 2ndFlrSF, BedroomAbvGr, BsmtExposure, GarageYrBlt): You can impute the missing values using the mean, median, or mode (depending on the distribution of the data). The median is often a good choice for columns with skewed distributions or outliers.
-- For categorical columns (e.g., BsmtExposure, BsmtFinType1, GarageFinish): Impute the missing values with the mode (most frequent value) since these are categorical variables.
-- For columns like MasVnrArea (small number of missing values): Since MasVnrArea has only 8 missing values, impute using the mean or median, or even consider using the mode depending on the column’s nature. If the percentage is very small, drop rows with missing values in some cases.
-- For GarageYrBlt (81 missing): An imputation with with the mode or mean of the year values is not useful. Using a more sophisticated method, like predictive modeling or filling based on group statistics (e.g., grouping by the presence of a garage) is better.
+* For numeric columns (e.g., 2ndFlrSF, BedroomAbvGr, BsmtExposure, GarageYrBlt): You can impute the missing values using the mean, median, or mode (depending on the distribution of the data). The median is often a good choice for columns with skewed distributions or outliers.
+* For categorical columns (e.g., BsmtExposure, BsmtFinType1, GarageFinish): Impute the missing values with the mode (most frequent value) since these are categorical variables.
+* For columns like MasVnrArea (small number of missing values): Since MasVnrArea has only 8 missing values, impute using the mean or median, or even consider using the mode depending on the column’s nature. If the percentage is very small, drop rows with missing values in some cases.
+* For GarageYrBlt (81 missing): An imputation with with the mode or mean of the year values is not useful. Using a more sophisticated method, like predictive modeling or filling based on group statistics (e.g., grouping by the presence of a garage) is better.
 
 c. Fill Missing with Specific Values:
 For certain categorical columns, you might want to fill missing values with a specific placeholder like 'Unknown' or 'None' if that's a valid way to handle missing data for that variable.
 
 By using a machine learning model, more sophisticated imputation techniques can be used, such as:
 
-- K-Nearest Neighbors (KNN) imputation: Uses the values of the closest data points to impute missing values (source: YOUTUBE, add !!LINK!!).
-- Regression-based imputation: You can use a regression model to predict missing values based on other features in the dataset (source: YOUTUBE, add !!LINK!!).
-
+* K-Nearest Neighbors (KNN) imputation: Uses the values of the closest data points to impute missing values (source: YOUTUBE, add !!LINK!!).
+* Regression-based imputation: You can use a regression model to predict missing values based on other features in the dataset (source: YOUTUBE, add !!LINK!!).
 
 **Current approach:**
-- Drop columns with a very high percentage of missing values (e.g., EnclosedPorch, WoodDeckSF)
-- Impute missing values for columns with moderate missing data:
-  - Numeric columns (e.g., 2ndFlrSF, BedroomAbvGr) using the mean, median, or mode.
-  - Categorical columns (e.g., BsmtExposure, BsmtFinType1) using the mode (most frequent value).
--  For small missing data counts (e.g., MasVnrArea), impute with the mean or median.
+
+* Drop columns with a very high percentage of missing values (e.g., EnclosedPorch, WoodDeckSF)
+* Impute missing values for columns with moderate missing data:
+  * Numeric columns (e.g., 2ndFlrSF, BedroomAbvGr) using the mean, median, or mode.
+  * Categorical columns (e.g., BsmtExposure, BsmtFinType1) using the mode (most frequent value).
+* For small missing data counts (e.g., MasVnrArea), impute with the mean or median.
 
 Considering regression-based and model-based imputation for more advanced techniques (tbd!!MERIT!!)
 
@@ -211,9 +211,9 @@ Considering regression-based and model-based imputation for more advanced techni
 
 The analysis shows that there are zeros in the dataset. Whether those should be transformed depends on:
 
-- The nature of the feature (binary, categorical, or continuous).
-- The interpretation of zeros (absence vs. a true zero value).
-- The impact of zeros on the target variable (do they have predictive power?).
+* The nature of the feature (binary, categorical, or continuous).
+* The interpretation of zeros (absence vs. a true zero value).
+* The impact of zeros on the target variable (do they have predictive power?).
 
 The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). I don't need to transform them. There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is. (!!add decision!!)
 
@@ -230,7 +230,6 @@ The report enables to have a closer look at each variable. The following insighs
 | YearBuilt | A big amount of houses in the dataset has been built around 2000 (!! Details!!). It seems there are a lot new houses in the market. |
 | YearRemodAdd | A noticable amount of houses has been renovated around 2000. (!! Details!!) |
 
-
 ### 1. Categorical Encoding
 
 Categorical variables represent discrete categories. Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form. For the convertion the Label Encoding has been applied. It assigns each category a unique integer.
@@ -243,20 +242,19 @@ In jupyter notebook '04_modeling_and_evaluation'. The following parameters has b
 Numerical features often need to be transformed to improve model performance, especially if their distribution is skewed.
 Common Transformation Techniques:
 
-- Normalization: Scaling the values to a range, typically between 0 and 1.
-- Standardization: Scaling the values to have a mean of 0 and a standard deviation of 1.
-- Log Transformation: Helps with highly skewed data by compressing the range.
+* Normalization: Scaling the values to a range, typically between 0 and 1.
+* Standardization: Scaling the values to have a mean of 0 and a standard deviation of 1.
+* Log Transformation: Helps with highly skewed data by compressing the range.
 
 Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since thir distribution is skewed.
-
 
 ### 3. Smart Correlation Selection
 
 In a dataset, some features may be highly correlated with others. Keeping highly correlated features in a model can lead to multicollinearity, which can negatively impact model performance.
 Method to Select Features Based on Correlation:
 
-- Correlation Matrix: You can compute the correlation matrix to find highly correlated pairs.
-- Threshold-based Feature Removal: Remove features that have a correlation higher than a certain threshold, e.g., 0.8 or -0.8.
+* Correlation Matrix: You can compute the correlation matrix to find highly correlated pairs.
+* Threshold-based Feature Removal: Remove features that have a correlation higher than a certain threshold, e.g., 0.8 or -0.8.
 
 Within this project, based on the correlation analysis for salePrice and further interpretation of the context the following parameters will be ignored:
 'TotalBsmtSF', '1stFlrSF', 'YearRemodAdd', 'GarageYrBlt', 'MasVnrArea', 'BsmtFinSF1', '2ndFlrSF'
@@ -277,7 +275,7 @@ Action: This feature is kept. However, feature 2ndFlrSF is being dropped to simp
 
 This is the log-transformed version of the target variable, SalePrice. It's highly correlated with GarageArea as well, as shown in the earlier analysis. Since SalePrice is the target variable (the dependent variable you are trying to predict), it should not be used as an independent variable in the model. Hence, it’s correct to drop this feature from the set of predictors, but still necessary for the train and test set.
 
-Action:  'Saleprice' is kept for test and train set. 'GarageArea' is dropped. 
+Action:  'Saleprice' is kept for test and train set. 'GarageArea' is dropped.
 
 ***OverallQual***:
 
@@ -291,14 +289,14 @@ This feature represents the quality of the kitchen, which may be closely related
 
 Action: Drop KitchenQual because OverallQual might already capture the overall quality of the house, including the kitchen.
 
-
 ### 4. Discretization (Binning)
 
 Discretization (or binning) is the process of transforming continuous variables into categorical ones. This is useful if you want to reduce the impact of outliers or make certain trends more interpretable.
 
-Ideas: 
-'EnlosedPorch': 1. Yes, 2. No
-'MasVnrArea': 1. Yes, 2. No
+Ideas:
+
+* 'EnlosedPorch': 1. Yes, 2. No
+* 'MasVnrArea': 1. Yes, 2. No
 (in progress)
 
 ### 5. Outlier Detection and Treatment
@@ -306,8 +304,8 @@ Ideas:
 Outliers can distort model performance and lead to incorrect predictions. Various methods can be used to detect and handle outliers.
 Common Outlier Detection Methods:
 
-- IQR (Interquartile Range) Method: Detect outliers based on the IQR, typically using a threshold of 1.5 * IQR.
-- Z-score Method: Detect outliers based on the Z-score (values above a certain threshold).
+* IQR (Interquartile Range) Method: Detect outliers based on the IQR, typically using a threshold of 1.5 * IQR.
+* Z-score Method: Detect outliers based on the Z-score (values above a certain threshold).
 
 Since the outliers for SalePrice represent real, valid data points, I keep them in the model. The dataset contains examples of extreme property prices, the model should be trained on those extreme values. This ensures the model can predict for higher prices in the future. Example: If you have properties worth $1,000,000 or more, and they are valid sales, it’s important to include them.
 
@@ -315,12 +313,11 @@ A log transformation to the target variable SalePrice is used for Numerical Tran
 
 Some machine learning models are more robust to outliers than others. For instance: Random Forest, Gradient Boosting (like XGBoost), and Decision Trees handle outliers relatively well. Linear regression models, however, are more sensitive to extreme outliers and might give distorted results when exposed to such values. Therefore, a more robust ML model is selected.
 
-### Feature Engineering Spreadsheet summary:
+### Feature Engineering Spreadsheet summary
 
-- Categorical Encoding (already done in 02_data_cleaning)
-- Numerical Transformation (log transformation): 'SalePrice', 'GrLivArea'
-- Smart Correlated Selection (there are a various varables with can be dropped due to a high correlation match): ['TotalBsmtSF', '1stFlrSF', 'GarageArea', 'GrLivArea', '2ndFlrSF', 'SalePrice', 'KitchenQual', 'YearBuilt']
-
+* Categorical Encoding (already done in 02_data_cleaning)
+* Numerical Transformation (log transformation): 'SalePrice', 'GrLivArea'
+* Smart Correlated Selection (there are a various varables with can be dropped due to a high correlation match): ['TotalBsmtSF', '1stFlrSF', 'GarageArea', 'GrLivArea', '2ndFlrSF', 'SalePrice', 'KitchenQual', 'YearBuilt']
 
 | variabels | comment | correlation with SalePrice | Potential Feature Engineering Transformers |
 |---|---|---|---|
@@ -334,21 +331,20 @@ Some machine learning models are more robust to outliers than others. For instan
 |BsmtUnfSF| droped from dataset due to low correlation | | |
 |TotalBsmtSF|  |  |  |
 |GarageArea|  |  |  |
-|GarageFinish| identified as dtype='object', Missing values (NaNs) in the GarageFinish columns are filled wih the most frequent value found in that column.
+|GarageFinish| identified as dtype='object', Missing values (NaNs) in the GarageFinish columns are filled wih the most frequent value found in that column. | | |
 |GarageYrBlt|  |  |  |
 |GrLivArea|  |  |  |
 |KitchenQual| identified as dtype='object' |  |  |
 |LotArea|  droped from dataset due to low correlation | | |
 |LotFrontage|  |  |  |
-|MasVnrArea| It fills all missing values in the MasVnrArea column with the mean of the existing (non-null) values in that column. |  |  |  |
+|MasVnrArea| It fills all missing values in the MasVnrArea column with the mean of the existing (non-null) values in that column. |  |  |
 |EnclosedPorch| droped from dataset due to low correlation and high number of missing values.|  |  |
 |OpenPorchSF|  |  |  |
 |OverallCond| droped from dataset due to low correlation | | |
-|OverallQual|  | 0.790982 | | |
+|OverallQual|  | 0.790982 | |
 |WoodDeckSF| droped from dataset due to low correlation and high number of missing values |  |  |
 |YearBuilt|  |  |  |
 |YearRemodAdd|  |  |  |
-
 
 ## ML Business Case
 
@@ -357,7 +353,6 @@ Some machine learning models are more robust to outliers than others. For instan
 The ML task was done by following the CRISP-DM workflow.
 
 <img src="images/crisp-dm_workflow.PNG" alt="crisp-dm_workflow" width="700">
-
 
 ## Dashboard Design
 
@@ -370,8 +365,6 @@ The ML task was done by following the CRISP-DM workflow.
 | page_project_hypothesis_and_validation |  |  |  |
 | page_sales_price_predictor |  |  |  |
 | page_pipeline_performance |  |  |  |
-
-
 
 ## Unfixed Bugs
 
@@ -400,20 +393,20 @@ The ML task was done by following the CRISP-DM workflow.
 
 * Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
 
-- numpy==1.26.1
-- pandas==2.1.1
-- matplotlib==3.8.0
-- seaborn==0.13.2
-- ydata-profiling==4.12.0 # can be removed from requirements before deployment
-- plotly==5.17.0
-- ppscore==1.1.0 # can be removed from requirements before deployment (tbc)
-- streamlit==1.40.2
-- feature-engine==1.6.1
-- imbalanced-learn==0.11.0 (tbc)
-- scikit-learn==1.3.1
-- xgboost==1.7.6 (tbc)
-- yellowbrick==1.5 # can be removed from requirements before deployment (tbc)
-- Pillow==10.0.1 # can be removed from requirements before deployment (tbc)
+* numpy==1.26.1
+* pandas==2.1.1
+* matplotlib==3.8.0
+* seaborn==0.13.2
+* ydata-profiling==4.12.0 # can be removed from requirements before deployment
+* plotly==5.17.0
+* ppscore==1.1.0 # can be removed from requirements before deployment (tbc)
+* streamlit==1.40.2
+* feature-engine==1.6.1
+* imbalanced-learn==0.11.0 (tbc)
+* scikit-learn==1.3.1
+* xgboost==1.7.6 (tbc)
+* yellowbrick==1.5 # can be removed from requirements before deployment (tbc)
+* Pillow==10.0.1 # can be removed from requirements before deployment (tbc)
 
 ## Credits
 
@@ -423,11 +416,10 @@ The ML task was done by following the CRISP-DM workflow.
 ### Content
 
 * The text for the Dahsboard was taken partly from Code Institute Walkthorugh 02
-* 
 * Ideas and supprot of plot analysis was taken from [Specific YouTube Tutorial](https://www.youtube.com/) (to be added)
 * The icons in the footer were taken from [Font Awesome](https://fontawesome.com/) (to be added)
 * The template for this project was provided by Code Institute
-* 
+* ...
 
 ### Media
 
@@ -437,6 +429,4 @@ The ML task was done by following the CRISP-DM workflow.
 
 ## Acknowledgements (optional)
 
-
 * In case you would like to thank the people that provided support through this project.
-
