@@ -54,3 +54,5 @@ def page_sales_price_predictor_body():
         'OverallQual': [overall_qual],
         'YearRemodAdd': [year_remod_add]
     })
+
+st.write("f {new_data}")
