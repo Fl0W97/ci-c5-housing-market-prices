@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from src.preprocessing import drop_unwanted_columns
 from src.data_management import load_house_market_data, load_pkl_file
 from src.machine_learning.predictive_analysis_ui import (predict_sales_price)
 
@@ -94,7 +95,7 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col5:
-        feature = "OerallQual"
+        feature = "OverallQual"
         st_widget = st.selectbox(
             label=feature,
             options=df[feature].unique()
