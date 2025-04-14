@@ -359,7 +359,17 @@ The ML task was done by following the CRISP-DM workflow.
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
 
 | Dashboard page name | Screenshot | Content | Comment |
-| --- | --- | --- | --- | --- |
+|---|---|---|---|---|
+| page_project summary |  |  |  |
+| page_house_market_study |  |  |  |
+| page_project_hypothesis_and_validation |  |  |  |
+| page_sales_price_predictor |  |  |  |
+| page_pipeline_performance |  |  |  |
+
+## Dashboard Testing
+
+| Dashboard page name | Screenshot | Test | Comment |
+|---|---|---|---|---|
 | page_project summary |  |  |  |
 | page_house_market_study |  |  |  |
 | page_project_hypothesis_and_validation |  |  |  |
@@ -370,6 +380,8 @@ The ML task was done by following the CRISP-DM workflow.
 
 * You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
 
+## Fixed Bugs
+
 |Error message | Code | Comment | Fix |
 |---|---|---|---|
 | KeyError: "['TotalArea'] not found in axis" | df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea']) | The variable 'TotalArea' is not existing (anymore) It was added to create a new varibale and combine other variable such as GrLivArea, 1stFlr, 2ndFllr. But it did not added value to the analysis. | The variable has been removed. |
@@ -378,7 +390,7 @@ The ML task was done by following the CRISP-DM workflow.
 
 ### Heroku
 
-* The App live link is: https://analyse-predict-house-market-5a00f7807683.herokuapp.com/
+* The [App live link](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/)
 * The project was deployed to Heroku using the following steps.
 
 ### Preparation
