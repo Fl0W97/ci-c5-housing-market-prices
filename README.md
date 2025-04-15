@@ -1,46 +1,72 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Housing Market Prices
 
-## Template Instructions
+Welcome to my fith project[market house pricing](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/). This dashboard contains a house market study adn a prediction function for a sales price. According to the project rewuriements and the introduction this dashboard is used by a friend who needs market insights since she is about to sell her houses in Iowa, Ames.
 
-Welcome,
+<img src="images/amiresponsive.PNG" alt="see dashboard on multiple screens" width="700">
 
-this is my project 5 - hose market pricing...
+## Dashboard overview / features
 
-## How to use this repo
+### Menu / Navigation
 
-1. Use this template to create your GitHub project repo
+<img src="" alt="see menu" width="700">
 
-2. Log into the cloud-based IDE with your GitHub account.
+### Quick Project Summary, Page 1
 
-3. On your Dashboard, click on the Create button
+[page_project_summary](page_project_summary.py)
+<img src="" alt="see project summary page" width="700">
 
-4. Paste in the URL you copied from GitHub earlier
+### House Market Study
 
-5. Click Create
+[page_house_market_study](page_house_market_study.py)
+<img src="" alt="see house market study page" width="700">
 
-6. Wait for the workspace to open. This can take a few minutes.
+### Project Hypothesis and Validation, Page 3
 
-7. Open a new terminal and `pip3 install -r requirements.txt`
+[page_hypothesis_and_validation](page_hypothesis_and_validation.py)
+<img src="" alt="see project hypothesis and validation page" width="700">
 
-8. Open the jupyter_notebooks directory and click on the notebook you want to open.
+### Sales Price Predictor, Page 4
 
-9. Click the kernel button and choose Python Environments.
+[page_sales_price_predictor](page_sales_price_predictor.py)
+<img src="" alt="see sales price predictor page" width="700">
 
-Note that the kernel says Python 3.12.2 as it inherits from the workspace so it will be Python-3.12.2 as installed by our template. To confirm this you can use `! python --version` in a notebook code cell.
+### ML: Pipeline Perfoormance, Page 5
 
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
+[page_pipeline_performance](page_pipeline_performance.py)
+<img src="" alt="see pipeline performance page" width="700">
 
 ## Project Kanban Board and User Stories
+
+The project scope is defined as an MVP. The main functionalities for adding comments and methods, as well as browsing through the different methods, have been set up. The "must-have"-User Stories have been labeld as MVP in the GitHub project right at the beginning. Further User Stories have been added along the (MVP) project. The user stories have been defined, and all relevant ones for MVP 1 have been closed. In the column 'MVP2', there are user stories defined for further improvements and extensions after the project submission.
+
+***[Project Kanban Board](https://github.com/users/Fl0W97/projects/4/views/1)***
+
+<img src="images/project_kanban_board.PNG" alt="see project kanban board" width="700">
+
+### User Stories
+
+#### Data Practitioners
+
+|Story No.|User Story|
+|---|---|
+|#2|As Data Practitioner I can access and upload the client's dataset to prepare for next analysis steps.|
+|#3|As Data Practitioner I preprocess the dataset so that I can continue with the analysis|
+|[#4](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/4)|As Data Practioner I can get an overview about the house market so that I can prepare my next steps for feature Engineering and Modeling|
+|[#5](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/5)|As a Data Practitioner I get an deep understanding of the dataset and using feature engineering tools so that I can prepare a data pipeline in the next work step.|
+|[#6](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/6)|As Data Practitioner I create one or more pipeline models so that I can evaluate and also use the pipelines to meet the business requirement|
+|#8|As a Data Practitioner and Business Stakeholder I can read through a detailed project description so that I understand what the project is about and what might be adjusted.|
+|#11|As Data Practitioner I can see information (and evaluations) about the used pipelines and their performance so that I understand the process and what happens to get the final predictions.|
+
+#### User / friend
+
+|Story No.|User Story|
+|---|---|
+|[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard|
+|#7|As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.|
+|#9|As User I can see a house market study so that I get an understanding of the house market.|
+|#10|As User I can read hypothesis and validation approaches so that I understand if the hypothesis are correct or wrong.|
+|#12|As User I get an overview of the project so that I can decide if it makes sense to deep dive.|
+|#13|As User I can predict the sale price when I enter certain attributes so that I can define a sales price for my houses.|
 
 ## ML Business case - Step by step
 
@@ -263,7 +289,7 @@ The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indic
 
 <img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
 
-The correlation shows 
+The correlation shows
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
@@ -530,24 +556,40 @@ Make sure that the following files are created in the project environment before
 | Error widget dashboard columns drop |---|---|---| wrong variables in test/train |---|
 | Error widget dashboard overallqual |---|---|---| Due to a typo the widget name couldn't be found | name is corrected |
 
-## Main Data Analysis and Machine Learning Libraries
+## Tools & Technologies used
 
-Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
+### Main Data Analysis and Machine Learning Libraries
 
 * numpy==1.26.1
 * pandas==2.1.1
 * matplotlib==3.8.0
 * seaborn==0.13.2
-* ydata-profiling==4.12.0 # can be removed from requirements before deployment
+* ydata-profiling==4.12.0 # removed from requirements before deployment
 * plotly==5.17.0
-* ppscore==1.1.0 # can be removed from requirements before deployment (tbc)
+* ppscore==1.1.0 # removed from requirements before deployment (tbc)
 * streamlit==1.40.2
 * feature-engine==1.6.1
 * imbalanced-learn==0.11.0 (tbc)
 * scikit-learn==1.3.1
 * xgboost==1.7.6 (tbc)
-* yellowbrick==1.5 # can be removed from requirements before deployment (tbc)
-* Pillow==10.0.1 # can be removed from requirements before deployment (tbc)
+* yellowbrick==1.5 # removed from requirements before deployment (tbc)
+* Pillow==10.0.1 # removed from requirements before deployment (tbc)
+
+### Languages
+
+*Python 3.12.8: The primary programming language used for developing the backend of the website.
+
+### Other tools
+
+*Jupyter Notebook
+*Git: The version control system that tracks changes in the code and enables collaboration among developers.
+*Gitpod: A cloud-based IDE used for local development and coding.
+*Pip3: The Python package manager used to install and manage project dependencies.
+*GitHub: A platform that hosts the website’s source code and facilitates project management through features like the Kanban board.
+*Font Awesome: A library used to incorporate scalable vector icons into the website.
+*PEP8: A tool used to check the Python code against the PEP8 coding standards for readability and consistency.
+*Heroku: A cloud platform used to deploy and host the website in a production environment.
+*Languagetool: Free grammar checker for checking my project documentation
 
 ## Credits
 
@@ -567,6 +609,16 @@ Here you should list the libraries you used in the project and provide example(s
 * The images used for the gallery page were taken from the Code Institute Course 'Delivering Data Science Projects Data Culture and CRISP-DM Workflow CRISP-DM Workflow'
 * The images used for the dashboard page XY were taken from (to be added)
 
-## Acknowledgements (optional)
+### Templates
 
-* In case you would like to thank the people that provided support through this project.
+## Cloud IDE Reminders (???)
+
+To log into the Heroku toolbelt CLI:
+
+1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
+2. Scroll down to the *API Key* and click *Reveal*
+3. Copy the key
+4. In your Cloud IDE, from the terminal, run `heroku_config`
+5. Paste in your API key when asked
+
+You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
