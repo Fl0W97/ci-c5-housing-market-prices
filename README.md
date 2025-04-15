@@ -40,7 +40,21 @@ To log into the Heroku toolbelt CLI:
 
 You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
 
-## Dataset Content
+## Project Kanban Board and User Stories
+
+## ML Business case - Step by step
+
+This project closely follows the CRISP-DM (Cross-Industry Standard Process for Data Mining) workflow — a widely adopted framework for structuring data science and machine learning projects. It consists of six iterative phases: Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, and Deployment.
+
+Throughout this project, each step maps to the CRISP-DM process. Below, the workflow is broken down into chapters, with examples of how each phase has been addressed. It's important to note that the process is not strictly linear — as shown in the diagram below, the project involved moving back and forth between phases. For example, some decisions made during data cleaning or feature engineering were later revisited and adjusted based on new insights gained in later stages of the workflow.
+
+<img src="images/crisp-dm_workflow.PNG" alt="crisp-dm_workflow" width="700">
+
+### Business Understanding
+
+The first step in the project focuses on developing a solid understanding of the business context and objectives. This includes an initial review of the dataset, which contains 1460 entries and 24 columns with clear and descriptive variable names. While a few columns are missing, the overall structure and content of the data are well-defined. In addition to exploring the data, the business requirements are outlined to ensure alignment with the project's goals. Finally, a set of initial hypotheses was formulated, each accompanied by a brief explanation of how it could be validated through data analysis.
+
+#### Dataset Content
 
 * The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). A fictitious user story is applied where predictive analytics can be applied in a real project in the workplace.
 * The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (i.e. Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
@@ -72,103 +86,111 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 |YearRemodAdd|Remodel date (same as construction date if no remodelling or additions)|1950 - 2010|
 |SalePrice|Sale Price|34900 - 755000|
 
-## Business Requirements
+#### Business Requirements
 
 My friend received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
 
 Although my friend has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and will provide you with that.
 
 * 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
+
 * 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
 
-## Hypothesis and how to validate
+#### Hypothesis and how to validate
 
-### Hypothesis: Larger square footage often correlates with higher sales prices. (Correct.)
+##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
 
-I suspect the sales price correlates with a high amount of ground living area.
+I suspect the sales price correlates with a high amount of ground living area. For the validation there are two approaches:
 
-How to validate:
+* Analyse the dataset and provide a correlation analysis about sales price.
+* Plot a distribution of price vs square_footage. To separate both of these variables.
 
-* Analyse the dataset and provide a correlation analysis about sales price. See [02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
+Validation:
+See correlation analysis. The Correlation value GrLivArea/SalePrice is high (0.71)
+[02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
 
-* Plot a scatter plot of price vs square_footage. See [02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+[02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
 <img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
 
-### Hypothesis: More bedrooms, higher sales price. (Wrong.)
+##### Hypothesis (H2): More bedrooms, higher sales price. (Wrong.)
 
-How to validate:
+I suspect the sales price correlates with a high amount of bedrooms. For the validation there are two approaches:
 
+* Analyse the dataset and provide a correlation analysis about sales price.
 * Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
+
+Validation:
+See correlation analysis above. The Correlation value BedroomAbvGr/SalePrice is very low (0.16)
+
+[02b_house_market_study: Distribution of Bedroomabvgr by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
 <img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
-Correlation value BedroomAbvGr/SalePrice: 0.161901
+##### Hypothesis (H3): Better OverallCond, higher sales price. (Wrong.)
 
-### Hypothesis: Better OverallCond, higher sales price. (Wrong.)
+I suspect the sales price correlates with a high 'OverallCond'. For the validation there are two approaches:
 
-How to validate:
-
+* Analyse the dataset and provide a correlation analysis about sales price.
 * Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
-<img src="" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
-Correlation value OverallCond/SalePrice: -0.077856
+Validation:
+See correlation analysis above. The Correlation value OverallCond/SalePrice is very low (-0.078)
 
-### Hypothesis: Renovated houses sell for more (Partly correct.)
+[02b_house_market_study: Distribution of OverallCond by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02b_distribution_of_overallcond_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
-How to validate:
+##### Hypothesis (H4): Renovated houses sell for more (Partly correct.)
+
+I suspect the sales price correlates with a house that has been renovated more recently, this is shown by variable 'RemodAdd'. For the validation there are two approaches:
 
 * Compare average prices of renovated vs not renovated homes.
 * Check if the year of renovation is recent, and see if it correlates with price increase.
+
+Validation:
+See correlation analysis above. The Correlation value YearRemodadd/SalePrice is medium (0.51)
+
+[02b_house_market_study: Distribution of YearRemodadd by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
 <img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
 
-Correlation value YearRemodadd/SalePrice: 0.507101
+##### Hypothesis (H5): Newer houses are more expensive (Partly correct.)
 
-### Hypothesis: Newer houses are more expensive (Partly correct.)
-
-How to validate:
+I suspect the sales price correlates with a recent house completion. For the validation there are two approaches:
 
 * Analyze the relationship between year_built and price.
 * Convert year to age of house (current_year - year_built) if needed.
 * Run correlation and scatterplots, or use regression analysis.
+
+Validation:
+See correlation analysis above. The Correlation value year_built/SalePrice is medium (0.52)
+
+[02b_house_market_study: Distribution of YearRemodadd by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
 <img src="images/02b_distribution_of_yearbuilt_by_saleprice.PNG" alt="see distribution_of_yearbuilt_by_saleprice" width="700">
 
-Correlation value YearBuilt/SalePrice: 0.522897
+### Data collection
 
-### Hypothesis: Luxury or convenience features often raise prices (GarageArea, OverallQual, OverallCond)
+Jupyter nootebook: [01_data_collection](jupyter_notebooks/01_data_collection.ipynb)
 
-* A house market study showed the sales price correlates with \n "
-* A house with a value between $100.000 - $150.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
-* A house with a value between $150.000 - $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
-* A house with a value min. $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
-
-How to validate:
-
-* Analyze certain attributes such as 'OverallQual', 'GarageSF', 'EnclosedPorch' and ceate the clusters low-, mid- and high_price
-
-This insight will be used by the survey team for further discussions and investigations.
-
-## The rationale to map the business requirements to the Data Visualisations and ML tasks
-
-List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
-
-|  Business requierement | relevant section of visualisations and ML task |
-| --- | --- |
-| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
-| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
-
-## Data collection
-
-[01_data_collection](jupyter_notebooks/01_data_collection.ipynb)
-
-The dataset is loaded into a pandas DataFrame and an initial inspection is performed to understand its structure, dimensions, and content (Load and inspect the Kaggle dataset). Data types of all columns are reviewed to distinguish between numerical and non-numerical features, which is essential for preprocessing and model selection. The following parameter do not have a numeric type: ['BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
+The dataset is loaded into a pandas DataFrame and an initial inspection is performed to understand its structure, dimensions, and content (Load and inspect the Kaggle dataset). There are 1460 entries, 0 to 1459, and 24 data columns. Data types of all columns are reviewed to distinguish between numerical and non-numerical features, which is essential for preprocessing and model selection. The following parameter do not have a numeric type: ['BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
 In addition, the dataset is analyzed to detect columns with missing values. The number of missing entries per column is calculated and presented in descending order to highlight areas requiring attention. The following columns have missing Values: ['EnclosedPorch', 'WoodDeckSF', 'LotFrontage ', 'GarageFinish', 'BsmtFinType1', 'BedroomAbvGr', '2ndFlrSF', 'GarageYrBlt', 'BsmtExposure', 'MasVnrArea']. Last but not least, columns containing zero values are identified and evaluated. The total number of zero values in the dataset is reported, along with a breakdown per column, to assess if zeros may represent missing or invalid data.
-The following columns have the value zero: ['MasVnrArea', '2ndFlrSF', 'openPorchSF', 'BsmtFinSF1', 'BsmtUnfSF', 'EnclosedPorch', 'GarageArea', 'WoodDeckSF', 'TotalBsmtSF', 'BedroomAbvGr']. All values should remain, since it is an indication that the relevatn attribute is not available.
+The following columns have the value zero: ['MasVnrArea', '2ndFlrSF', 'openPorchSF', 'BsmtFinSF1', 'BsmtUnfSF', 'EnclosedPorch', 'GarageArea', 'WoodDeckSF', 'TotalBsmtSF', 'BedroomAbvGr']. All values should remain, since it is an indication that the relevant attribute is not available.
 
-## Data cleaning
+What was suprising after the data collection that column 'EnclosedPorch' and 'WoodDeckSF' have a hughe number of missing values, therefore, those variables are not considered for the further analysis.
 
-[02_data_cleaning](jupyter_notebooks/02_data_cleaning.ipynb)
+With regards to the used code, here a few exampes of the mostly used code snippets that has been (re)used:
 
-### Handling missing values
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| df.info() | pandas | Provides dataset df information | |
+| df.isnull() | pandas | identifies missing values in the dataset df | |
+| os.makedirs(name='outputs/data_collected') | os | creates a folder in repo | |
+
+### Data cleaning
+
+Jupyter notebook: [02_data_cleaning](jupyter_notebooks/02_data_cleaning.ipynb)
+
+The data cleaning phase focus on preparing the dataset for analysis and modeling by improving its quality and consistency. This included handling missing values and correcting incorrect data types. Addressing outliers that could distort model performance haven't been identified. A correlation matrix was created to better understand relationships between features and identify potential issues such as multicollinearity. After cleaning, the dataset was split into training and test sets to support proper model validation. All cleaned and prepared data, along with relevant scripts and notebooks, was versioned and pushed to the repository.
+
+#### Handling missing values
 
 There are missing data. For cleaning it the function DataCleaningEffect() is used (from feature-engine lession)
 
@@ -201,13 +223,33 @@ By using a machine learning model, more sophisticated imputation techniques can 
 
 Considering regression-based and model-based imputation for more advanced techniques (tbd!!MERIT!!)
 
-### Correlation matrix
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
 
-<img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
+#### Correcting incorrect data types
 
-## Feature engineering
+In the provided dataset there are the following four variables which don't have numeric values.
 
-### Zeros in the dataset
+*'BsmtExposure'
+*'BsmtFinType1'
+*'GarageFinish'
+*'KitchenQual'
+
+For further analysing steps and for the pipeline processing it is mandatory to transfrom those to numeric values. That is done with astype(str)
+
+1. Convert the columns to string type (it will handle NaN as 'nan' string)
+2. Strip any leading/trailing whitespace from the column values
+3. Replace string representation of 'NaN' with 'Unknown'
+4. Map categorical values to numeric
+5. Check the unique values to confirm that the columns contain only valid values
+6. Apply numeric conversion safely (handle non-numeric values)
+
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### Handling zeros in the dataset
 
 The analysis shows that there are zeros in the dataset. Whether those should be transformed depends on:
 
@@ -215,13 +257,31 @@ The analysis shows that there are zeros in the dataset. Whether those should be 
 * The interpretation of zeros (absence vs. a true zero value).
 * The impact of zeros on the target variable (do they have predictive power?).
 
-The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). I don't need to transform them. There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is. (!!add decision!!)
+The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indicating the presence of a second-floor basement). There are two opitons: A - creating additional features (like a binary indicator for zero values) or B - leave them as-is. I decided to leave them as-is since the zeros show that a certain feature is not available. Currently a categorical approach by identifiying yes or no of a feature is not part of the analysis.
 
-### YData Profiling Report
+#### Correlation matrix
+
+<img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
+
+The correlation shows 
+
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### Split into training and test sets
+
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+### Feature Engineering
+
+#### YData Profiling Report
 
 The report enables to have a closer look at each variable. The following insighs are noticeable:
 
-| variable | comment |
+|Variable|Comment|
 |--|--|
 | 2stFlrSF | ~59% zeros, only 41% of the houses have a 2st floor |
 | BsmtFinSF1 | 32% of the houses don't have a basement |
@@ -230,14 +290,24 @@ The report enables to have a closer look at each variable. The following insighs
 | YearBuilt | A big amount of houses in the dataset has been built around 2000 (!! Details!!). It seems there are a lot new houses in the market. |
 | YearRemodAdd | A noticable amount of houses has been renovated around 2000. (!! Details!!) |
 
-### 1. Categorical Encoding
+(!!!Add IMAGE!!!)
+
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### 1. Categorical Encoding
 
 Categorical variables represent discrete categories. Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form. For the convertion the Label Encoding has been applied. It assigns each category a unique integer.
 
 In the jupyter notebook '02_data cleaning'. The following parameters has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
 In jupyter notebook '04_modeling_and_evaluation'. The following parameters has been transformed (for pipeline model): (...).
 
-### 2. Numerical Transformation
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### 2. Numerical Transformation
 
 Numerical features often need to be transformed to improve model performance, especially if their distribution is skewed.
 Common Transformation Techniques:
@@ -248,7 +318,11 @@ Common Transformation Techniques:
 
 Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since thir distribution is skewed.
 
-### 3. Smart Correlation Selection
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### 3. Smart Correlation Selection
 
 In a dataset, some features may be highly correlated with others. Keeping highly correlated features in a model can lead to multicollinearity, which can negatively impact model performance.
 Method to Select Features Based on Correlation:
@@ -289,7 +363,7 @@ This feature represents the quality of the kitchen, which may be closely related
 
 Action: Drop KitchenQual because OverallQual might already capture the overall quality of the house, including the kitchen.
 
-### 4. Discretization (Binning)
+#### 4. Discretization (Binning)
 
 Discretization (or binning) is the process of transforming continuous variables into categorical ones. This is useful if you want to reduce the impact of outliers or make certain trends more interpretable.
 
@@ -299,7 +373,11 @@ Ideas:
 * 'MasVnrArea': 1. Yes, 2. No
 (in progress)
 
-### 5. Outlier Detection and Treatment
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### 5. Outlier Detection and Treatment
 
 Outliers can distort model performance and lead to incorrect predictions. Various methods can be used to detect and handle outliers.
 Common Outlier Detection Methods:
@@ -313,7 +391,7 @@ A log transformation to the target variable SalePrice is used for Numerical Tran
 
 Some machine learning models are more robust to outliers than others. For instance: Random Forest, Gradient Boosting (like XGBoost), and Decision Trees handle outliers relatively well. Linear regression models, however, are more sensitive to extreme outliers and might give distorted results when exposed to such values. Therefore, a more robust ML model is selected.
 
-### Feature Engineering Spreadsheet summary
+#### Feature Engineering Spreadsheet summary
 
 * Categorical Encoding (already done in 02_data_cleaning)
 * Numerical Transformation (log transformation): 'SalePrice', 'GrLivArea'
@@ -346,54 +424,27 @@ Some machine learning models are more robust to outliers than others. For instan
 |YearBuilt|  |  |  |
 |YearRemodAdd|  |  |  |
 
-## ML Business Case
+### Modeling
 
-* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+### Evaluation
 
-The ML task was done by following the CRISP-DM workflow.
+### The rationale to map the business requirements to the Data Visualisations and ML tasks
 
-<img src="images/crisp-dm_workflow.PNG" alt="crisp-dm_workflow" width="700">
+List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
 
-## Dashboard Design
+|  Business requierement | relevant section of visualisations and ML task |
+| --- | --- |
+| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
+| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
 
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
+### Deployment
 
-| Dashboard page name | Screenshot | Content | Comment |
-|---|---|---|---|---|
-| page_project summary |  |  |  |
-| page_house_market_study |  |  |  |
-| page_project_hypothesis_and_validation |  |  |  |
-| page_sales_price_predictor |  |  |  |
-| page_pipeline_performance |  |  |  |
-
-## Dashboard Testing
-
-| Dashboard page name | Screenshot | Test | Comment |
-|---|---|---|---|---|
-| page_project summary |  |  |  |
-| page_house_market_study |  |  |  |
-| page_project_hypothesis_and_validation |  |  |  |
-| page_sales_price_predictor |  |  |  |
-| page_pipeline_performance |  |  |  |
-
-## Unfixed Bugs
-
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
-
-## Fixed Bugs
-
-|Error message | Code | Comment | Fix |
-|---|---|---|---|
-| KeyError: "['TotalArea'] not found in axis" | df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea']) | The variable 'TotalArea' is not existing (anymore) It was added to create a new varibale and combine other variable such as GrLivArea, 1stFlr, 2ndFllr. But it did not added value to the analysis. | The variable has been removed. |
-
-## Deployment
-
-### Heroku
+#### Heroku
 
 * The [App live link](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/)
 * The project was deployed to Heroku using the following steps.
 
-### Preparation
+#### Preparation
 
 Make sure that the following files are created in the project environment before connect it with Heroku:
 
@@ -431,7 +482,7 @@ Make sure that the following files are created in the project environment before
 
 * Using .slugignore for reducing slug size
 
-### Deployment steps
+#### Deployment steps
 
 1. Log in to Heroku and create an App
 2. At the Deploy tab, select GitHub as the deployment method.
@@ -439,6 +490,45 @@ Make sure that the following files are created in the project environment before
 4. Select the branch you want to deploy, then click Deploy Branch.
 5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
 6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+
+## Dashboard Design
+
+* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
+
+| Dashboard page name | Screenshot | Content | Comment |
+|---|---|---|---|---|
+| page_project summary |  |  |  |
+| page_house_market_study |  |  |  |
+| page_project_hypothesis_and_validation |  |  |  |
+| page_sales_price_predictor |  |  widgets |  |
+| page_pipeline_performance |  |  |  |
+
+## Dashboard Testing
+
+| Dashboard page name | Screenshot | Test | Comment |
+|---|---|---|---|---|
+| page_project summary |  |  |  |
+| page_house_market_study |  |  |  |
+| page_project_hypothesis_and_validation |  |  |  |
+| page_sales_price_predictor |  |  |  |
+| page_pipeline_performance |  |  |  |
+
+## Unfixed Bugs
+
+* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
+
+## Fixed Bugs
+
+| Bug name |Error message|Image error message|Code|Comment, description|Fix|
+|---|---|---|---|---|---|
+| Error missing variable | KeyError: "['TotalArea'] not found in axis" |<img src="" alt="" width="300">| df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea']) | The variable 'TotalArea' is not existing (anymore) It was added to create a new varibale and combine other variable such as GrLivArea, 1stFlr, 2ndFllr. But it did not added value to the analysis. | The variable has been removed. |
+| Error running multiple algorithms | NameError: name 'PipelineClf' is not defined | <img src="images/fixed_bugs_run_multiple_algorithms_error.PNG" alt="see error description" width="300"> | <img src="images/fixed_bugs_run_multiple_algorithms_code1.PNG" alt="see code" width="300"> <img src="images/fixed_bugs_run_multiple_algorithms_code2.PNG" alt="see code" width="300"> | ... | The pipeline was renamed. 'PipelineClf' doesn't exist. It was a copy & paste failure |
+| Error scaling data |---|---|---|---|---|
+| Error target imbalancing  |---|---|---|---|---|
+| Error by running streamlit |---|---|---|---|---|
+| Error widget dashboard drop unwanted columns |---|---|---| ipynb format cannot be handled. | The Drop function has been shifted to an own file src.preprocessing.py |
+| Error widget dashboard columns drop |---|---|---| wrong variables in test/train |---|
+| Error widget dashboard overallqual |---|---|---| Due to a typo the widget name couldn't be found | name is corrected |
 
 ## Main Data Analysis and Machine Learning Libraries
 
