@@ -47,8 +47,8 @@ The project scope is defined as an MVP. The main functionalities for adding comm
 
 #### Data Practitioners
 
-|Story No.|User Story|
-|---|---|
+|Story No.|Titel|User Story|
+|---|---|---|
 |#2|As Data Practitioner I can access and upload the client's dataset to prepare for next analysis steps.|
 |#3|As Data Practitioner I preprocess the dataset so that I can continue with the analysis|
 |[#4](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/4)|As Data Practioner I can get an overview about the house market so that I can prepare my next steps for feature Engineering and Modeling|
@@ -59,8 +59,8 @@ The project scope is defined as an MVP. The main functionalities for adding comm
 
 #### User / friend
 
-|Story No.|User Story|
-|---|---|
+|Story No.|Titel|User Story|
+|---|---|---|
 |[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard|
 |#7|As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.|
 |#9|As User I can see a house market study so that I get an understanding of the house market.|
@@ -257,10 +257,10 @@ Considering regression-based and model-based imputation for more advanced techni
 
 In the provided dataset there are the following four variables which don't have numeric values.
 
-*'BsmtExposure'
-*'BsmtFinType1'
-*'GarageFinish'
-*'KitchenQual'
+* 'BsmtExposure'
+* 'BsmtFinType1'
+* 'GarageFinish'
+* 'KitchenQual'
 
 For further analysing steps and for the pipeline processing it is mandatory to transfrom those to numeric values. That is done with astype(str)
 
@@ -577,19 +577,19 @@ Make sure that the following files are created in the project environment before
 
 ### Languages
 
-*Python 3.12.8: The primary programming language used for developing the backend of the website.
+*Python 3.12.1: The primary programming language used for developing the backend of the website.
 
 ### Other tools
 
-*Jupyter Notebook
-*Git: The version control system that tracks changes in the code and enables collaboration among developers.
-*Gitpod: A cloud-based IDE used for local development and coding.
-*Pip3: The Python package manager used to install and manage project dependencies.
-*GitHub: A platform that hosts the website’s source code and facilitates project management through features like the Kanban board.
-*Font Awesome: A library used to incorporate scalable vector icons into the website.
-*PEP8: A tool used to check the Python code against the PEP8 coding standards for readability and consistency.
-*Heroku: A cloud platform used to deploy and host the website in a production environment.
-*Languagetool: Free grammar checker for checking my project documentation
+* Jupyter Notebook
+* Git: The version control system that tracks changes in the code and enables collaboration among developers.
+* Gitpod: A cloud-based IDE used for local development and coding.
+* Pip3: The Python package manager used to install and manage project dependencies.
+* GitHub: A platform that hosts the website’s source code and facilitates project management through features like the Kanban board.
+* Font Awesome: A library used to incorporate scalable vector icons into the website.
+* PEP8: A tool used to check the Python code against the PEP8 coding standards for readability and consistency.
+* Heroku: A cloud platform used to deploy and host the website in a production environment.
+* Languagetool: Free grammar checker for checking my project documentation
 
 ## Credits
 
