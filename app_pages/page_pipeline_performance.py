@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from src.data_management import load_pkl_file
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 def page_pipeline_performance_body():
      st.write("### Pipeline performance")
@@ -8,17 +9,17 @@ def page_pipeline_performance_body():
      version = 'v1'
      # load needed files
      pipeline_dc_fe_opt = load_pkl_file(
-          f'outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_data_cleaning_feat_eng.pkl')
+          f'outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_data_cleaning_feat_opt.pkl')
      pipeline_regressor = load_pkl_file(
           f"outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_regressor.pkl")
      X_train_opt = pd.read_csv(
-          f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train.csv")
+          f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train_opt.csv")
      X_test_opt = pd.read_csv(
-          f"outputs/ml_pipelines/predict_SalePrice/{version}/X_test.csv")
+          f"outputs/ml_pipelines/predict_SalePrice/{version}/X_test_opt.csv")
      y_train_opt = pd.read_csv(
-          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_train.csv").values
+          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_train_opt.csv").values
      y_test_opt = pd.read_csv(
-          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_test.csv").values
+          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_test_opt.csv").values
 
      st.write("### ML Pipeline: Predict Sales Price")
      # display pipeline training summary conclusions

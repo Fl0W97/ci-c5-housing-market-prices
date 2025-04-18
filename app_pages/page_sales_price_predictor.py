@@ -10,7 +10,7 @@ def page_sales_price_predictor_body():
     # load predict sales price files
     version = 'v1'
     pipeline_dc_fe = load_pkl_file(
-        f'outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_data_cleaning_feat_eng.pkl')
+        f'outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_data_cleaning_feat_opt.pkl')
     pipeline_regressor = load_pkl_file(
         f"outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_regressor.pkl")
     house_features = (pd.read_csv(f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train.csv")
@@ -65,7 +65,7 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col2:
-        feature = "GarageFinish"
+        feature = "GarageArea"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,
