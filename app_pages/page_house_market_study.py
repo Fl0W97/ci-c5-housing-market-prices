@@ -73,8 +73,8 @@ def page_house_market_study_body():
     st.info(
         f"The correlation indications and plots below interpretation converge. "
         f"It is indicated that: \n"
-        f"* A property with a high sales price typically has huge ground living area (> xSF). \n"
-        f"* A property with a high sales price typically has a big garage (> xSF). \n"
+        f"* A property with a high sales price typically has huge ground living area. \n"
         f"* A property with a high sales price typically has a high kitchen quality. \n"
         f"* A property with a high sales price typically has a high overall quality. \n"
+        f"* The sales price has a low correlation with basement exposure, number of bedrooms or the overall condition. \n"
     )

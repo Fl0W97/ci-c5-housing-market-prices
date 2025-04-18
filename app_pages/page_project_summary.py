@@ -8,7 +8,15 @@ def page_project_summary_body():
     st.info(
         f"**Project Terms & Jargon**\n"
         f"* The dataset represents a **house market study of Ames, Iowa** "
-        f"containing individual house sales prices and further parameter such as first&second floor square meters, kitchen quality, garage area, overall Condition, etc. ")
+        f"containing individual house sales prices and further parameter such as first & second floor square meters, kitchen quality, garage area, overall Condition, etc. "
+        f" The most relevant parameter are: \n" 
+        f" * GarageArea - Size of garage in square feet \n"
+        f" * YearBuilt - Original construction date \n"
+        f" * OverallQual - Rates the overall material and finish of the house \n"
+        f" * MasVnrArea - Masonry veneer area in square feet \n"
+        f" * GrLivArea - Above grade (ground) living area square feet \n"
+        f" * SalePrice - represents the value of the house \n"
+        )
 
     # Link to README file, so the users can have access to full project documentation
     st.write(
