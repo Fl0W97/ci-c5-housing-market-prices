@@ -11,9 +11,12 @@ def predict_sales_price(X_live, house_features, preprocessing, pipline_regressor
     # predict
     sales_price_prediction = pipline_regressor.predict(X_live_dc_fe)
 
+    # Extract the scalar value from the array
+    sales_price = sales_price_prediction.item()
+
     # display the result
     statement = (
-        f'### The predicted sales price for this house based on the given parameters is {sales_price_prediction}.')
+        f'### The predicted sales price for this house based on the given parameters is ${sales_price:,.2f}.')
 
     st.write(statement)
 

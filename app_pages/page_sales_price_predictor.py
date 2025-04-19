@@ -25,17 +25,46 @@ def page_sales_price_predictor_body():
     )
     st.write("---")
 
-    # Generate Live Data
+    # Generate User Input (live) Data
     X_live = DrawInputsWidgets()
 
-    # predict on live data
+    # Initial value
+    sales_price_prediction_h1 = None
+
+    st.write('Enter the details of the property to predict the sales price.')
+
+    # predict on User Input (live) Data
     if st.button("Run Predictive Analysis"):
         sales_price_prediction = predict_sales_price(
             X_live, house_features, pipeline_dc_fe, pipeline_regressor)
 
     st.write("---")
+             
+    # predict sales price inherent house 1
+    if st.button("Predict sales price for inherent house 1"):
 
-    st.write('Enter the details of the property to predict the sales price.')
+        X_house1 = {
+            'GrLivArea': 896,
+            'GarageArea': 730.0,
+            'MasVnrArea': 0,
+            'YearBuilt': 1961,
+            'OverallQual': 6
+        }
+
+        # Convert X_house1 to a DataFrame
+        X_house1_df = pd.DataFrame([X_house1])
+
+        # Show input data (now it's a DataFrame so .head() works)
+        st.write(X_house1_df.head(1))
+
+         # Predict the sales price using the DataFrame
+        sales_price_prediction_h1 = predict_sales_price(
+            X_house1_df, house_features, pipeline_dc_fe, pipeline_regressor)
+
+    # Only show prediction if it exists
+    if sales_price_prediction_h1 is not None:
+        # Safely extract and format the prediction
+        predicted_value = sales_price_prediction_h1.item()  # works for 1-element arrays
 
 def DrawInputsWidgets():
 
@@ -105,47 +134,3 @@ def DrawInputsWidgets():
     st.write(X_live)
 
     return X_live
-
-    # Input form
-    # gr_liv_area = st.number_input('GrLivArea (Ground Living Area)', min_value=0)
-    # garage_finish = st.selectbox('GarageFinish', ['Fin', 'RFn', 'Unf', 'None'])
-    # masonery_area = st.number_input('MasVnrArea', min_value=0)
-    # basement_finish = st.number_input('BsmtFinSF1', min_value=0)
-    # open_porch = st.number_input('OpenPorchSF', min_value=0)
-    # overall_qual = st.selectbox('OverallQual', ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'])
-    # year_remod_add = st.number_input('YearRemodAdd', min_value=0)
-
-    # Legend for input form
-    # if st.checkbox("Open legend for input values"):
-    #    if st.checkbox("GarageFinish options"):    
-    #        st.write(f"*Fin: Finished "
-    #                f"*RFn: Rough Finished "
-    #                f"*Unf: Unfinished "
-    #                f"*None: No Garage "
-    #                )
-    #    if st.checkbox("OverallQual options"):    
-    #        st.write(f"*10: Very Excellent "
-    #                f"*9: Excellent "
-    #                f"*8: Very Good "
-    #                f"*7: Good "
-    #                f"*6: Above Average "
-    #                f"*5: Average "
-    #                f"*4: Below Average "
-    #                f"*3: Fair "
-    #                f"*2: Poor "
-    #                f"*1: Very Poor "              
-    #                )
-
-
-    # Prepare the new input data
-    # new_data = pd.DataFrame({
-    #    'GrLivArea': [gr_liv_area],
-    #    'GarageFinish': [garage_finish],
-    #    'MasVnrArea': [masonery_area],
-    #    'BsmtFinSF1': [basement_finish],
-    #    'OpenPorchSF': [open_porch],
-    #    'OverallQual': [overall_qual],
-    #    'YearRemodAdd': [year_remod_add]
-    # })
-
-    # st.write("f {new_data}")"""
