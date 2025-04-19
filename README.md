@@ -241,32 +241,29 @@ If a column has a very high proportion of missing data such as 'EnclosedPorch' a
 b. Impute Missing Values:
 For columns with a moderate amount of missing data, imputation is a good strategy. There are different methods for imputing based on the nature of the data
 
-* For numeric columns (e.g., 2ndFlrSF, BedroomAbvGr, BsmtExposure, GarageYrBlt): You can impute the missing values using the mean, median, or mode (depending on the distribution of the data). The median is often a good choice for columns with skewed distributions or outliers.
-* For categorical columns (e.g., BsmtExposure, BsmtFinType1, GarageFinish): Impute the missing values with the mode (most frequent value) since these are categorical variables.
-* For columns like MasVnrArea (small number of missing values): Since MasVnrArea has only 8 missing values, impute using the mean or median, or even consider using the mode depending on the column’s nature. If the percentage is very small, drop rows with missing values in some cases.
-* For GarageYrBlt (81 missing): An imputation with with the mode or mean of the year values is not useful. Using a more sophisticated method, like predictive modeling or filling based on group statistics (e.g., grouping by the presence of a garage) is better.
+* For numeric columns (i.e. '2ndFlrSF', 'BedroomAbvGr'): You can impute the missing values using the mean, median, or mode (depending on the distribution of the data). The median is often a good choice for columns with skewed distributions or outliers.
+* For categorical columns (i.e. 'BsmtFinType1', 'GarageFinish'): Impute the missing values with the mode (most frequent value) since these are categorical variables.
+* For columns like 'MasVnrArea' (small number of missing values): Since MasVnrArea has only 8 missing values, impute using the mean or median, or even consider using the mode depending on the column’s nature. If the percentage is very small, drop rows with missing values in some cases.
+* For 'GarageYrBlt' (81 missing): An imputation with with the mode or mean of the year values is not useful. Using a more sophisticated method, like predictive modeling or filling based on group statistics (e.g., grouping by the presence of a garage) is better. However, since it will be dropped in a later step no further correction is made.
 
-c. Fill Missing with Specific Values:
-For certain categorical columns, you might want to fill missing values with a specific placeholder like 'Unknown' or 'None' if that's a valid way to handle missing data for that variable.
-
-By using a machine learning model, more sophisticated imputation techniques can be used, such as:
-
-* K-Nearest Neighbors (KNN) imputation: Uses the values of the closest data points to impute missing values (source: YOUTUBE, add !!LINK!!).
-* Regression-based imputation: You can use a regression model to predict missing values based on other features in the dataset (source: YOUTUBE, add !!LINK!!).
+c. Fill Missing values with Specific Values:
+For certain categorical columns, you might want to fill missing values with a specific placeholder like 'Unknown' or 'None'.
 
 **Current approach:**
 
 * Drop columns with a very high percentage of missing values (e.g., EnclosedPorch, WoodDeckSF)
 * Impute missing values for columns with moderate missing data:
-  * Numeric columns (e.g., 2ndFlrSF, BedroomAbvGr) using the mean, median, or mode.
-  * Categorical columns (e.g., BsmtExposure, BsmtFinType1) using the mode (most frequent value).
+  * Numeric columns '2ndFlrSF', 'BedroomAbvGr', 'LotFrontage', 'GarageYrBlt' using the mean, median, or mode.
+  * Categorical columns 'BsmtExposure', 'BsmtFinType1', 'GarageFinish' using the mode (most frequent value).
 * For small missing data counts (e.g., MasVnrArea), impute with the mean or median.
 
 Considering regression-based and model-based imputation for more advanced techniques (tbd!!MERIT!!)
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
-| ... | ... | ... | ... |
+| df.drop(columns=['...', '...']) | ... | ... | ... |
+| df['...'].fillna(df['...'].median()) | ... | ... | ... |
+| df['...'].fillna(df['...'].mean()) | ... | ... | ... |
 
 #### Correcting incorrect data types
 
@@ -288,7 +285,11 @@ For further analysing steps and for the pipeline processing it is mandatory to t
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
-| ... | ... | ... | ... |
+| df.info() | ... | ... | ... |
+| df['...'].astype(str) | pandas | Convert the columns to string type | |
+| df['...'].str.strip() | pandas | Strip any leading/trailing whitespace from the column values | |
+| df['...'].replace("nan", "Unknown") | pandas | Replace string representation and map categorical values to numeric | |
+| pd.to_numeric(df['...'], errors='coerce') | pandas | Apply numeric conversion safely (handle non-numeric values) | |
 
 #### Handling zeros in the dataset
 
@@ -304,17 +305,57 @@ The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indic
 
 <img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
 
-The correlation shows
+The correlation gives an early insight into data quality, structure, and relationships, helping to clean and shape the data more effectively for modeling. It becomes clear that the highes correlations with 'SalePrice' are 'OverallQual' and 'GrLivArea'.
+In addition, it shows that there are 13 columns that contains varibales with a medium correlation between 0.3 and 0.7 and there are 6 columns with a correlation lower than 03.
+
+#### High Correlation: Correlation coefficient >0.7
+
+- OverallQual      0.790982
+- GrLivArea        0.708624
+
+#### Medium Correlation: Correlation coefficient [0.3,0.7]
+
+- KitchenQual      0.659600
+- GarageArea       0.623431
+- TotalBsmtSF      0.613581
+- 1stFlrSF         0.605852
+- YearBuilt        0.522897
+- YearRemodAdd     0.507101
+- MasVnrArea       0.477493
+- GarageYrBlt      0.466754
+- GarageFinish     0.465039
+- BsmtFinSF1       0.386420
+- LotFrontage      0.334771
+- OpenPorchSF      0.315856
+- 2ndFlrSF         0.312479
+
+#### Low Correlation: Correlation coefficient <0.3
+
+- LotArea          0.263843
+- BsmtFinType1     0.261373
+- BsmtExposure     0.229632
+- BsmtUnfSF        0.214479
+- BedroomAbvGr     0.155784
+- OverallCond     -0.077856
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
-| ... | ... | ... | ... |
+| correlation_matrix = df.corr() | pandas | create a correlation matrix | |
+| correlation_matrix['SalePrice'].sort_values(ascending=False) | pandas | focusing on SalesPrice correlations and sort | |
+| plt.figure(), plt.title(), plt.show() | matplotlib.pyplot | create a graphic | |
+| sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True) | seaborn | create a graphic/heatmap | |
 
 #### Split into training and test sets
+The split into trianing and test data is processed a few times wihtin this project. Both datasets are mandatory to apply a ML pipleline. It is a preparation for the next chapters.
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
-| ... | ... | ... | ... |
+| os.makedirs(name='...') | os | create a folder for the test and train sets | ... |
+| TrainSet, TestSet = train_test_split(df, test_size=0.3, random_state=42) | sklearn| Split data into train and test sets | ... |
+| TestSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False) | os, pandas | Save the DataFrame to CSV | ... |
+| TrainSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False) | os, pandas | Save the DataFrame to CSV | ... |
+
+### House Market Study
 
 ### Feature Engineering
 
