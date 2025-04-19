@@ -15,3 +15,6 @@
 __pycache__/
 
 # Ignore notebooks and dev folders
+
+# Kaggle API credentials
+kaggle.json

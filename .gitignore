@@ -1,0 +1,23 @@
+# Ignore the Kaggle API key
+kaggle.json
+
+# Ignore data files
+#*.csv
+#*.zip
+#*.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# System files
+.DS_Store
+Thumbs.db
