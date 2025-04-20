@@ -28,43 +28,60 @@ def page_sales_price_predictor_body():
     # Generate User Input (live) Data
     X_live = DrawInputsWidgets()
 
-    # Initial value
-    sales_price_prediction_h1 = None
-
     st.write('Enter the details of the property to predict the sales price.')
 
     # predict on User Input (live) Data
     if st.button("Run Predictive Analysis"):
         sales_price_prediction = predict_sales_price(
             X_live, house_features, pipeline_dc_fe, pipeline_regressor)
+        sales_price_prediction = sales_price_prediction.item()
+        st.success(f"Predicted sales price is: ${sales_price_prediction:,.2f}")
 
     st.write("---")
-             
-    # predict sales price inherent house 1
-    if st.button("Predict sales price for inherent house 1"):
 
-        X_house1 = {
+    # Define a dictionary of inherited houses
+    inherited_houses = {
+        "House 1": {
             'GrLivArea': 896,
             'GarageArea': 730.0,
             'MasVnrArea': 0,
             'YearBuilt': 1961,
             'OverallQual': 6
+        },
+        "House 2": {
+            'GrLivArea': 1200,
+            'GarageArea': 500.0,
+            'MasVnrArea': 100,
+            'YearBuilt': 1975,
+            'OverallQual': 7
+        },
+        "House 3": {
+            'GrLivArea': 1500,
+            'GarageArea': 600.0,
+            'MasVnrArea': 200,
+            'YearBuilt': 1985,
+            'OverallQual': 8
+        },
+        "House 4": {
+            'GrLivArea': 1800,
+            'GarageArea': 650.0,
+            'MasVnrArea': 150,
+            'YearBuilt': 1995,
+            'OverallQual': 9
         }
+    }
 
-        # Convert X_house1 to a DataFrame
-        X_house1_df = pd.DataFrame([X_house1])
+    # Iterate through each house and create a button + prediction
+    for label, features in inherited_houses.items():
+        if st.button(f"Predict sales price for {label}"):
+            X_df = pd.DataFrame([features])
+            st.write(X_df.head(1))
+            
+            prediction = predict_sales_price(X_df, house_features, pipeline_dc_fe, pipeline_regressor)
 
-        # Show input data (now it's a DataFrame so .head() works)
-        st.write(X_house1_df.head(1))
-
-         # Predict the sales price using the DataFrame
-        sales_price_prediction_h1 = predict_sales_price(
-            X_house1_df, house_features, pipeline_dc_fe, pipeline_regressor)
-
-    # Only show prediction if it exists
-    if sales_price_prediction_h1 is not None:
-        # Safely extract and format the prediction
-        predicted_value = sales_price_prediction_h1.item()  # works for 1-element arrays
+            if prediction is not None:
+                predicted_value = prediction.item()
+                st.success(f"Predicted sales price for {label}: ${predicted_value:,.2f}")
 
 def DrawInputsWidgets():
 
