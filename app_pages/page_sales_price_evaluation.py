@@ -27,15 +27,33 @@ def page_sales_price_evaluation_body():
     # Generate User Input (live) Data
     X_live = DrawInputsWidgets()
 
-    # Initial value
-    sales_price_prediction_h1 = None
-
-    st.write('Enter the details of the property AND the sales price.')
+    # Input field for actual sales price
+    input_sales_price = st.number_input(
+        "Enter the property's actual/listed sales price ($):",
+        min_value=10000,
+        max_value=1000000,
+        step=5000
+    )
 
     # predict on User Input (live) Data
-    if st.button("Run Predictive Analysis"):
+    if st.button("Run Price Check"):
         sales_price_prediction = predict_sales_price(
             X_live, house_features, pipeline_dc_fe, pipeline_regressor)
+
+        if sales_price_prediction is not None:
+            predicted_value = sales_price_prediction.item()
+            st.success(f"Predicted Market Value: ${predicted_value:,.2f}")
+            st.info(f"Input Sales Price: ${input_sales_price:,.2f}")
+
+            # Comparison logic
+            price_difference = input_sales_price - predicted_value
+
+            if input_sales_price < predicted_value:
+                st.success("💰 Good Deal! The property is listed **below** market value.")
+            elif input_sales_price > predicted_value:
+                st.warning("⚠️ Bad Deal! The property is listed **above** market value.")
+            else:
+                st.info("✅ Fair Deal. The property price matches the market estimate.")
 
     st.write("---")
 

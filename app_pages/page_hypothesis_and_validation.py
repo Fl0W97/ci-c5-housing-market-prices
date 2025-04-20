@@ -39,8 +39,6 @@ def page_project_hypothesis_and_validation_body():
         ax.set_title("Top Correlated Features with SalePrice")
         st.pyplot(fig_top)
 
-
-
     st.write("---")
 
     st.warning(
@@ -75,7 +73,7 @@ def page_project_hypothesis_and_validation_body():
 
     st.write("---")
 
-    st.success(
+    st.warning(
         f"* H4: Renovated old houses sell for more than non-renovated old "
         f"houses: Wrong. \n\n"
         f"It was tested by comparing SalePrice for old houses, grouped by "
@@ -85,7 +83,8 @@ def page_project_hypothesis_and_validation_body():
         f"renovated and those that were not.\n "
         f"t-statistic = 0.27. 0.27 is very close to zero, so the difference in "
         f"average SalePrice between groups is tiny compared to the variability.\n\n"
-        f"p-value = 0.7842. This means the difference is not statistically significant"
+        f"p-value = 0.7842. This means the difference is not statistically significant. \n\n "
+        f"In addtion, the correlation value YearRemodadd/SalePrice is 0.51, not strong. "
         )
 
     if st.checkbox("See here the Sale Price Comparison: Renovated vs. Not Renovated"):
@@ -95,25 +94,20 @@ def page_project_hypothesis_and_validation_body():
         ax.set_xticklabels(["Not Renovated", "Renovated"])
         st.pyplot(fig)
 
-    # Check if the year of renovation is recent, and see if it correlates with price increase.
-    # <img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
-    # Correlation value YearRemodadd/SalePrice: 0.507101
-
     st.write("---")
 
     st.success(
-        f"* H6: Newer houses are more expensive: Partly correct \n\n"
-        f"Compare average prices of old vs newer homes.")
+        f"* H5: Newer houses are more expensive: Partly correct \n\n"
+        f"Here average prices of old (< 2000 (YearBuilt)) vs newer homes. > 2000 (YearBuilt) has been analyzed. "
+        f"To control for confounding variables houses of similar characteristics (same GrLivArea, OverallQual) has been compared, only differing in YearBuilt "
+        f"The result of a t-test shows (p =  0.0123), newer houses tend to be more expensive controlling for other features. "
+        f"The visualization below support the statement. "
+        )
 
-    # * Analyze the relationship between year_built and price.
-    # * Convert year to age of house (current_year - year_built) if needed.
-    # * Run correlation and scatterplots, or use regression analysis.
-    # <img src="images/02b_distribution_of_yearbuilt_by_saleprice.PNG" alt="see distribution_of_yearbuilt_by_saleprice" width="700">
-    # Correlation value YearBuilt/SalePrice: 0.522897
+    if st.checkbox("See here the Sale Price Comparison: New vs. Old Houses"):
+        fig, ax = plt.subplots(figsize=(8, 5))
+        sns.boxplot(data=df_filtered, x='House_Age_Group', y='SalePrice')
+        ax.set_title("Sale Price Comparison: New vs. Old Houses")
+        st.pyplot(fig)
+
     st.write("---")
-
-    #    f"* A house market study showed the sales price correlates with \n "
-    #    f"A house with a value between $100.000 - $150.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
-    #    f"A house with a value between $150.000 - $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
-    #    f"A house with a value min. $300.000 typically has GrLivArea = , OverallQual = , as demonstrated by a house maket study.\n "
-    #    f"This insight will be used by the survey team for further discussions and investigations."
