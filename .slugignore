@@ -9,7 +9,7 @@
 
 # Ignore saved models and artifacts
 *.pkl
-!output/ml_pipeline/predict_SalePrice/v1
+!output/ml_pipelines/predict_SalePrice/v1
 
 # Ignore development files
 __pycache__/
