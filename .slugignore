@@ -1,19 +1,4 @@
 # Ignore data files
-*.csv
-!outputs/
-!outputs/data_cleaned/
-!outputs/data_cleaned/house_market_data_complete_cleaned.csv
-!outputs/ml_pipelines/
-!outputs/ml_pipelines/predict_SalePrice/
-!outputs/ml_pipelines/predict_SalePrice/v1/
-!outputs/ml_pipelines/predict_SalePrice/v1/X_test_opt.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/X_train_opt.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/y_test_opt.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/y_train_opt.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/X_test.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/X_train.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/y_test.csv
-!outputs/ml_pipelines/predict_SalePrice/v1/y_train.csv
 *.zip
 *.json
 
