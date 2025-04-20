@@ -2,9 +2,9 @@
 kaggle.json
 
 # Ignore data files
-#*.csv
-#*.zip
-#*.json
+*.csv
+*.zip
+*.json
 
 # Python
 __pycache__/

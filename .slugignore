@@ -8,11 +8,6 @@
 *.png
 
 # Ignore saved models and artifacts
-*.pkl
-!output/ml_pipelines/predict_SalePrice/v1/pipeline_data_cleaning_feat_opt.pkl
-!output/ml_pipelines/predict_SalePrice/v1/pipeline_data_cleaning_feat.pkl
-!output/ml_pipelines/predict_SalePrice/v1/pipeline_regressor.pkl
-!output/ml_pipelines/predict_SalePrice/v1/full_pipeline.pkl
 
 # Ignore development files
 __pycache__/
@@ -21,3 +16,13 @@ __pycache__/
 
 # Kaggle API credentials
 kaggle.json
+
+# Ignore data files
+*.csv
+!outputs/data_cleaned/house_market_data_complete_cleaned.csv
+!outputs/ml_pipelines/predict_SalePrice/v1/X_test_opt.csv
+!outputs/ml_pipelines/predict_SalePrice/v1/X_train_opt.csv
+!outputs/ml_pipelines/predict_SalePrice/v1/y_test_opt.csv
+!outputs/ml_pipelines/predict_SalePrice/v1/y_train_opt.csv
+*.zip
+*.json
