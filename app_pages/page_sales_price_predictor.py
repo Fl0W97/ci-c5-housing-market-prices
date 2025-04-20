@@ -83,6 +83,8 @@ def page_sales_price_predictor_body():
                 predicted_value = prediction.item()
                 st.success(f"Predicted sales price for {label}: ${predicted_value:,.2f}")
 
+    st.write("---") 
+
 def DrawInputsWidgets():
 
     # load dataset
@@ -92,8 +94,6 @@ def DrawInputsWidgets():
 # input widgets only for 5 house features
     col1, col2, col3, col4 = st.columns(4)
     col5, col6, col7, col8 = st.columns(4)
-
-    # We are using these features to feed the ML pipeline
 
     # create an empty DataFrame, which will be the live data
     X_live = pd.DataFrame([], index=[0])

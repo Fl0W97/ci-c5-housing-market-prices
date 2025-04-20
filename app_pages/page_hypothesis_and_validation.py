@@ -2,20 +2,22 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
-from src.data_management import load_house_market_data
+from src.data_management import load_house_market_data, load_house_market_study_data, load_house_market_study_data_filtered
 
 
 def page_project_hypothesis_and_validation_body():
 
     # load data
     df = load_house_market_data()
+    df_study = load_house_market_study_data()
+    df_filtered = load_house_market_study_data_filtered()
 
     st.write("### Project Hypothesis and Validation")
     st.write("Find here the validated hypothesis H1-H5:")
 
     # conclusions taken from "02 - Data Collection" notebook
     st.success(
-        f"* H1: Larger square footage often correlates with higher sales prices: Correct \n\n"
+        f"* H1: Larger square footage often correlates with higher sales prices: Correct. \n\n"
         f"The correlation with focus on 'SalePrice' supports the hypothesis. "
         f"Variables such as 'GrLivArea' (corr. 0.708624), 'TotalBsmtSF' (corr. 0.613581), 'GarageArea' (corr. 0.623431) and '1stFlrSF' (corr. 0.605852) have high correlations with the 'SalePrice' ."
         f"In addition, The distribution of GrLivArea by SalePrice show it clearly: \n\n")
@@ -42,7 +44,7 @@ def page_project_hypothesis_and_validation_body():
     st.write("---")
 
     st.warning(
-        f"* H2: More bedrooms, higher sales price: Wrong \n\n"
+        f"* H2: More bedrooms, higher sales price: Wrong. \n\n"
         f"The correlation study and the distribution plot don't support the "
         f"hypothesis (corr. 0.161901). The variable 'BedroomAbvGr' indicates the number of "
         F"bedrooms which are not related to the sales price or saquare feets. "
@@ -58,17 +60,26 @@ def page_project_hypothesis_and_validation_body():
     st.write("---")
 
     st.warning(
-        f"* H3: Better OverallCond, higher sales price: Wrong \n\n"
+        f"* H3: Better OverallCond, higher sales price: Wrong. \n\n"
         f"The correlation study and the distribution plot don't support the "
-        f"hypothesis (corr. -0.077856). The variable 'OverallCond' indicates the number of "
+        f"hypothesis (corr. -0.078). The variable 'OverallCond' indicates the number of "
         F"bedrooms which are not related to the sales price or saquare feets. "
-        f"In addition, below the distribution of OverallCond by SalePrice\n\n")
+        f"In addition, below the distribution of OverallCond by SalePrice\n\n"
+        f"However, there seems to be a crutial difference between 'OverallCond' "
+        f"and 'OverallQual', because 'OverallCond indeed shows a very high "
+        f" correlation to SalePrice (0,79).\n\n"
+        )
 
     if st.checkbox("See here the distribution 'OverallCond vs SalePrice'"):
 
         fig, ax = plt.subplots(figsize=(10, 6))
         sns.scatterplot(x='SalePrice', y='OverallCond', data=df, ax=ax)
         ax.set_title('OverallCond vs SalePrice')
+        st.pyplot(fig)
+
+        fig, ax = plt.subplots(figsize=(10, 6))
+        sns.scatterplot(x='SalePrice', y='OverallQual', data=df, ax=ax)
+        ax.set_title('OverallQual vs SalePrice')
         st.pyplot(fig)
 
     st.write("---")
@@ -89,7 +100,7 @@ def page_project_hypothesis_and_validation_body():
 
     if st.checkbox("See here the Sale Price Comparison: Renovated vs. Not Renovated"):
         fig, ax = plt.subplots(figsize=(8, 5))
-        sns.boxplot(x="IsRenovated", y="SalePrice", data=df, ax=ax)
+        sns.boxplot(x="IsRenovated", y="SalePrice", data=df_study, ax=ax)
         ax.set_title("Sale Price Comparison: Renovated vs. Not Renovated")
         ax.set_xticklabels(["Not Renovated", "Renovated"])
         st.pyplot(fig)
@@ -97,7 +108,7 @@ def page_project_hypothesis_and_validation_body():
     st.write("---")
 
     st.success(
-        f"* H5: Newer houses are more expensive: Partly correct \n\n"
+        f"* H5: Newer houses are more expensive: Correct.\n\n"
         f"Here average prices of old (< 2000 (YearBuilt)) vs newer homes. > 2000 (YearBuilt) has been analyzed. "
         f"To control for confounding variables houses of similar characteristics (same GrLivArea, OverallQual) has been compared, only differing in YearBuilt "
         f"The result of a t-test shows (p =  0.0123), newer houses tend to be more expensive controlling for other features. "
