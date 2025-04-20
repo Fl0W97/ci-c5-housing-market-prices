@@ -9,7 +9,10 @@
 
 # Ignore saved models and artifacts
 *.pkl
-!output/ml_pipelines/predict_SalePrice/v1
+!output/ml_pipelines/predict_SalePrice/v1/pipeline_data_cleaning_feat_opt.pkl
+!output/ml_pipelines/predict_SalePrice/v1/pipeline_data_cleaning_feat.pkl
+!output/ml_pipelines/predict_SalePrice/v1/pipeline_regressor.pkl
+!output/ml_pipelines/predict_SalePrice/v1/full_pipeline.pkl
 
 # Ignore development files
 __pycache__/
