@@ -8,32 +8,58 @@ Welcome to my fith project[market house pricing](https://analyse-predict-house-m
 
 ### Menu / Navigation
 
-<img src="" alt="see menu" width="700">
+<img src="images/overview_menu.PNG" alt="see menu" width="700">
+
+This menu contains 6 links to the following pages:
+*Quick Project Summary
+*House Market Study
+*Project Hypothesis and Validation
+*Sales Price Predictor
+*Sales Price Evaluator
+*ML: Pipeline Perfoormance
 
 ### Quick Project Summary, Page 1
 
 [page_project_summary](page_project_summary.py)
-<img src="" alt="see project summary page" width="700">
+<img src="images/overview_project_summary.PNG" alt="see project summary page" width="700">
 
-### House Market Study
+This site contains info blocks and a redirection to the README.me file.
+
+### House Market Study, Page 2
 
 [page_house_market_study](page_house_market_study.py)
-<img src="" alt="see house market study page" width="700">
+<img src="images/overview_house_market_study.PNG" alt="see house market study page" width="700">
+
+This site contains 3 buttons (checkboxes) and graphics and three information blocks.
 
 ### Project Hypothesis and Validation, Page 3
 
 [page_hypothesis_and_validation](page_hypothesis_and_validation.py)
-<img src="" alt="see project hypothesis and validation page" width="700">
+<img src="images/overview_hypothesis_and_validation.PNG" alt="see project hypothesis and validation page" width="700">
+
+This site contains 5 hypothesis with text/info blocks and for each hypothesis there is min. one visual support to determine the result.
+By using the functions ".success" or ".warning" each hypothesis isvisually highlighted if its correct or wrong.
 
 ### Sales Price Predictor, Page 4
 
 [page_sales_price_predictor](page_sales_price_predictor.py)
-<img src="" alt="see sales price predictor page" width="700">
+<img src="images/overview_sales_price_predictor.PNG" alt="see sales price predictor page" width="700">
 
-### ML: Pipeline Perfoormance, Page 5
+This site contains info text, a table, 5 widgets/ input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the previded 4 inherited houses. Here it is ensured that business requirement 2 is shown to the user.
+
+### Sales Price Evaluator, Page 5
+
+[page_sales_price_evaluation](page_sales_price_evaluation.py)
+<img src="images/overview_sales_price_evaluator.PNG" alt="see sales price predictor page" width="700">
+
+This site contains info text, a table, 6 widgets/ input forms and 1 button to check if the provided sales price meets the predicted sales price. THis feature helps to validated if the deal is a good one or not.
+
+### ML: Pipeline Perfoormance, Page 6
 
 [page_pipeline_performance](page_pipeline_performance.py)
-<img src="" alt="see pipeline performance page" width="700">
+<img src="images/overview_ml_pipeline_performance.PNG" alt="see pipeline performance page" width="700">
+
+This site provides more detailed infromation about the pipelines used within this project.
 
 ## Project Kanban Board and User Stories
 
@@ -121,76 +147,6 @@ Although my friend has an excellent understanding of property prices in her own 
 * 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
 
 * 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
-
-#### Hypothesis and how to validate
-
-##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
-
-I suspect the sales price correlates with a high amount of ground living area. For the validation there are two approaches:
-
-* Analyse the dataset and provide a correlation analysis about sales price.
-* Plot a distribution of price vs square_footage. To separate both of these variables.
-
-Validation:
-See correlation analysis. The Correlation value GrLivArea/SalePrice is high (0.71)
-[02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
-
-[02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
-
-##### Hypothesis (H2): More bedrooms, higher sales price. (Wrong.)
-
-I suspect the sales price correlates with a high amount of bedrooms. For the validation there are two approaches:
-
-* Analyse the dataset and provide a correlation analysis about sales price.
-* Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
-
-Validation:
-See correlation analysis above. The Correlation value BedroomAbvGr/SalePrice is very low (0.16)
-
-[02b_house_market_study: Distribution of Bedroomabvgr by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
-
-##### Hypothesis (H3): Better OverallCond, higher sales price. (Wrong.)
-
-I suspect the sales price correlates with a high 'OverallCond'. For the validation there are two approaches:
-
-* Analyse the dataset and provide a correlation analysis about sales price.
-* Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
-
-Validation:
-See correlation analysis above. The Correlation value OverallCond/SalePrice is very low (-0.078)
-
-[02b_house_market_study: Distribution of OverallCond by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02b_distribution_of_overallcond_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
-
-##### Hypothesis (H4): Renovated houses sell for more (Partly correct.)
-
-I suspect the sales price correlates with a house that has been renovated more recently, this is shown by variable 'RemodAdd'. For the validation there are two approaches:
-
-* Compare average prices of renovated vs not renovated homes.
-* Check if the year of renovation is recent, and see if it correlates with price increase.
-
-Validation:
-See correlation analysis above. The Correlation value YearRemodadd/SalePrice is medium (0.51)
-
-[02b_house_market_study: Distribution of YearRemodadd by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
-
-##### Hypothesis (H5): Newer houses are more expensive (Partly correct.)
-
-I suspect the sales price correlates with a recent house completion. For the validation there are two approaches:
-
-* Analyze the relationship between year_built and price.
-* Convert year to age of house (current_year - year_built) if needed.
-* Run correlation and scatterplots, or use regression analysis.
-
-Validation:
-See correlation analysis above. The Correlation value year_built/SalePrice is medium (0.52)
-
-[02b_house_market_study: Distribution of YearRemodadd by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02b_distribution_of_yearbuilt_by_saleprice.PNG" alt="see distribution_of_yearbuilt_by_saleprice" width="700">
 
 ### Data collection
 
@@ -357,7 +313,89 @@ The split into trianing and test data is processed a few times wihtin this proje
 
 ### House Market Study
 
+#### Hypothesis and how to validate
+
+Jupyter notebook: [02b_house_market_study](jupyter_notebooks/02b_house_market_study.ipynb)
+
+##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
+
+I suspect the sales price correlates with a high amount of ground living area. For the validation there are two approaches:
+
+* Analyse the dataset and provide a correlation analysis about sales price.
+* Plot a distribution of price vs square_footage. To separate both of these variables.
+
+Validation:
+See correlation analysis. The Correlation value GrLivArea/SalePrice is high (0.71)
+[02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
+
+[02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
+
+##### Hypothesis (H2): More bedrooms, higher sales price. (Wrong.)
+
+I suspect the sales price correlates with a high amount of bedrooms. For the validation there are two approaches:
+
+* Analyse the dataset and provide a correlation analysis about sales price.
+* Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
+
+Validation:
+See correlation analysis above. The Correlation value BedroomAbvGr/SalePrice is very low (0.16)
+
+[02b_house_market_study: Distribution of Bedroomabvgr by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
+
+##### Hypothesis (H3): Better OverallCond, higher sales price. (Wrong.)
+
+I suspect the sales price correlates with a high 'OverallCond'. For the validation there are two approaches:
+
+* Analyse the dataset and provide a correlation analysis about sales price.
+* Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
+
+Validation:
+See correlation analysis above. The Correlation value OverallCond/SalePrice is very low (-0.078)
+
+[02b_house_market_study: Distribution of OverallCond by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02b_distribution_of_overallcond_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
+
+##### Hypothesis (H4): Renovated houses sell for more (Partly correct.)
+
+I suspect the sales price correlates with a house that has been renovated more recently, this is shown by variable 'RemodAdd'. For the validation there are two approaches:
+
+* Compare average prices of renovated vs not renovated homes.
+* Check if the year of renovation is recent, and see if it correlates with price increase.
+* Apply statistical test: t-test.
+
+Validation:
+See correlation analysis above. The Correlation value YearRemodadd/SalePrice is medium (0.51)
+
+[02b_house_market_study: Distribution of YearRemodadd by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+<img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
+
+##### Hypothesis (H5): Newer houses are more expensive (Partly correct.)
+
+I suspect the sales price correlates with a recent house completion. For the validation there are two approaches:
+
+* Compare average prices of new vsold houses.
+* Run correlation and scatterplots, or use regression analysis.
+* Apply control for confounding. Compare houses of similar characteristics (e.g., same GrLivArea, OverallQual, etc.), only differing in YearBuilt.
+* Apply statistical test: t-test.
+
+Validation:
+See correlation analysis above. The Correlation value year_built/SalePrice is medium (0.52)
+
+#### The rationale to map the business requirements to the Data Visualisations and ML tasks
+
+List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+
+|  Business requierement | relevant section of visualisations and ML task |
+| --- | --- |
+| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
+| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
+
 ### Feature Engineering
+
+Jupyter notebook: [03_featureEngineering](jupyter_notebooks/featureEngineering.ipynb)
 
 #### YData Profiling Report
 
@@ -508,16 +546,15 @@ Some machine learning models are more robust to outliers than others. For instan
 
 ### Modeling
 
+Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
+
+#### Data Cleaning and Feature Engineering pipeline
+
+#### regression pipeline
+
 ### Evaluation
 
-### The rationale to map the business requirements to the Data Visualisations and ML tasks
-
-List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
-
-|  Business requierement | relevant section of visualisations and ML task |
-| --- | --- |
-| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
-| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
+Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
 
 ### Deployment
 
@@ -585,32 +622,9 @@ Make sure that the following files are created in the project environment before
 | page_sales_price_predictor |  |  widgets |  |
 | page_pipeline_performance |  |  |  |
 
-## Dashboard Testing
+## Testing
 
-| Dashboard page name | Screenshot | Test | Comment |
-|---|---|---|---|---|
-| page_project summary |  |  |  |
-| page_house_market_study |  |  |  |
-| page_project_hypothesis_and_validation |  |  |  |
-| page_sales_price_predictor |  |  |  |
-| page_pipeline_performance |  |  |  |
-
-## Unfixed Bugs
-
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
-
-## Fixed Bugs
-
-| Bug name |Error message|Image error message|Code|Comment, description|Fix|
-|---|---|---|---|---|---|
-| Error missing variable | KeyError: "['TotalArea'] not found in axis" |<img src="" alt="" width="300">| df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea']) | The variable 'TotalArea' is not existing (anymore) It was added to create a new varibale and combine other variable such as GrLivArea, 1stFlr, 2ndFllr. But it did not added value to the analysis. | The variable has been removed. |
-| Error running multiple algorithms | NameError: name 'PipelineClf' is not defined | <img src="images/fixed_bugs_run_multiple_algorithms_error.PNG" alt="see error description" width="300"> | <img src="images/fixed_bugs_run_multiple_algorithms_code1.PNG" alt="see code" width="300"> <img src="images/fixed_bugs_run_multiple_algorithms_code2.PNG" alt="see code" width="300"> | ... | The pipeline was renamed. 'PipelineClf' doesn't exist. It was a copy & paste failure |
-| Error scaling data |---|---|---|---|---|
-| Error target imbalancing  |---|---|---|---|---|
-| Error by running streamlit |---|---|---|---|---|
-| Error widget dashboard drop unwanted columns |---|---|---| ipynb format cannot be handled. | The Drop function has been shifted to an own file src.preprocessing.py |
-| Error widget dashboard columns drop |---|---|---| wrong variables in test/train |---|
-| Error widget dashboard overallqual |---|---|---| Due to a typo the widget name couldn't be found | name is corrected |
+For detailed testing information, see the content related to testing in [TESTING.md](TESTING.md).
 
 ## Tools & Technologies used
 
@@ -657,7 +671,7 @@ Make sure that the following files are created in the project environment before
 * Ideas and supprot of plot analysis was taken from [Specific YouTube Tutorial](https://www.youtube.com/) (to be added)
 * The icons in the footer were taken from [Font Awesome](https://fontawesome.com/) (to be added)
 * The template for this project was provided by Code Institute
-* ...
+* The structure of the documentation has been reused from my project 4
 
 ### Media
 

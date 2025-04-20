@@ -22,7 +22,7 @@ def page_project_hypothesis_and_validation_body():
         f"Variables such as 'GrLivArea' (corr. 0.708624), 'TotalBsmtSF' (corr. 0.613581), 'GarageArea' (corr. 0.623431) and '1stFlrSF' (corr. 0.605852) have high correlations with the 'SalePrice' ."
         f"In addition, The distribution of GrLivArea by SalePrice show it clearly: \n\n")
 
-    if st.checkbox("Find below the distribution"):
+    if st.checkbox("See here the distribution 'GrLivArea by SalePrice'"):
 
         fig, ax = plt.subplots(figsize=(10, 6))
         sns.scatterplot(x='SalePrice', y='GrLivArea', data=df, ax=ax)
