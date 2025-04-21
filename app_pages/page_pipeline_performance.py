@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from src.data_management import load_pkl_file
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+# from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from src.machine_learning.evaluation import regression_performance
+import matplotlib.pyplot as plt
 
 def page_pipeline_performance_body():
      st.write("### Pipeline performance")
@@ -17,9 +20,9 @@ def page_pipeline_performance_body():
      X_test_opt = pd.read_csv(
           f"outputs/ml_pipelines/predict_SalePrice/{version}/X_test_opt.csv")
      y_train_opt = pd.read_csv(
-          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_train_opt.csv").values
+          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_train_opt.csv").values.squeeze()
      y_test_opt = pd.read_csv(
-          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_test_opt.csv").values
+          f"outputs/ml_pipelines/predict_SalePrice/{version}/y_test_opt.csv").values.squeeze()
 
      st.write("### ML Pipeline: Predict Sales Price")
      # display pipeline training summary conclusions
@@ -29,32 +32,34 @@ def page_pipeline_performance_body():
           f"* The pipeline performance on train and test set is xx xxx , respectively."
      )
 
-     # show pipelines
-     st.write("---")
-     st.write("#### There are 2 ML Pipelines arranged in series.")
+     # In case the true values need to be log-transformed (if not already in log scale)
+     y_test_opt_log = np.log10(y_test_opt)  # If your actual values are not log-transformed
 
-     st.write(" * The first is responsible for data cleaning and feature engineering.")
-     st.write(pipeline_dc_fe_opt)
+     # Apply data cleaning & feature engineering pipeline to the test data
+     X_test_opt_transformed = pipeline_dc_fe_opt.transform(X_test_opt)
 
-     st.write("* The second is for feature scaling and modelling.")
-     st.write(pipeline_regressor)
+     # Make predictions with the final regression model
+     y_pred_opt_log = pipeline_regressor.predict(X_test_opt_transformed)
 
-     # show feature importance plot
+     # Show performance metrics
+     regression_performance(y_test_opt_log, y_pred_opt_log, log_base=10)
 
-     # Apply the data cleaning & feature engineering pipeline
-     X_test_opt = pipeline_dc_fe_opt.transform(X_test_opt)
+     # Add plot: Predicted vs Actual (Original Scale)
+     import matplotlib.pyplot as plt
 
-     # Make predictions
-     y_pred = pipeline_regressor.predict(X_test_opt)
+     y_test_actual = np.power(10, y_test_opt_log)
+     y_pred_actual = np.power(10, y_pred_opt_log)
 
-     # Evaluate metrics
-     mae = mean_absolute_error(y_test_opt, y_pred)
-     mse = mean_squared_error(y_test_opt, y_pred)
-     rmse = mean_squared_error(y_test_opt, y_pred, squared=False)
-     r2 = r2_score(y_test_opt, y_pred)
+     fig, ax = plt.subplots(figsize=(8, 6))
+     ax.scatter(y_test_actual, y_pred_actual, alpha=0.5, color='blue')
+     ax.plot([y_test_actual.min(), y_test_actual.max()],
+             [y_test_actual.min(), y_test_actual.max()],
+             color='red', lw=2, linestyle='--')
 
-     # Display results
-     st.write(f"**Mean Absolute Error (MAE):** {mae:.2f}")
-     st.write(f"**Mean Squared Error (MSE):** {mse:.2f}")
-     st.write(f"**Root Mean Squared Error (RMSE):** {rmse:.2f}")
-     st.write(f"**R² Score:** {r2:.2f}")
+     ax.set_title("Predicted vs Actual Sale Prices")
+     ax.set_xlabel("Actual Sale Price ($)")
+     ax.set_ylabel("Predicted Sale Price ($)")
+     ax.grid(True)
+
+     st.write("### Predicted vs Actual Sale Prices")
+     st.pyplot(fig)

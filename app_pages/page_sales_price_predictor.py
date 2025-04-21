@@ -46,28 +46,28 @@ def page_sales_price_predictor_body():
             'GarageArea': 730.0,
             'MasVnrArea': 0,
             'YearBuilt': 1961,
-            'OverallQual': 6
+            'OverallQual': 5
         },
         "House 2": {
-            'GrLivArea': 1200,
-            'GarageArea': 500.0,
-            'MasVnrArea': 100,
-            'YearBuilt': 1975,
-            'OverallQual': 7
+            'GrLivArea': 1329,
+            'GarageArea': 312.0,
+            'MasVnrArea': 108.0,
+            'YearBuilt': 1958,
+            'OverallQual': 6
         },
         "House 3": {
-            'GrLivArea': 1500,
-            'GarageArea': 600.0,
-            'MasVnrArea': 200,
-            'YearBuilt': 1985,
-            'OverallQual': 8
+            'GrLivArea': 928,
+            'GarageArea': 482.0,
+            'MasVnrArea': 0,
+            'YearBuilt': 1997,
+            'OverallQual': 5
         },
         "House 4": {
-            'GrLivArea': 1800,
-            'GarageArea': 650.0,
-            'MasVnrArea': 150,
-            'YearBuilt': 1995,
-            'OverallQual': 9
+            'GrLivArea': 926,
+            'GarageArea': 470.0,
+            'MasVnrArea': 20.0,
+            'YearBuilt': 1998,
+            'OverallQual': 6
         }
     }
 
