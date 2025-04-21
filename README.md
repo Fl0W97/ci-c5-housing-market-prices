@@ -8,58 +8,64 @@ Welcome to my fith project[market house pricing](https://analyse-predict-house-m
 
 ### Menu / Navigation
 
-<img src="images/overview_menu.PNG" alt="see menu" width="700">
+<img src="images/overview_menu.PNG" alt="see menu" width="300">
 
-This menu contains 6 links to the following pages:
-*Quick Project Summary
-*House Market Study
-*Project Hypothesis and Validation
-*Sales Price Predictor
-*Sales Price Evaluator
-*ML: Pipeline Perfoormance
+This menu is located on the right side and contains 6 links. It can be hidden. The linked pages are the following ones: <br>
+*Quick Project Summary <br>
+*House Market Study <br>
+*Project Hypothesis and Validation <br>
+*Sales Price Predictor <br>
+*Sales Price Evaluator <br>
+*ML: Pipeline Perfoormance <br>
 
 ### Quick Project Summary, Page 1
 
 [page_project_summary](page_project_summary.py)
-<img src="images/overview_project_summary.PNG" alt="see project summary page" width="700">
 
 This site contains info blocks and a redirection to the README.me file.
+
+<img src="images/overview_project_summary.PNG" alt="see project summary page" width="700">
 
 ### House Market Study, Page 2
 
 [page_house_market_study](page_house_market_study.py)
-<img src="images/overview_house_market_study.PNG" alt="see house market study page" width="700">
 
 This site contains 3 buttons (checkboxes) and graphics and three information blocks.
+
+<img src="images/overview_house_market_study.PNG" alt="see house market study page" width="700">
 
 ### Project Hypothesis and Validation, Page 3
 
 [page_hypothesis_and_validation](page_hypothesis_and_validation.py)
-<img src="images/overview_hypothesis_and_validation.PNG" alt="see project hypothesis and validation page" width="700">
 
 This site contains 5 hypothesis with text/info blocks and for each hypothesis there is min. one visual support to determine the result.
 By using the functions ".success" or ".warning" each hypothesis isvisually highlighted if its correct or wrong.
 
+<img src="images/overview_hypothesis_and_validation.PNG" alt="see project hypothesis and validation page" width="700">
+
 ### Sales Price Predictor, Page 4
 
 [page_sales_price_predictor](page_sales_price_predictor.py)
-<img src="images/overview_sales_price_predictor.PNG" alt="see sales price predictor page" width="700">
 
 This site contains info text, a table, 5 widgets/ input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the previded 4 inherited houses. Here it is ensured that business requirement 2 is shown to the user.
+
+<img src="images/overview_sales_price_predictor.PNG" alt="see sales price predictor page" width="700">
 
 ### Sales Price Evaluator, Page 5
 
 [page_sales_price_evaluation](page_sales_price_evaluation.py)
-<img src="images/overview_sales_price_evaluator.PNG" alt="see sales price predictor page" width="700">
 
 This site contains info text, a table, 6 widgets/ input forms and 1 button to check if the provided sales price meets the predicted sales price. THis feature helps to validated if the deal is a good one or not.
+
+<img src="images/overview_sales_price_evaluator.PNG" alt="see sales price predictor page" width="700">
 
 ### ML: Pipeline Perfoormance, Page 6
 
 [page_pipeline_performance](page_pipeline_performance.py)
-<img src="images/overview_ml_pipeline_performance.PNG" alt="see pipeline performance page" width="700">
 
-This site provides more detailed infromation about the pipelines used within this project.
+This site provides more detailed information about the pipelines used within this project.
+
+<img src="images/overview_ml_pipeline_performance.PNG" alt="see pipeline performance page" width="700">
 
 ## Project Kanban Board and User Stories
 
@@ -75,32 +81,42 @@ The project scope is defined as an MVP. The main functionalities for adding comm
 
 |Story No.|Titel|User Story|
 |---|---|---|
-|#2|As Data Practitioner I can access and upload the client's dataset to prepare for next analysis steps.|
-|#3|As Data Practitioner I preprocess the dataset so that I can continue with the analysis|
-|[#4](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/4)|As Data Practioner I can get an overview about the house market so that I can prepare my next steps for feature Engineering and Modeling|
-|[#5](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/5)|As a Data Practitioner I get an deep understanding of the dataset and using feature engineering tools so that I can prepare a data pipeline in the next work step.|
-|[#6](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/6)|As Data Practitioner I create one or more pipeline models so that I can evaluate and also use the pipelines to meet the business requirement|
-|#8|As a Data Practitioner and Business Stakeholder I can read through a detailed project description so that I understand what the project is about and what might be adjusted.|
-|#11|As Data Practitioner I can see information (and evaluations) about the used pipelines and their performance so that I understand the process and what happens to get the final predictions.|
+|[#2](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/2)|MVP: Data collection (Create Jupyter Notebook)|As Data Practitioner I can access and upload the client's dataset to prepare for next analysis steps.|
+|[#3](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/3)|MVP: Data Cleaning (Create Jupyter Notebook)|As Data Practitioner I preprocess the dataset so that I can continue with the analysis|
+|[#4](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/4)|MVP: House Market Study (Jupyter Notebook)|As Data Practioner I can get an overview about the house market so that I can prepare my next steps for feature Engineering and Modeling|
+|[#5](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/5)|MVP: Feature Engineering (Create Jupyter Notebook)|As a Data Practitioner I get an deep understanding of the dataset and using feature engineering tools so that I can prepare a data pipeline in the next work step.|
+|[#6](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/6)|MVP: Modeling and Evaluation (Create a Jupyter Notebook)|As Data Practitioner I create one or more pipeline models so that I can evaluate and also use the pipelines to meet the business requirement|
+|[#8](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/8)|MVP: Documentation (README.md)|As a Data Practitioner and Business Stakeholder I can read through a detailed project description so that I understand what the project is about and what might be adjusted.|
+|[#11](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/11)|MVP: Create Page Pipeline Performance (Streamlit)|As Data Practitioner I can see information (and evaluations) about the used pipelines and their performance so that I understand the process and what happens to get the final predictions.|
 
 #### User / friend
 
 |Story No.|Titel|User Story|
 |---|---|---|
-|[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard|
-|#7|As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.|
-|#9|As User I can see a house market study so that I get an understanding of the house market.|
-|#10|As User I can read hypothesis and validation approaches so that I understand if the hypothesis are correct or wrong.|
-|#12|As User I get an overview of the project so that I can decide if it makes sense to deep dive.|
-|#13|As User I can predict the sale price when I enter certain attributes so that I can define a sales price for my houses.|
+|[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|MVP: Project Deployment|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard|
+|[#7](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/7)|MVP: Testing Streamlit Dashboard |As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.|
+|[#9](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/9)|MVP: Create Page House Market Study (Streamlit)|As User I can see a house market study so that I get an understanding of the house market.|
+|[#10](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/10)|MVP: Create Page Hypothesis and Validation (Streamlist)|As User I can read hypothesis and validation approaches so that I understand if the hypothesis are correct or wrong.|
+|[#12](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/12)|MVP: Create Page Project Summary (Streamlit)|As User I get an overview of the project so that I can decide if it makes sense to deep dive.|
+|[#13](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/13)|MVP: Create Page Sales Price Predictor (Streamlit)|As User I can predict the sale price when I enter certain attributes so that I can define a sales price for my houses.|
+|[#14](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/14)|MVP: Create Page Sales Price Evaluator (Streamlit)|As User I can evaluate if the provided sale price is a good deal when I enter certain attributes and a sales price as offer so that I can define a sales price for my houses.|
 
-## ML Business case - Step by step
+## (ML) Business case - Step by step
 
 This project closely follows the CRISP-DM (Cross-Industry Standard Process for Data Mining) workflow — a widely adopted framework for structuring data science and machine learning projects. It consists of six iterative phases: Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, and Deployment.
 
 Throughout this project, each step maps to the CRISP-DM process. Below, the workflow is broken down into chapters, with examples of how each phase has been addressed. It's important to note that the process is not strictly linear — as shown in the diagram below, the project involved moving back and forth between phases. For example, some decisions made during data cleaning or feature engineering were later revisited and adjusted based on new insights gained in later stages of the workflow.
 
 <img src="images/crisp-dm_workflow.PNG" alt="crisp-dm_workflow" width="700">
+
+The primary objective of this project is to develop a machine learning model that can accurately predict the sales price of residential houses based on key property attributes. This enables better pricing strategies for sellers, informed purchasing decisions for buyers, and value estimation for real estate platforms or financial institutions.
+
+In the real estate industry, accurate price prediction is critical for:
+
+* Buyers: Making informed decisions on offers.
+* Sellers/Agents: Setting competitive and fair prices.
+* Lenders: Assessing property value for mortgage approvals.
+* Real Estate Portals: Enhancing user experience with price estimations.
 
 ### Business Understanding
 
@@ -483,6 +499,10 @@ This feature represents the quality of the kitchen, which may be closely related
 
 Action: Drop KitchenQual because OverallQual might already capture the overall quality of the house, including the kitchen.
 
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
 #### 4. Discretization (Binning)
 
 Discretization (or binning) is the process of transforming continuous variables into categorical ones. This is useful if you want to reduce the impact of outliers or make certain trends more interpretable.
@@ -511,116 +531,108 @@ A log transformation to the target variable SalePrice is used for Numerical Tran
 
 Some machine learning models are more robust to outliers than others. For instance: Random Forest, Gradient Boosting (like XGBoost), and Decision Trees handle outliers relatively well. Linear regression models, however, are more sensitive to extreme outliers and might give distorted results when exposed to such values. Therefore, a more robust ML model is selected.
 
-#### Feature Engineering Spreadsheet summary
+#### Feature Engineering Spreadsheet summary (IN PROGRESS, final features still has to be clarified!
 
-* Categorical Encoding (already done in 02_data_cleaning)
-* Numerical Transformation (log transformation): 'SalePrice', 'GrLivArea'
-* Smart Correlated Selection (there are a various varables with can be dropped due to a high correlation match): ['TotalBsmtSF', '1stFlrSF', 'GarageArea', 'GrLivArea', '2ndFlrSF', 'SalePrice', 'KitchenQual', 'YearBuilt']
-
-| variabels | comment | correlation with SalePrice | Potential Feature Engineering Transformers |
-|---|---|---|---|
-|Sale Price| | 1 | Numerical Transformation |
-|1stFlrSF|  |  |  |
-|2ndFlrSF| MIssing values are filled up by adding median()  |  |  |
-|BedroomAbvGr| droped from dataset due to low correlation | | |
-|BsmtExposure| identified as dtype='object', droped from dataset due to low correlation | | |
-|BsmtFinType1| droped from dataset due to low correlation | | |
-|BsmtFinSF1| identified as dtype='object' |  |  |
-|BsmtUnfSF| droped from dataset due to low correlation | | |
-|TotalBsmtSF|  |  |  |
-|GarageArea|  |  |  |
-|GarageFinish| identified as dtype='object', Missing values (NaNs) in the GarageFinish columns are filled wih the most frequent value found in that column. | | |
-|GarageYrBlt|  |  |  |
-|GrLivArea|  |  |  |
-|KitchenQual| identified as dtype='object' |  |  |
-|LotArea|  droped from dataset due to low correlation | | |
-|LotFrontage|  |  |  |
-|MasVnrArea| It fills all missing values in the MasVnrArea column with the mean of the existing (non-null) values in that column. |  |  |
-|EnclosedPorch| droped from dataset due to low correlation and high number of missing values.|  |  |
-|OpenPorchSF|  |  |  |
-|OverallCond| droped from dataset due to low correlation | | |
-|OverallQual|  | 0.790982 | |
-|WoodDeckSF| droped from dataset due to low correlation and high number of missing values |  |  |
-|YearBuilt|  |  |  |
-|YearRemodAdd|  |  |  |
+|Variables|Comment| Correlation with SalePrice|Potential Feature Engineering Transformers|
+|---------|-------|---------------------------|------------------------------------------|
+| SalePrice| Target variable; log-transformed to normalize skewness| 1.00| Numerical Transformation (log)|
+| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection | 0.61| Dropped due to high correlation|
+| 2ndFlrSF| Missing values filled using median()| 0.32| MeanMedianImputer, finally Dropped|
+| BedroomAbvGr| Dropped from dataset due to low correlation| 0.17| Dropped|
+| BsmtExposure| Categorical, dropped due to low correlation| 0.12| Dropped|
+| BsmtFinType1| Dropped due to low correlation| 0.26| Dropped|
+| BsmtFinSF1| Numeric, retained but not in final model| 0.39| None|
+| BsmtUnfSF| Dropped due to low correlation| 0.21| Dropped|
+| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during correlated feature selection| 0.61| Dropped due to high correlation|
+| **GarageArea**| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| Dropped due to high correlation|
+| GarageFinish| Categorical; imputed with most frequent value; encoded using OrdinalEncoder| 0.55| CategoricalImputer, OrdinalEncoder|
+| GarageYrBlt| Retained but not in final features| 0.49| None|
+| **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
+| KitchenQual| Categorical; encoded using OrdinalEncoder; used in final model| 0.51| OrdinalEncoder|
+| LotArea| Dropped due to low correlation| 0.26| Dropped|
+| LotFrontage| Considered but not retained in final model| 0.35| MeanMedianImputer (if used), None|
+| **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
+| EnclosedPorch| Dropped due to low correlation and many missing values| 0.13| Dropped|
+| OpenPorchSF| Not among final features, relatively low correlation| 0.32| None|
+| OverallCond| Dropped due to low correlation| 0.08| Dropped|
+| **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
+| WoodDeckSF| Dropped due to low correlation and missing values| 0.32| Dropped|
+| **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
+| YearRemodAdd| Removed during correlated feature selection, closely related to  | 0.51| None|
 
 ### Modeling
 
 Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
 
-#### Data Cleaning and Feature Engineering pipeline
+A regression model was used in this project because the target variable—house sale price—is a continuous numerical value, not a category or group.
 
-#### regression pipeline
+Classification models are designed for predicting discrete classes (e.g., “high” vs. “low” price range), while clustering models group similar data points without using a labeled target. Since the goal is to predict the exact sale price based on property features, regression is the appropriate and most effective approach.
+
+#### Data Cleaning and Feature Engineering pipeline (Data Preprocessing Pipeline)
+
+A comprehensive data cleaning and transformation pipeline was implemented using the scikit-learn and feature-engine libraries:
+Steps:
+
+* FunctionTransformer: Custom transformations if needed (e.g., log or power transforms).
+* MeanMedianImputer: Imputed missing values with the mean for MasVnrArea.
+* CategoricalImputer: Imputed missing values in categorical variables like GarageFinish.
+* OrdinalEncoder: Encoded KitchenQual and GarageFinish using arbitrary ordinal encoding.
+* SmartCorrelatedSelection: Removed multicollinear features using Spearman correlation and variance thresholding (threshold=0.6).
+* Feature Engineering Insights: Reduced feature space to the 5 most predictive attributes based on correlation and model performance.
+
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+#### Regression pipeline
+
+Multiple regression models were trained and evaluated with hyperparameter optimization:
+Models Used:
+
+* XGBRegressor
+* RandomForestRegressor
+* GradientBoostingRegressor
+* DecisionTreeRegressor
+* ExtraTreesRegressor
+* AdaBoostRegressor
+
+Hyperparameter Tuning:
+
+* Conducted using GridSearchCV or RandomizedSearchCV to find the optimal combination of parameters for each algorithm.
+
+Model Selection:
+
+Final model selection was based on validation performance metrics. The model with the best performance was integrated into the final pipeline using only the top 5 features for simplicity and performance.
+
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
 
 ### Evaluation
 
 Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
 
-### Deployment
+Models were evaluated using the following regression metrics:
+|Metric|Description|Result|
+|---|---|---|
+|R² Score|Measures the proportion of variance explained by the model||
+|MAE (Mean Absolute Error)|Average magnitude of errors in predictions||
+|MSE (Mean Squared Error)|Penalizes larger errors more heavily||
+|RMSE (Root Mean Squared Error)|Square root of MSE, interpretable in target units||
 
-#### Heroku
+|Code snippet|library|Explanation|Comment|
+|---|---|---|---|
+| ... | ... | ... | ... |
 
-* The [App live link](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/)
-* The project was deployed to Heroku using the following steps.
+### Outcome / Business impact
 
-#### Preparation
+The final machine learning model achieved a strong level of predictive accuracy while relying on just five key features, making it both efficient and easy to interpret. By carefully balancing data preprocessing, feature selection, and algorithm tuning, the solution is optimized for performance and scalability. The streamlined pipeline is well-suited for integration into real-world applications where reliable, fast, and accurate house price estimation is essential.
 
-Make sure that the following files are created in the project environment before connect it with Heroku:
+This predictive model delivers tangible value to the requestor (a friend) by significantly improving pricing accuracy, thereby reducing the risks associated with underpricing or overpricing properties. It enables more efficient operations by automating the valuation process and supports better decision-making through data-driven insights. This tool could be used by further stakeholders such as end users—buyers, sellers, and financial institutions—it enhances trust in pricing information, contributing to more transparent and confident transactions across the housing market.
 
-* setup.sh
-    mkdir -p ~/.streamlit/
-    echo "\
-    [server]\n\
-    headless = true\n\
-    port = $PORT\n\
-    enableCORS = false\n\
-    \n\
-    " > ~/.streamlit/config.toml """
+## Deployment
 
-* Procfile
-    web: sh setup.sh && streamlit run app.py
-
-* runtime.txt
-    python-3.12.8
-
-* requirements.txt
-    numpy==1.26.1
-    pandas==2.1.1
-    matplotlib==3.8.0
-    seaborn==0.13.2
-    ydata-profiling==4.12.0 (can be removed from requirements before deployment)
-    plotly==5.17.0
-    ppscore==1.1.0 (can be removed from requirements before deployment)
-    streamlit==1.40.2
-    feature-engine==1.6.1
-    imbalanced-learn==0.11.0
-    scikit-learn==1.3.1
-    xgboost==1.7.6
-    yellowbrick==1.5 (can be removed from requirements before deployment)
-    Pillow==10.0.1 (can be removed from requirements before deployment)
-
-* Using .slugignore for reducing slug size
-
-#### Deployment steps
-
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
-
-## Dashboard Design
-
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
-
-| Dashboard page name | Screenshot | Content | Comment |
-|---|---|---|---|---|
-| page_project summary |  |  |  |
-| page_house_market_study |  |  |  |
-| page_project_hypothesis_and_validation |  |  |  |
-| page_sales_price_predictor |  |  widgets |  |
-| page_pipeline_performance |  |  |  |
+For detailed deployment information, see the content related to testing in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Testing
 
@@ -630,20 +642,20 @@ For detailed testing information, see the content related to testing in [TESTING
 
 ### Main Data Analysis and Machine Learning Libraries
 
-* numpy==1.26.1
-* pandas==2.1.1
-* matplotlib==3.8.0
-* seaborn==0.13.2
-* ydata-profiling==4.12.0 # removed from requirements before deployment
-* plotly==5.17.0
-* ppscore==1.1.0 # removed from requirements before deployment (tbc)
-* streamlit==1.40.2
-* feature-engine==1.6.1
-* imbalanced-learn==0.11.0 (tbc)
-* scikit-learn==1.3.1
-* xgboost==1.7.6 (tbc)
-* yellowbrick==1.5 # removed from requirements before deployment (tbc)
-* Pillow==10.0.1 # removed from requirements before deployment (tbc)
+| Library / Package         | Purpose / Description                                                                 | Comment |
+|---------------------------|----------------------------------------------------------------------------------------|--------| 
+| numpy==1.26.1             | Numerical operations and array handling                                                ||
+| pandas==2.1.1             | Data manipulation and analysis                                                         ||
+| matplotlib==3.8.0         | Static data visualization                                                              ||
+| seaborn==0.13.2           | Statistical data visualization built on top of matplotlib                             ||
+| ydata-profiling==4.12.0   | Automated EDA (exploratory data analysis) – removed before deployment                  |# removed from requirements before deployment|
+| plotly==5.17.0            | Interactive visualizations for exploratory analysis and dashboards                     ||
+| ppscore==1.1.0            | Predictive Power Score for evaluating feature-target relationships    |# removed from requirements before deployment|
+| streamlit==1.40.2         | Web application framework for deploying ML models and data apps                       ||
+| feature-engine==1.6.1     | Feature engineering and preprocessing tools for machine learning pipelines             ||
+| imbalanced-learn==0.11.0  | Handling class imbalance in datasets (TBC – usage may be limited in regression context)||
+| scikit-learn==1.3.1       | Core ML library used for modeling, pipelines, and evaluation                          ||
+| xgboost==1.7.6            | Gradient boosting algorithm used for high-performance regression                ||
 
 ### Languages
 
@@ -651,27 +663,35 @@ For detailed testing information, see the content related to testing in [TESTING
 
 ### Other tools
 
-* Jupyter Notebook
-* Git: The version control system that tracks changes in the code and enables collaboration among developers.
-* Gitpod: A cloud-based IDE used for local development and coding.
-* Pip3: The Python package manager used to install and manage project dependencies.
-* GitHub: A platform that hosts the website’s source code and facilitates project management through features like the Kanban board.
-* Font Awesome: A library used to incorporate scalable vector icons into the website.
-* PEP8: A tool used to check the Python code against the PEP8 coding standards for readability and consistency.
-* Heroku: A cloud platform used to deploy and host the website in a production environment.
-* Languagetool: Free grammar checker for checking my project documentation
+* [Jupyter Notebook](https://jupyter.org/): used to built jupyter nootebooks, structure code and tests
+* [Git](https://git-scm.com/): The version control system that tracks changes in the code and enables collaboration among developers.
+* [Gitpod](https://www.gitpod.io/): A cloud-based IDE used for local development and coding.
+* [Pip3](https://pypi.org/): The Python package manager used to install and manage project dependencies.
+* [GitHub](https://github.com/): A platform that hosts the website’s source code and facilitates project management through features like the Kanban board.
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools): The developer tools in Google Chrome used to debug and inspect the website’s frontend.
+* [Firefox DevTools](https://firefox-source-docs.mozilla.org/devtools-user/): The developer tools in Firefox used to debug and inspect the website’s frontend.
+* [Font Awesome](https://fontawesome.com/): A library used to incorporate scalable vector icons into the website.
+* [W3C Validator](https://validator.w3.org/): A tool used to validate the HTML5 code to ensure it follows best practices and standards.
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/): A tool used to validate the CSS code, ensuring it conforms to web standards.
+* [PEP8](https://pep8ci.herokuapp.com/): A tool used to check the Python code against the PEP8 coding standards for readability and consistency.
+* [Heroku](https://www.heroku.com): A cloud platform used to deploy and host the website in a production environment.
+* [Tinypng](https://tinypng.com/): Used for reducing image size
+* [Languagetool](https://languagetool.org/): Free grammar checker for checking my project documentation
 
 ## Credits
 
-* In this section, you find reference where I got content, media and extra help from:
-
 ### Content
 
-* The text for the Dahsboard was taken partly from Code Institute Walkthorugh 02
-* Ideas and supprot of plot analysis was taken from [Specific YouTube Tutorial](https://www.youtube.com/) (to be added)
-* The icons in the footer were taken from [Font Awesome](https://fontawesome.com/) (to be added)
-* The template for this project was provided by Code Institute
-* The structure of the documentation has been reused from my project 4
+* [Specific YouTube Tutorial](https://www.youtube.com/) Ideas and supprot of plot analysis was taken from (to be added)
+* [Project Methods Library](https://github.com/Fl0W97/ci-p4-methods-library)The structure of the documentation has been reused from my project 4
+* [Code_Institute](https://codeinstitute.net) - The code and text for project and Dahsboard was taken partly from Code Institute Walkthorugh 02 and 01
+* [Code_Institute](https://codeinstitute.net) - The template for this project was provided by Code Institute
+* [Code_Institute](https://codeinstitute.net) - Mentor Rohit: Providing guidance and tips for my project
+* [Youtube](https://www.youtube.com/): for access to a huge community of developers who facing similar challenges like me
+* [SessionLab](https://www.sessionlab.com/): for access to various free Methods to fill the database and insiration for functionalities
+* [Stackoverflow](https://stackoverflow.com/): for access to a huge community of developers who facing similar challenges like me
+* [Scilearn](https://scikit-learn.org/stable/): for accessing to documentation and code
+* [Matplot](https://matplotlib.org/): for accessing to documentation and code
 
 ### Media
 
@@ -679,18 +699,11 @@ For detailed testing information, see the content related to testing in [TESTING
 * The images used for the gallery page were taken from the Code Institute Course 'Delivering Data Science Projects Data Culture and CRISP-DM Workflow CRISP-DM Workflow'
 * The images used for the dashboard page XY were taken from (to be added)
 
+### Code
+
+* 
+*
+
 ### Templates
 
 *For this project I reused the provided [Code Institute Template](https://github.com/Code-Institute-Solutions/milestone-project-heritage-housing-issues)
-
-## Cloud IDE Reminders (???)
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
