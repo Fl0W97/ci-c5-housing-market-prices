@@ -32,9 +32,6 @@ def page_pipeline_performance_body():
           f"* The pipeline performance on train and test set is xx xxx , respectively."
      )
 
-     # In case the true values need to be log-transformed (if not already in log scale)
-     y_test_opt_log = np.log10(y_test_opt)  # If your actual values are not log-transformed
-
      # Apply data cleaning & feature engineering pipeline to the test data
      X_test_opt_transformed = pipeline_dc_fe_opt.transform(X_test_opt)
 
@@ -42,18 +39,18 @@ def page_pipeline_performance_body():
      y_pred_opt_log = pipeline_regressor.predict(X_test_opt_transformed)
 
      # Show performance metrics
-     regression_performance(y_test_opt_log, y_pred_opt_log, log_base=10)
+     regression_performance(y_test_opt, y_pred_opt_log, log_base=10)
 
      # Add plot: Predicted vs Actual (Original Scale)
      import matplotlib.pyplot as plt
 
-     y_test_actual = np.power(10, y_test_opt_log)
+     y_test_actual = np.power(10, y_test_opt)
      y_pred_actual = np.power(10, y_pred_opt_log)
 
      fig, ax = plt.subplots(figsize=(8, 6))
      ax.scatter(y_test_actual, y_pred_actual, alpha=0.5, color='blue')
      ax.plot([y_test_actual.min(), y_test_actual.max()],
-             [y_test_actual.min(), y_test_actual.max()],
+             [y_pred_actual.min(), y_pred_actual.max()],
              color='red', lw=2, linestyle='--')
 
      ax.set_title("Predicted vs Actual Sale Prices")
