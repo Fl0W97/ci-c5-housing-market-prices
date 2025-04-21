@@ -536,30 +536,49 @@ Some machine learning models are more robust to outliers than others. For instan
 |Variables|Comment| Correlation with SalePrice|Potential Feature Engineering Transformers|
 |---------|-------|---------------------------|------------------------------------------|
 | SalePrice| Target variable; log-transformed to normalize skewness| 1.00| Numerical Transformation (log)|
-| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection | 0.61| Dropped due to high correlation|
-| 2ndFlrSF| Missing values filled using median()| 0.32| MeanMedianImputer, finally Dropped|
+
+| WoodDeckSF| Dropped due to low correlation and missing values| 0.32| Dropped|
+| OverallCond| Dropped due to low correlation| 0.08| Dropped|
+| LotArea| Dropped due to low correlation| 0.26| Dropped|
+| LotFrontage| Considered but not retained in final model| 0.35| MeanMedianImputer (if used), None|
 | BedroomAbvGr| Dropped from dataset due to low correlation| 0.17| Dropped|
 | BsmtExposure| Categorical, dropped due to low correlation| 0.12| Dropped|
 | BsmtFinType1| Dropped due to low correlation| 0.26| Dropped|
 | BsmtFinSF1| Numeric, retained but not in final model| 0.39| None|
 | BsmtUnfSF| Dropped due to low correlation| 0.21| Dropped|
-| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during correlated feature selection| 0.61| Dropped due to high correlation|
-| **GarageArea**| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| Dropped due to high correlation|
-| GarageFinish| Categorical; imputed with most frequent value; encoded using OrdinalEncoder| 0.55| CategoricalImputer, OrdinalEncoder|
-| GarageYrBlt| Retained but not in final features| 0.49| None|
-| **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
-| KitchenQual| Categorical; encoded using OrdinalEncoder; used in final model| 0.51| OrdinalEncoder|
-| LotArea| Dropped due to low correlation| 0.26| Dropped|
-| LotFrontage| Considered but not retained in final model| 0.35| MeanMedianImputer (if used), None|
-| **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
 | EnclosedPorch| Dropped due to low correlation and many missing values| 0.13| Dropped|
 | OpenPorchSF| Not among final features, relatively low correlation| 0.32| None|
-| OverallCond| Dropped due to low correlation| 0.08| Dropped|
-| **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
-| WoodDeckSF| Dropped due to low correlation and missing values| 0.32| Dropped|
-| **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
+| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection | 0.61| Dropped due to high correlation|
+| 2ndFlrSF| Missing values filled using median()| 0.32| MeanMedianImputer, finally Dropped|
+| GarageYrBlt| Retained but not in final features| 0.49| None|
+| GarageArea| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| Dropped due to high correlation|
+| KitchenQual| Categorical; encoded using OrdinalEncoder; used in final model| 0.51| OrdinalEncoder|
 | YearRemodAdd| Removed during correlated feature selection, closely related to  | 0.51| None|
+| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during correlated feature selection| 0.61| Dropped due to high correlation|
+| **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
+| **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
+| **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
+| **GarageFinish**| Categorical; imputed with most frequent value; encoded using OrdinalEncoder| 0.55| CategoricalImputer, OrdinalEncoder|
+| **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
 
+
+|Feature | Reason for Drop / Keep | Action|
+|--------|------------------------|-------|
+|1stFlrSF | High correlation with GrLivArea | Drop|
+|TotalBsmtSF | Redundant with GrLivArea | Drop|
+|GarageYrBlt | Related to YearBuilt, YearRemodAdd | Drop|
+|2ndFlrSF | Redundant with GrLivArea | Drop|
+|KitchenQual | Quality captured by OverallQual | Drop|
+|GarageArea | Correlated with SalePrice (target) | Drop|
+|YearRemodAdd | Redundant with YearBuilt, GarageYrBlt | Drop|
+
+
+|**GrLivArea**, OverallQual, etc. | Strong predictors | Keep
+| **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
+| **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
+| **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
+| **GarageFinish**| Categorical; imputed with most frequent value; encoded using OrdinalEncoder| 0.55| CategoricalImputer, OrdinalEncoder|
+|***SalePrice*** | Log-transformed target, not part of features | Keep (target)
 ### Modeling
 
 Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
@@ -613,12 +632,22 @@ Final model selection was based on validation performance metrics. The model wit
 Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
 
 Models were evaluated using the following regression metrics:
-|Metric|Description|Result|
-|---|---|---|
-|R² Score|Measures the proportion of variance explained by the model||
-|MAE (Mean Absolute Error)|Average magnitude of errors in predictions||
-|MSE (Mean Squared Error)|Penalizes larger errors more heavily||
-|RMSE (Root Mean Squared Error)|Square root of MSE, interpretable in target units||
+
+First approach for pipeline_regressor:
+
+|Metric | Value | What It Means|
+|-------|-------|--------------|
+|MAE | $19,473 | On average, your model's predictions are off by less than $20K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.|
+|RMSE | $33,867 | This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error.|
+|R² Score | 0.83 | Your model explains 83% of the variance in sale prices — this is very good for a regression problem in real estate, where 70–85% is typically strong.|
+
+
+
+
+
+
+
+
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
@@ -701,6 +730,7 @@ For detailed testing information, see the content related to testing in [TESTING
 
 ### Code
 
+* Data Analytics Packages ML: feature-engine Feature Engine Unit 2-4
 * 
 *
 

@@ -68,6 +68,17 @@ There are no unfixed bugs.
 | Error widget dashboard columns drop |---|---|---| wrong variables in test/train |---|
 | Error widget dashboard overallqual |---|---|---| Due to a typo the widget name couldn't be found | name is corrected |
 
+Log transformation to 'GrLivArea', but not to 'SalePrice'.
+
+If the model was trained to predict raw SalePrice, but one of the main predictor variables (GrLivArea) was log-transformed, the relationship might not be linear anymore — making it hard for your model to learn properly.
+
+Options:
+
+* Also log-transform SalePrice in training and inverse-transform it after prediction,
+* OR Don’t transform GrLivArea unless you're transforming SalePrice too.
+
+This mismatch may cause your model to underfit or mispredict higher-end values.
+
 ## Validator Testing
 Validator testing has been done on:
 
