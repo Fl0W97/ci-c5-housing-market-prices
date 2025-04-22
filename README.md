@@ -1,6 +1,6 @@
 # Housing Market Prices
 
-Welcome to my fith project[market house pricing](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/). This dashboard contains a house market study adn a prediction function for a sales price. According to the project rewuriements and the introduction this dashboard is used by a friend who needs market insights since she is about to sell her houses in Iowa, Ames.
+Welcome to my fith project [market house pricing](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/). This dashboard contains a house market study and a prediction function for sales prices depending on house features. According to the project requriements and the introduction this dashboard is used by a friend who needs market insights since she is about to sell her four inherited houses in Iowa, Ames.
 
 <img src="images/amiresponsive.PNG" alt="see dashboard on multiple screens" width="700">
 
@@ -8,15 +8,9 @@ Welcome to my fith project[market house pricing](https://analyse-predict-house-m
 
 ### Menu / Navigation
 
-<img src="images/overview_menu.PNG" alt="see menu" width="300">
+This menu is located on the right side and contains 6 links. It can be hidden. The linked pages are the following ones:
 
-This menu is located on the right side and contains 6 links. It can be hidden. The linked pages are the following ones: <br>
-*Quick Project Summary <br>
-*House Market Study <br>
-*Project Hypothesis and Validation <br>
-*Sales Price Predictor <br>
-*Sales Price Evaluator <br>
-*ML: Pipeline Perfoormance <br>
+<img src="images/overview_menu.PNG" alt="see menu" width="300">
 
 ### Quick Project Summary, Page 1
 
@@ -38,8 +32,8 @@ This site contains 3 buttons (checkboxes) and graphics and three information blo
 
 [page_hypothesis_and_validation](page_hypothesis_and_validation.py)
 
-This site contains 5 hypothesis with text/info blocks and for each hypothesis there is min. one visual support to determine the result.
-By using the functions ".success" or ".warning" each hypothesis isvisually highlighted if its correct or wrong.
+This site contains 5 hypothesis with text/info blocks and for each hypothesis there is a graphic to back up the result.
+By using the functions ".success" or ".warning" each hypothesis is visually highlighted if it's correct the box appears green, if it's wrong the box appears yellow. This page solves business requirement 1.
 
 <img src="images/overview_hypothesis_and_validation.PNG" alt="see project hypothesis and validation page" width="700">
 
@@ -47,7 +41,7 @@ By using the functions ".success" or ".warning" each hypothesis isvisually highl
 
 [page_sales_price_predictor](page_sales_price_predictor.py)
 
-This site contains info text, a table, 5 widgets/ input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the previded 4 inherited houses. Here it is ensured that business requirement 2 is shown to the user.
+This site contains info text, a table, 5 widgets/input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the provided 4 inherited houses. This page solves business requirement 2.
 
 <img src="images/overview_sales_price_predictor.PNG" alt="see sales price predictor page" width="700">
 
@@ -63,13 +57,13 @@ This site contains info text, a table, 6 widgets/ input forms and 1 button to ch
 
 [page_pipeline_performance](page_pipeline_performance.py)
 
-This site provides more detailed information about the pipelines used within this project.
+This site provides more detailed information about the two pipelines used within this project. The results of the evalaution are also mentioned (MAE, R² score).
 
 <img src="images/overview_ml_pipeline_performance.PNG" alt="see pipeline performance page" width="700">
 
 ## Project Kanban Board and User Stories
 
-The project scope is defined as an MVP. The main functionalities for adding comments and methods, as well as browsing through the different methods, have been set up. The "must-have"-User Stories have been labeld as MVP in the GitHub project right at the beginning. Further User Stories have been added along the (MVP) project. The user stories have been defined, and all relevant ones for MVP 1 have been closed. In the column 'MVP2', there are user stories defined for further improvements and extensions after the project submission.
+The project scope is defined as an MVP. The main functionalities for adding comments and methods, as well as browsing through the different methods, have been set up. The "must-have"-User Stories have been labeld in the GitHub project and all relevant tickets for the projec have the milestone: MVP. Further User Stories have been added along the (MVP) project. The user stories have been defined, and all relevant ones for MVP have been closed. In the column 'MVP2', there are user stories defined for further improvements and extensions after the project submission. Milestone MVP is created andd linked with the relevant stories.
 
 ***[Project Kanban Board](https://github.com/users/Fl0W97/projects/4/views/1)***
 
@@ -109,7 +103,7 @@ Throughout this project, each step maps to the CRISP-DM process. Below, the work
 
 <img src="images/crisp-dm_workflow.PNG" alt="crisp-dm_workflow" width="700">
 
-The primary objective of this project is to develop a machine learning model that can accurately predict the sales price of residential houses based on key property attributes. This enables better pricing strategies for sellers, informed purchasing decisions for buyers, and value estimation for real estate platforms or financial institutions.
+The primary objective of this project is to develop a machine learning model that can accurately predict the sales price of residential houses based on key property attributes. The main goal is to provide a solution to a friend. However, the tool enables better pricing strategies for sellers, informed purchasing decisions for buyers, and value estimation for real estate platforms or financial institutions.
 
 In the real estate industry, accurate price prediction is critical for:
 
@@ -173,7 +167,7 @@ By using pandas a DataFrame is defined and an initial inspection is performed to
 
 **The following parameter do not have a numeric type:**
 
-['BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
+[BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
 
 In addition, the dataset is analyzed to detect columns with missing values. The number of missing entries per column is calculated and presented in descending order to highlight areas requiring attention. 
 
@@ -193,9 +187,9 @@ With regards to the used code, here a few exampes of the mostly used code snippe
 
 |Code snippet|library|Explanation|Comment|
 |---|---|---|---|
-| df.info() | pandas | Provides dataset df information | |
-| df.isnull() | pandas | identifies missing values in the dataset df | |
-| os.makedirs(name='outputs/data_collected') | os | creates a folder in repo | |
+| `df.info()` | pandas | Provides dataset df information | |
+| `df.isnull()` | pandas | identifies missing values in the dataset df | |
+| `os.makedirs(name='outputs/data_collected')` | os | creates a folder in repo | |
 
 ### Data cleaning
 
@@ -205,48 +199,39 @@ The data cleaning phase focus on preparing the dataset for analysis and modeling
 
 #### Handling missing values
 
-There are missing data. For cleaning it the function DataCleaningEffect() is used (from feature-engine lession)
+a. Dropping Columns:
+Columns with a high proportion of missing data — such as EnclosedPorch, WoodDeckSF, and LotFrontage (with 259 missing values) — are better dropped entirely due to limited usability.
 
-a. Drop Columns:
-If a column has a very high proportion of missing data such as 'EnclosedPorch' and 'WoodDeckSF', it may be best to drop the column altogether. As well as for LotFrontage (259 missing).
+b. Imputing Missing Values:
+For columns with a moderate number of missing entries, imputation is a suitable approach, and the method used depends on the type of data:
 
-b. Impute Missing Values:
-For columns with a moderate amount of missing data, imputation is a good strategy. There are different methods for imputing based on the nature of the data
+    Numeric columns: For '2ndFlrSF', 'BedroomAbvGr', 'LotFrontage', 'GarageYrBlt' the mean, median, or mode is used, depending on data distribution.
 
-* For numeric columns (i.e. '2ndFlrSF', 'BedroomAbvGr'): You can impute the missing values using the mean, median, or mode (depending on the distribution of the data). The median is often a good choice for columns with skewed distributions or outliers.
-* For categorical columns (i.e. 'BsmtFinType1', 'GarageFinish'): Impute the missing values with the mode (most frequent value) since these are categorical variables.
-* For columns like 'MasVnrArea' (small number of missing values): Since MasVnrArea has only 8 missing values, impute using the mean or median, or even consider using the mode depending on the column’s nature. If the percentage is very small, drop rows with missing values in some cases.
-* For 'GarageYrBlt' (81 missing): An imputation with with the mode or mean of the year values is not useful. Using a more sophisticated method, like predictive modeling or filling based on group statistics (e.g., grouping by the presence of a garage) is better. However, since it will be dropped in a later step no further correction is made.
+    Categorical columns: For 'BsmtExposure', 'BsmtFinType1', 'GarageFinish' missing values are filled in using the mode (most frequent value).
 
-c. Fill Missing values with Specific Values:
-For certain categorical columns, you might want to fill missing values with a specific placeholder like 'Unknown' or 'None'.
+    The Column with minimal missing values (MasVnrArea, only 8 missing) is imputed with the mean mode.
 
-**Current approach:**
+    Special case – GarageYrBlt (81 missing): Simple imputation (mean/mode) isn't ideal here. A better strategy might involve group-based imputation or predictive modeling. However, since this column will be removed later, no imputation is performed.
 
-* Drop columns with a very high percentage of missing values (e.g., EnclosedPorch, WoodDeckSF)
-* Impute missing values for columns with moderate missing data:
-  * Numeric columns '2ndFlrSF', 'BedroomAbvGr', 'LotFrontage', 'GarageYrBlt' using the mean, median, or mode.
-  * Categorical columns 'BsmtExposure', 'BsmtFinType1', 'GarageFinish' using the mode (most frequent value).
-* For small missing data counts (e.g., MasVnrArea), impute with the mean or median.
+c. Filling with Specific Values:
+For certain categorical fields, missing values can be replaced with a placeholder like 'None' or 'Unknown', especially when that makes logical sense in the dataset context.
 
-Considering regression-based and model-based imputation for more advanced techniques (tbd!!MERIT!!)
-
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| df.drop(columns=['...', '...']) | ... | ... | ... |
-| df['...'].fillna(df['...'].median()) | ... | ... | ... |
-| df['...'].fillna(df['...'].mean()) | ... | ... | ... |
+|Code snippet|library|Comment|
+|---|---|---|
+| `df.drop(columns=['column_name', 'column_name'])` | pandas | Is used to drop columns |
+| `df['column_name'].fillna(df['column_name'].median())` | pandas | Is used to impute values by using the median value |
+| `df['column_name'].fillna(df['column_name'].mean())` | pandas | Is used to impute values by using the mean value |
 
 #### Correcting incorrect data types
 
 In the provided dataset there are the following four variables which don't have numeric values.
 
-* 'BsmtExposure'
-* 'BsmtFinType1'
-* 'GarageFinish'
-* 'KitchenQual'
+* `BsmtExposure`
+* `BsmtFinType1`
+* `GarageFinish`
+* `KitchenQual`
 
-For further analysing steps and for the pipeline processing it is mandatory to transfrom those to numeric values. That is done with astype(str)
+For further analysing steps and for the pipeline processing it is mandatory to transfrom those to numeric values. That is done with 'astype(str)'.
 
 1. Convert the columns to string type (it will handle NaN as 'nan' string)
 2. Strip any leading/trailing whitespace from the column values
@@ -255,17 +240,30 @@ For further analysing steps and for the pipeline processing it is mandatory to t
 5. Check the unique values to confirm that the columns contain only valid values
 6. Apply numeric conversion safely (handle non-numeric values)
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| df.info() | ... | ... | ... |
-| df['...'].astype(str) | pandas | Convert the columns to string type | |
-| df['...'].str.strip() | pandas | Strip any leading/trailing whitespace from the column values | |
-| df['...'].replace("nan", "Unknown") | pandas | Replace string representation and map categorical values to numeric | |
-| pd.to_numeric(df['...'], errors='coerce') | pandas | Apply numeric conversion safely (handle non-numeric values) | |
+|Code snippet|library|Comment|
+|---|---|---|
+| `df.info() | pandas | Provides information about range index, Non-Null Count, Dtypes |
+| `df['column_name'].asype(str)` | pandas | Converts a column to string data type.|
+| `df['column_name'].str.strip()` | pandas | Removes leading and trailing whitespace from string values in a column. |
+| `df['column_name'].replace("nan", "Unknown")` | pandas | Replace string representation and map categorical values to numeric.|
+| `pd.to_numeric(df['column_name'], errors='coerce')` | pandas | Converts column values to numeric (int or float). Invalid parsing will raise an error unless you pass errors='coerce'.|
 
 #### Handling zeros in the dataset
 
-The analysis shows that there are zeros in the dataset. Whether those should be transformed depends on:
+Columns with Missing Values and Their Counts:
+EnclosedPorch    1324
+WoodDeckSF       1305
+LotFrontage       259
+GarageFinish      235
+BsmtFinType1      145
+BedroomAbvGr       99
+2ndFlrSF           86
+GarageYrBlt        81
+BsmtExposure       38
+MasVnrArea          8
+dtype: int64
+
+The analysis shows that there are zeros in the dataset. Total Missing Values in the Dataset: 3580. Whether those should be transformed depends on:
 
 * The nature of the feature (binary, categorical, or continuous).
 * The interpretation of zeros (absence vs. a true zero value).
@@ -280,58 +278,61 @@ The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indic
 The correlation gives an early insight into data quality, structure, and relationships, helping to clean and shape the data more effectively for modeling. It becomes clear that the highes correlations with 'SalePrice' are 'OverallQual' and 'GrLivArea'.
 In addition, it shows that there are 13 columns that contains varibales with a medium correlation between 0.3 and 0.7 and there are 6 columns with a correlation lower than 03.
 
-#### High Correlation: Correlation coefficient >0.7
+***High Correlation: Correlation coefficient >0.7***
 
-- OverallQual      0.790982
-- GrLivArea        0.708624
+* OverallQual      0.790982
+* GrLivArea        0.708624
 
-#### Medium Correlation: Correlation coefficient [0.3,0.7]
+***Medium Correlation: Correlation coefficient [0.3,0.7]***
 
-- KitchenQual      0.659600
-- GarageArea       0.623431
-- TotalBsmtSF      0.613581
-- 1stFlrSF         0.605852
-- YearBuilt        0.522897
-- YearRemodAdd     0.507101
-- MasVnrArea       0.477493
-- GarageYrBlt      0.466754
-- GarageFinish     0.465039
-- BsmtFinSF1       0.386420
-- LotFrontage      0.334771
-- OpenPorchSF      0.315856
-- 2ndFlrSF         0.312479
+* KitchenQual      0.659600
+* GarageArea       0.623431
+* TotalBsmtSF      0.613581
+* 1stFlrSF         0.605852
+* YearBuilt        0.522897
+* YearRemodAdd     0.507101
+* MasVnrArea       0.477493
+* GarageYrBlt      0.466754
+* GarageFinish     0.465039
+* BsmtFinSF1       0.386420
+* LotFrontage      0.334771
+* OpenPorchSF      0.315856
+* 2ndFlrSF         0.312479
 
-#### Low Correlation: Correlation coefficient <0.3
+***Low Correlation: Correlation coefficient <0.3***
 
-- LotArea          0.263843
-- BsmtFinType1     0.261373
-- BsmtExposure     0.229632
-- BsmtUnfSF        0.214479
-- BedroomAbvGr     0.155784
-- OverallCond     -0.077856
+* LotArea          0.263843
+* BsmtFinType1     0.261373
+* BsmtExposure     0.229632
+* BsmtUnfSF        0.214479
+* BedroomAbvGr     0.155784
+* OverallCond     -0.077856
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| correlation_matrix = df.corr() | pandas | create a correlation matrix | |
-| correlation_matrix['SalePrice'].sort_values(ascending=False) | pandas | focusing on SalesPrice correlations and sort | |
-| plt.figure(), plt.title(), plt.show() | matplotlib.pyplot | create a graphic | |
-| sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True) | seaborn | create a graphic/heatmap | |
+|Code snippet|library|Comment|
+|---|---|---|
+| `correlation_matrix = df.corr()`| pandas | create a correlation matrix |
+| `correlation_matrix['SalePrice'].sort_values(ascending=False)` | pandas | focusing on SalesPrice correlations and sort |
+| `plt.figure(), plt.title(), plt.show() | matplotlib.pyplot` | create a graphic |
+| `sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True)` | seaborn | create a graphic/heatmap |
 
 #### Split into training and test sets
+
 The split into trianing and test data is processed a few times wihtin this project. Both datasets are mandatory to apply a ML pipleline. It is a preparation for the next chapters.
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| os.makedirs(name='...') | os | create a folder for the test and train sets | ... |
-| TrainSet, TestSet = train_test_split(df, test_size=0.3, random_state=42) | sklearn| Split data into train and test sets | ... |
-| TestSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False) | os, pandas | Save the DataFrame to CSV | ... |
-| TrainSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False) | os, pandas | Save the DataFrame to CSV | ... |
+|Code snippet|library|Comment|
+|---|---|---|
+| `os.makedirs(name='...')` | os | Create a directory (e.g., for saving train/test sets); exist_ok=True avoids errors if the folder already exists. |
+| `TrainSet, TestSet = train_test_split(df, test_size=0.3, random_state=42)` | sklearn.model_selection | Split the DataFrame into training and testing sets using a 70/30 ratio. |
+| `TestSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False)` | pandas | 	Save the test set as a CSV file without the index column. |
+| `TrainSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False)` | pandas | Save the train set as a CSV file without the index column. |
 
 ### House Market Study
 
 #### Hypothesis and how to validate
 
 Jupyter notebook: [02b_house_market_study](jupyter_notebooks/02b_house_market_study.ipynb)
+
+There are five hpothesis generated at the beginning of the project. In the following you see each hypothesis, the result and how it has been validated.
 
 ##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
 
@@ -343,9 +344,11 @@ I suspect the sales price correlates with a high amount of ground living area. F
 Validation:
 See correlation analysis. The Correlation value GrLivArea/SalePrice is high (0.71)
 [02_data_cleaning: Correlation analysis](jupyter_notebooks/02b_house_market_study.ipynb)
+
 <img src="images/02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
 
 [02b_house_market_study: Distribution of GrLivArea by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+
 <img src="images/02b_distribution_of_grlivarea_by_saleprice.PNG" alt="see distribution_of_grlivarea_by_saleprice" width="700">
 
 ##### Hypothesis (H2): More bedrooms, higher sales price. (Wrong.)
@@ -359,6 +362,7 @@ Validation:
 See correlation analysis above. The Correlation value BedroomAbvGr/SalePrice is very low (0.16)
 
 [02b_house_market_study: Distribution of Bedroomabvgr by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+
 <img src="images/02b_distribution_of_bedroomabvgr_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
 ##### Hypothesis (H3): Better OverallCond, higher sales price. (Wrong.)
@@ -372,6 +376,7 @@ Validation:
 See correlation analysis above. The Correlation value OverallCond/SalePrice is very low (-0.078)
 
 [02b_house_market_study: Distribution of OverallCond by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
+
 <img src="images/02b_distribution_of_overallcond_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
 ##### Hypothesis (H4): Renovated houses sell for more (Partly correct.)
@@ -385,14 +390,15 @@ I suspect the sales price correlates with a house that has been renovated more r
 Validation:
 See correlation analysis above. The Correlation value YearRemodadd/SalePrice is medium (0.51)
 
-[02b_house_market_study: Distribution of YearRemodadd by SalePrice](jupyter_notebooks/02b_house_market_study.ipynb)
-<img src="images/02b_distribution_of_yearremodadd_by_saleprice" alt="distribution_of_yearremodadd_by_saleprice" width="700">
+[02b_house_market_study: Comparison_of_old_houses_renovated_vs_not_renovated](jupyter_notebooks/02b_house_market_study.ipynb)
+
+<img src="images/02b_comparison_of_old_houses_renovated_vs_not_renovated.PNG" alt="comparison_of_old_houses_renovated_vs_not_renovated" width="700">
 
 ##### Hypothesis (H5): Newer houses are more expensive (Partly correct.)
 
 I suspect the sales price correlates with a recent house completion. For the validation there are two approaches:
 
-* Compare average prices of new vsold houses.
+* Compare average prices of new vs old houses.
 * Run correlation and scatterplots, or use regression analysis.
 * Apply control for confounding. Compare houses of similar characteristics (e.g., same GrLivArea, OverallQual, etc.), only differing in YearBuilt.
 * Apply statistical test: t-test.
@@ -400,18 +406,24 @@ I suspect the sales price correlates with a recent house completion. For the val
 Validation:
 See correlation analysis above. The Correlation value year_built/SalePrice is medium (0.52)
 
+[02b_house_market_study: Comparison_of_sale_price_new_vs_old_houses](jupyter_notebooks/02b_house_market_study.ipynb)
+
+<img src="images/02b_comparison_of_sale_price_new_vs_old_houses.PNG" alt="comparison_of_old_houses_renovated_vs_not_renovated" width="700">
+
 #### The rationale to map the business requirements to the Data Visualisations and ML tasks
 
 List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
 
-|  Business requierement | relevant section of visualisations and ML task |
-| --- | --- |
-| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb) |
-| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb) |
+|Business requierement|relevant section of visualisations and ML task|
+|---|---|
+| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb)|
+| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb)|
 
 ### Feature Engineering
 
 Jupyter notebook: [03_featureEngineering](jupyter_notebooks/featureEngineering.ipynb)
+
+Durign the feature Engineering process different tools has been used such as ydata profiling reports, different transformers (categroical encoding, numerical Transformation and SmartCorrelation).
 
 #### YData Profiling Report
 
@@ -491,7 +503,7 @@ Action:  'Saleprice' is kept for test and train set. 'GarageArea' is dropped.
 
 This feature represents the overall quality of the house and is highly correlated with KitchenQual and YearBuilt. Since OverallQual is a general measure of the house’s quality, it may be more valuable for predicting SalePrice than other more specific quality features like KitchenQual. In addition, OverallQual does have the highest correlation to SalePrice in the correlation anylsis (02_data_cleaning).
 
-Action: OverallQual is kept, YearBuilt is dropped.
+Action: OverallQual is kept, YearBuilt is kept.
 
 ***KitchenQual***:
 
@@ -503,82 +515,47 @@ Action: Drop KitchenQual because OverallQual might already capture the overall q
 |---|---|---|---|
 | ... | ... | ... | ... |
 
-#### 4. Discretization (Binning)
+#### 4. Discretization (Binning) - not applied
 
-Discretization (or binning) is the process of transforming continuous variables into categorical ones. This is useful if you want to reduce the impact of outliers or make certain trends more interpretable.
+Discretization (or binning) is the process of transforming continuous variables into categorical ones. This is useful if you want to reduce the impact of outliers or make certain trends more interpretable. This method could have been used for the house market study. For the new category old/new houses. However, for the pipeline binning is not relevant, as a consequence it hasn't been used during the Feature Engineering process.
 
-Ideas:
+#### 5. Outlier Detection and Treatment - not applied
 
-* 'EnlosedPorch': 1. Yes, 2. No
-* 'MasVnrArea': 1. Yes, 2. No
-(in progress)
+Outliers can negatively impact model performance by skewing results and leading to inaccurate predictions. A common technique for detecting outliers is the Interquartile Range (IQR) method, which identifies outliers as data points falling outside of 1.5 times the IQR from the first or third quartile.
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+Although this method is effective, in this case, the outliers in the SalePrice column represent genuine, high-value property sales. These data points are not errors but valid examples of high-end properties. Removing them would limit the model’s ability to generalize across the full range of property values, especially for future predictions involving expensive homes (e.g., properties priced at $1,000,000 or more).
 
-#### 5. Outlier Detection and Treatment
-
-Outliers can distort model performance and lead to incorrect predictions. Various methods can be used to detect and handle outliers.
-Common Outlier Detection Methods:
-
-* IQR (Interquartile Range) Method: Detect outliers based on the IQR, typically using a threshold of 1.5 * IQR.
-* Z-score Method: Detect outliers based on the Z-score (values above a certain threshold).
-
-Since the outliers for SalePrice represent real, valid data points, I keep them in the model. The dataset contains examples of extreme property prices, the model should be trained on those extreme values. This ensures the model can predict for higher prices in the future. Example: If you have properties worth $1,000,000 or more, and they are valid sales, it’s important to include them.
-
-A log transformation to the target variable SalePrice is used for Numerical Transformation. This transformation will compress the high values, making the distribution more symmetric and reducing the effect of extreme values, but still allowing the model to learn the overall patterns.
-
-Some machine learning models are more robust to outliers than others. For instance: Random Forest, Gradient Boosting (like XGBoost), and Decision Trees handle outliers relatively well. Linear regression models, however, are more sensitive to extreme outliers and might give distorted results when exposed to such values. Therefore, a more robust ML model is selected.
+To address the skewness introduced by these extreme values, a log transformation was applied to the SalePrice variable. This transformation compresses the range of high values, resulting in a more symmetric distribution and reducing the influence of outliers. As a result, after the transformation, the data no longer contains extreme values that exceed the IQR threshold, and no additional outlier treatment is necessary.
 
 #### Feature Engineering Spreadsheet summary (IN PROGRESS, final features still has to be clarified!
 
 |Variables|Comment| Correlation with SalePrice|Potential Feature Engineering Transformers|
 |---------|-------|---------------------------|------------------------------------------|
 | SalePrice| Target variable; log-transformed to normalize skewness| 1.00| Numerical Transformation (log)|
-
-| WoodDeckSF| Dropped due to low correlation and missing values| 0.32| Dropped|
-| OverallCond| Dropped due to low correlation| 0.08| Dropped|
-| LotArea| Dropped due to low correlation| 0.26| Dropped|
-| LotFrontage| Considered but not retained in final model| 0.35| MeanMedianImputer (if used), None|
-| BedroomAbvGr| Dropped from dataset due to low correlation| 0.17| Dropped|
-| BsmtExposure| Categorical, dropped due to low correlation| 0.12| Dropped|
-| BsmtFinType1| Dropped due to low correlation| 0.26| Dropped|
-| BsmtFinSF1| Numeric, retained but not in final model| 0.39| None|
-| BsmtUnfSF| Dropped due to low correlation| 0.21| Dropped|
-| EnclosedPorch| Dropped due to low correlation and many missing values| 0.13| Dropped|
-| OpenPorchSF| Not among final features, relatively low correlation| 0.32| None|
-| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection | 0.61| Dropped due to high correlation|
-| 2ndFlrSF| Missing values filled using median()| 0.32| MeanMedianImputer, finally Dropped|
-| GarageYrBlt| Retained but not in final features| 0.49| None|
-| GarageArea| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| Dropped due to high correlation|
-| KitchenQual| Categorical; encoded using OrdinalEncoder; used in final model| 0.51| OrdinalEncoder|
-| YearRemodAdd| Removed during correlated feature selection, closely related to  | 0.51| None|
-| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during correlated feature selection| 0.61| Dropped due to high correlation|
-| **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
+| EnclosedPorch| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.13| Dropped|
+| WoodDeckSF| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.32| Dropped|
+| OpenPorchSF| Dropped during data cleaning process, after house market study, due to low correlation| 0.32| Dropped|
+| BsmtFinType1| Dropped during data cleaning process due to low correlation| 0.26| Dropped|
+| LotArea| Dropped during data cleaning process due to low correlation| 0.26| Dropped|
+| BsmtFinSF1| Dropped during data cleaning process due to low correlation| 0.39| Dropped|
+| BsmtUnfSF| Dropped during data cleaning process due to low correlation| 0.21| Dropped|
+| LotFrontage| Dropped during data cleaning process due to low correlation| 0.35| Dropped|
+| BsmtExposure| Categorical values, Dropped during data cleaning process, after house market study, due to low correlation| 0.12| Dropped|
+| BedroomAbvGr| Dropped during data cleaning process, after house market study, due to low correlation, analysis for BedroomAbvGr done| 0.17| Dropped|
+| OverallCond| Dropped during data cleaning process, after house market study, due to low correlation, analysis for CverallCond done| 0.08| Dropped|
+| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection| 0.61| Dropped|
+| 2ndFlrSF| Missing values filled using median(), dropped during Smart Correlated Selection| 0.32| Dropped|
+| GarageYrBlt| Highly correlated with YearBuilt dropped during Smart Correlated Selection| 0.49| Dropped|
+| KitchenQual| Categorical; encoded using OrdinalEncoder; removed during Smart Correlated Selection| 0.51| Dropped|
+| YearRemodAdd| Closely related to YearBuilt, removed during Smart Correlated Selection | 0.51| Dropped|
+| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during Smart Correlated Selection| 0.61| Dropped|
+| ***GarageArea***| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| None|
+| GarageFinish| Categorical; imputed with most frequent value; encoded using OrdinalEncoder, removed during Smart Correlated Selection | 0.55| CategoricalImputer, OrdinalEncoder|
+| ***YearBuilt***| closely related to YearRemodAdd, retained in final features| 0.52| None|
 | **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
 | **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
-| **GarageFinish**| Categorical; imputed with most frequent value; encoded using OrdinalEncoder| 0.55| CategoricalImputer, OrdinalEncoder|
 | **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
 
-
-|Feature | Reason for Drop / Keep | Action|
-|--------|------------------------|-------|
-|1stFlrSF | High correlation with GrLivArea | Drop|
-|TotalBsmtSF | Redundant with GrLivArea | Drop|
-|GarageYrBlt | Related to YearBuilt, YearRemodAdd | Drop|
-|2ndFlrSF | Redundant with GrLivArea | Drop|
-|KitchenQual | Quality captured by OverallQual | Drop|
-|GarageArea | Correlated with SalePrice (target) | Drop|
-|YearRemodAdd | Redundant with YearBuilt, GarageYrBlt | Drop|
-
-
-|**GrLivArea**, OverallQual, etc. | Strong predictors | Keep
-| **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
-| **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
-| **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
-| **GarageFinish**| Categorical; imputed with most frequent value; encoded using OrdinalEncoder| 0.55| CategoricalImputer, OrdinalEncoder|
-|***SalePrice*** | Log-transformed target, not part of features | Keep (target)
 ### Modeling
 
 Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
