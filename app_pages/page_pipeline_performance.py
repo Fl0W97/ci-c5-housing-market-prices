@@ -22,11 +22,11 @@ def page_pipeline_performance_body():
     )
     X_train_opt = pd.read_csv(
         f"outputs/ml_pipelines/predict_SalePrice/{version}/"
-        f"X_train_opt.csv"
+        f"X_train_opt.csv" #X_train_opt
     )
     X_test_opt = pd.read_csv(
         f"outputs/ml_pipelines/predict_SalePrice/{version}/"
-        f"X_test_opt.csv"
+        f"X_test_opt.csv" #X_test_opt
     )
     y_train_opt = pd.read_csv(
         f"outputs/ml_pipelines/predict_SalePrice/{version}/"
@@ -61,10 +61,15 @@ def page_pipeline_performance_body():
     y_test_actual = np.power(10, y_test_opt)
     y_pred_actual = np.power(10, y_pred_opt)
 
+    # Define the range to plot
+    min_val = min(y_test_actual.min(), y_pred_actual.min())
+    max_val = max(y_test_actual.max(), y_pred_actual.max())
+
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.scatter(y_test_actual, y_pred_actual, alpha=0.5, color='blue')
-    ax.plot([y_test_actual.min(), y_test_actual.max()],
-            [y_pred_actual.min(), y_pred_actual.max()],
+
+    ax.plot([min_val, max_val],
+            [min_val, max_val],
             color='red', lw=2, linestyle='--')
 
     ax.set_title("Predicted vs Actual Sale Prices")

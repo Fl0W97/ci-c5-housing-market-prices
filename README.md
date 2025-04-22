@@ -616,17 +616,41 @@ Steps:
 #### Regression pipeline
 
 Multiple regression models were trained and evaluated with hyperparameter optimization:
-Models Used:
 
-* XGBRegressor
-* RandomForestRegressor
-* GradientBoostingRegressor
-* DecisionTreeRegressor
-* ExtraTreesRegressor
-* AdaBoostRegressor
+ML algorithms tested:
+
+Current results for HyperparameterOptimizationSeach:
+* ExtraTreesRegressor: Mean score around -0.056811 (best performance).
+* GradientBoostingRegressor: Mean score around -0.066239
+* XGBRegressor: Mean score around -0.069641
+* RandomForestRegressor: Mean score around -0.072316
+* AdaBoostRegressor: Mean score around -0.076377
+* DecisionTreeRegressor: Mean score around -0.083047 (lowest performance).
+
+Check Target Imbalance:
+
+Like already figured out during the Feature Engineering, it makes sense to log10 sales price. 
+
+Define Hyperparameter for ExtraTreesRegressor
+params_quick_search = {
+    "ExtraTreesRegressor": {
+        "model__n_estimators": [100, 200],
+        "model__max_depth": [None, 20],
+        "model__min_samples_split": [2, 5],
+    }
+}
+
+
+Test with a different scoring:
+# Fir model with training data
+search.fit(X_train, y_train,
+           scoring = 'neg_mean_absolute_error',
+           n_jobs=-1, cv=5)
+
+Fit model with training data,.There are three different opiton for the scoring 'neg_mean_absolute_error', 'neg_root_mean_squared_error', or scoring='r2'
+neg_root_mean_squared_error is more sensitive for outliers
 
 Hyperparameter Tuning:
-
 * Conducted using GridSearchCV or RandomizedSearchCV to find the optimal combination of parameters for each algorithm.
 * Train-test split after transforming the target
 * Apply the pipeline to training and testing features
@@ -650,6 +674,10 @@ Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evalua
 Models were evaluated using the following regression metrics:
 
 First approach for pipeline_regressor:
+
+
+
+
 
 |Metric | Value | What It Means|
 |-------|-------|--------------|
@@ -727,13 +755,15 @@ For detailed testing information, see the content related to testing in [TESTING
 
 * [Specific YouTube Tutorial](https://www.youtube.com/) Ideas and supprot of plot analysis was taken from (to be added)
 * [Project Methods Library](https://github.com/Fl0W97/ci-p4-methods-library)The structure of the documentation has been reused from my project 4
-* [Code_Institute](https://codeinstitute.net) - The code and text for project and Dahsboard was taken partly from Code Institute Walkthorugh 02 and 01
+* [Code_Institute](https://codeinstitute.net) - The code and text for project and Dashboard was taken partly from Code Institute Walkthorugh 02 and 01
+* [Code Institute](https://codeinstitute.net) - Tutorial: Data Analytics Packages ML: feature-engine, Data Analytics Packages ML: Scikit-learn ... 
 * [Code_Institute](https://codeinstitute.net) - The template for this project was provided by Code Institute
 * [Code_Institute](https://codeinstitute.net) - Mentor Rohit: Providing guidance and tips for my project
 * [Youtube](https://www.youtube.com/): for access to a huge community of developers who facing similar challenges like me
 * [SessionLab](https://www.sessionlab.com/): for access to various free Methods to fill the database and insiration for functionalities
 * [Stackoverflow](https://stackoverflow.com/): for access to a huge community of developers who facing similar challenges like me
-* [Scilearn](https://scikit-learn.org/stable/): for accessing to documentation and code
+* [Scikit-learn](https://scikit-learn.org/stable/): for accessing to documentation and code
+* [Scilkt-learn ML algorithms](https://scikit-learn.org/stable/api/sklearn.ensemble.html): for various ML algorithms
 * [Matplot](https://matplotlib.org/): for accessing to documentation and code
 
 ### Media
