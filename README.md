@@ -328,6 +328,15 @@ The split into trianing and test data is processed a few times wihtin this proje
 
 ### House Market Study
 
+This study explores the key drivers of house prices within the dataset by validating five initial hypotheses using statistical correlation, visual inspection, and distributional comparisons. The dataset includes homes with sale prices ranging from $34,900 to $755,000, with a median sale price of $163,000 and a mean of $180,921. This indicates a slightly right-skewed distribution, with a few high-end properties pulling the average upward.
+
+* The housing market appears to reward size (GrLivArea) more consistently than other features.
+* High-end properties, while fewer in number, significantly impact the mean price, suggesting a right-skewed market.
+* Features like bedroom count or overall condition alone are not strong indicators of price — buyers seem more influenced by total living space and renovation status.
+* Renovation and newer construction positively affect sale price, though with moderate strength.
+* Applying log transformation to SalePrice was effective in reducing the influence of outliers and improving model performance.
+* Focus on GrLivArea, YearBuilt for modeling or predictive pricing.
+
 #### Hypothesis and how to validate
 
 Jupyter notebook: [02b_house_market_study](jupyter_notebooks/02b_house_market_study.ipynb)
@@ -336,7 +345,7 @@ There are five hpothesis generated at the beginning of the project. In the follo
 
 ##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
 
-I suspect the sales price correlates with a high amount of ground living area. For the validation there are two approaches:
+The first hypothesis suggests that houses with larger living areas tend to have higher sales prices. To validate this, we examined the correlation between square footage and sale price. The results confirmed a strong positive correlation, with larger homes generally commanding higher prices.
 
 * Analyse the dataset and provide a correlation analysis about sales price.
 * Plot a distribution of price vs square_footage. To separate both of these variables.
@@ -353,7 +362,7 @@ See correlation analysis. The Correlation value GrLivArea/SalePrice is high (0.7
 
 ##### Hypothesis (H2): More bedrooms, higher sales price. (Wrong.)
 
-I suspect the sales price correlates with a high amount of bedrooms. For the validation there are two approaches:
+This hypothesis posits that houses with more bedrooms should fetch higher prices. Upon further analysis, however, the correlation between the number of bedrooms and sale price was weak, suggesting that the number of bedrooms alone is not a significant predictor of price in this market.
 
 * Analyse the dataset and provide a correlation analysis about sales price.
 * Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
@@ -367,7 +376,7 @@ See correlation analysis above. The Correlation value BedroomAbvGr/SalePrice is 
 
 ##### Hypothesis (H3): Better OverallCond, higher sales price. (Wrong.)
 
-I suspect the sales price correlates with a high 'OverallCond'. For the validation there are two approaches:
+The third hypothesis proposed that homes in better overall condition would be sold at higher prices. However, the analysis showed a very weak negative correlation, indicating that overall condition had little to no effect on the sales price in this dataset.
 
 * Analyse the dataset and provide a correlation analysis about sales price.
 * Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
@@ -381,7 +390,7 @@ See correlation analysis above. The Correlation value OverallCond/SalePrice is v
 
 ##### Hypothesis (H4): Renovated houses sell for more (Partly correct.)
 
-I suspect the sales price correlates with a house that has been renovated more recently, this is shown by variable 'RemodAdd'. For the validation there are two approaches:
+Here, we hypothesized that houses that have been recently renovated would sell for a higher price. The results revealed a moderate correlation, with renovated houses tending to have higher prices, though the effect was not as strong as initially expected.
 
 * Compare average prices of renovated vs not renovated homes.
 * Check if the year of renovation is recent, and see if it correlates with price increase.
@@ -396,7 +405,7 @@ See correlation analysis above. The Correlation value YearRemodadd/SalePrice is 
 
 ##### Hypothesis (H5): Newer houses are more expensive (Partly correct.)
 
-I suspect the sales price correlates with a recent house completion. For the validation there are two approaches:
+The final hypothesis suggests that newer houses are more expensive than older ones. Our findings supported this hypothesis to some extent, with a moderate correlation observed between the year of construction and sale price, though other factors also played a significant role in determining the price.
 
 * Compare average prices of new vs old houses.
 * Run correlation and scatterplots, or use regression analysis.
@@ -435,14 +444,15 @@ The report enables to have a closer look at each variable. The following insighs
 | BsmtFinSF1 | 32% of the houses don't have a basement |
 | GarageArea | 94% of the houses have a garage, it seems a garage is not a convenient, but mandatory attribute in the market. If a garage is finished or unfinished is not correlating with sales price. |
 | TotalBsmtSF | THere are only 2,5% of the houses which don't have a basement. It seems a basement is a mandatory attribute. |
-| YearBuilt | A big amount of houses in the dataset has been built around 2000 (!! Details!!). It seems there are a lot new houses in the market. |
-| YearRemodAdd | A noticable amount of houses has been renovated around 2000. (!! Details!!) |
+| YearBuilt | A big amount of houses in the dataset has been built around 2000. It seems there are a lot new houses in the market. |
+| YearRemodAdd | A noticable amount of houses has been renovated around 2000. |
 
-(!!!Add IMAGE!!!)
+<img src="images/ydata_profiling_example1.PNG" alt="see ydata profiling report" width="350">
+<img src="images/ydata_profiling_example2.PNG" alt="see ydata profiling report" width="350">
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+|Code snippet|library|Comment|
+|---|---|---|
+| `from ydata_profiling import ProfileReport`<br>`pandas_report = ProfileReport(df=TrainSet, minimal=True)`<br>`pandas_report.to_notebook_iframe()`| ydata_profiling, pandas | This code imports the ProfileReport class from the ydata_profiling library, which is used to generate an interactive data profiling report for the given dataset (TrainSet). The minimal=True argument generates a simplified version of the report. Finally, to_notebook_iframe() renders the report in a Jupyter Notebook as an iframe, making it interactive within the notebook. |
 
 #### 1. Categorical Encoding
 
@@ -451,9 +461,9 @@ Categorical variables represent discrete categories. Machine learning models gen
 In the jupyter notebook '02_data cleaning'. The following parameters has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
 In jupyter notebook '04_modeling_and_evaluation'. The following parameters has been transformed (for pipeline model): (...).
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+|Code snippet|library|Comment|
+|---|---|---|
+| `from feature_engine.encoding import OrdinalEncoder`<br>`def FeatEngineering_CategoricalEncoder(df_feat_eng, column):`<br>`    list_methods_worked = []`<br>`    try:`<br>`        encoder = OrdinalEncoder(encoding_method='arbitrary', variables=[`<br>`            f"{column}_ordinal_encoder"])`<br>`        df_feat_eng = encoder.fit_transform(df_feat_eng)`<br>`        list_methods_worked.append(f"{column}_ordinal_encoder")`<br>`    except Exception:`<br>`        df_feat_eng.drop([f"{column}_ordinal_encoder"], axis=1, inplace=True)`<br>`    return df_feat_eng, list_methods_worked` | feature_engine | This code defines a function to perform ordinal encoding on a specified categorical column of a DataFrame (`df_feat_eng`). It uses the `OrdinalEncoder` from the `feature_engine` library to convert categories into numeric values based on an arbitrary encoding method. If the encoding is successful, the column is added to the DataFrame, and the method is logged. If an error occurs, the new column is dropped. The function returns the modified DataFrame and a list of methods applied. |
 
 #### 2. Numerical Transformation
 
@@ -464,11 +474,21 @@ Common Transformation Techniques:
 * Standardization: Scaling the values to have a mean of 0 and a standard deviation of 1.
 * Log Transformation: Helps with highly skewed data by compressing the range.
 
-Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since thir distribution is skewed.
+Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since their distribution is skewed.
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+The graphics show the improvement of the distribution by using log10:
+<img src="images/03_feature_engineering_saleprice_log10.PNG" alt="see saleprice_log10_transformation" width="350">
+<img src="images/03_feature_engineering_saleprice_w_o_log10.PNG" alt="see saleprice_w_o_log10_transformation" width="350">
+
+<img src="images/03_feature_engineering_grlivarea_log10.PNG" alt="see grlivarea_log10_transformation" width="350">
+<img src="images/03_feature_engineering_grlivarea_w_o_log10.PNG" alt="see grlivarea_w_o_log10_transformation" width="350">
+
+| **Code snippet** | **Library** | **Comment** |
+|------------------|-------------|------------|
+| `from feature_engine import transformation as vt`<br>`def FeatEngineering_Numerical(df_feat_eng, column):`<br>`    list_methods_worked = []`<br>`    # LogTransformer base 10`<br>`    try:`<br>`        lt = vt.LogTransformer(variables=[f"{column}_log_10"], base='10')`<br>`        df_feat_eng = lt.fit_transform(df_feat_eng)`<br>`        list_methods_worked.append(f"{column}_log_10")`<br>`    except Exception:`<br>`        df_feat_eng.drop([f"{column}_log_10"], axis=1, inplace=True)`<br>`...` | feature_engine | This code defines a function to apply a base-10 log transformation on a specified numerical column of a DataFrame (`df_feat_eng`). The `LogTransformer` from the `feature_engine` library is used to perform the transformation, which can help in normalizing skewed data by compressing high values. If the transformation is successful, the log-transformed column is added to the DataFrame, and the method is logged. If an error occurs, the new column is dropped. |
+| `TrainSet['column_name'] = np.log10(TrainSet['column_name'])`<br>`TestSet['column_name'] = np.log10(TestSet['column_name'])` | numpy, pandas | This code applies a log transformation with base 10 to the relevant column of both the training set (`TrainSet`) and the test set (`TestSet`). The transformation helps compress the high values, making the distribution more symmetric and reducing the impact of extreme values. The result is that both datasets now have log-transformed values, which can improve model performance by handling skewed data. |
+
+Similar like the code above further transformer are applied and tested: LogTransformer base e, ReciprocalTransformer, PowerTransformer, BoxCoxTransformer, YeoJohnsonTransformer.
 
 #### 3. Smart Correlation Selection
 
@@ -511,9 +531,10 @@ This feature represents the quality of the kitchen, which may be closely related
 
 Action: Drop KitchenQual because OverallQual might already capture the overall quality of the house, including the kitchen.
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+| **Code snippet** | **Library** | **Comment** |
+|------------------|-------------|------------|
+| `from feature_engine.selection import SmartCorrelatedSelection`<br>`corr_sel = SmartCorrelatedSelection(variables=None, method="spearman", threshold=0.6, selection_method="variance")`<br>`corr_sel.fit_transform(df_engineering)`<br>`corr_sel.correlated_feature_sets_` | feature_engine | This code imports the `SmartCorrelatedSelection` class from the `feature_engine` library. It initializes an object `corr_sel` with specific parameters to select correlated features from a DataFrame. The method uses the Spearman correlation and a threshold of 0.6 to identify features that are highly correlated. The `fit_transform()` function fits the model to the data and transforms the input DataFrame by removing correlated features based on the specified threshold. The `correlated_feature_sets_` attribute holds the sets of correlated features identified by the method. |
+| `corr_sel.features_to_drop_` | feature_engine | This line retrieves the list of features that should be dropped based on the correlation analysis. The `features_to_drop_` attribute of the `SmartCorrelatedSelection` object contains the names of features that have been identified as highly correlated with others and are removed from the dataset. This helps reduce multicollinearity and improves model performance by removing redundant information. |
 
 #### 4. Discretization (Binning) - not applied
 
@@ -556,6 +577,10 @@ To address the skewness introduced by these extreme values, a log transformation
 | **MasVnrArea**| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
 | **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
 
+Special thoughts: Keeping GrargeArea or GarageFinished.
+* GarageArea has a high  correlation with Sales price
+* GarageFinish has no real correlation with any attribute... it seems just not important.. and additional effort is needed for data cleaning, also imputation due to missing values is needed in the pipeline. 
+
 ### Modeling
 
 Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
@@ -569,16 +594,24 @@ Classification models are designed for predicting discrete classes (e.g., “hig
 A comprehensive data cleaning and transformation pipeline was implemented using the scikit-learn and feature-engine libraries:
 Steps:
 
-* FunctionTransformer: Custom transformations if needed (e.g., log or power transforms).
+* FunctionTransformer: Custom transformation. Drops unwanted columns.
 * MeanMedianImputer: Imputed missing values with the mean for MasVnrArea.
 * CategoricalImputer: Imputed missing values in categorical variables like GarageFinish.
 * OrdinalEncoder: Encoded KitchenQual and GarageFinish using arbitrary ordinal encoding.
 * SmartCorrelatedSelection: Removed multicollinear features using Spearman correlation and variance thresholding (threshold=0.6).
 * Feature Engineering Insights: Reduced feature space to the 5 most predictive attributes based on correlation and model performance.
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+| **Code snippet** | **Library** | **Comment** |
+|------------------|-------------|-------------|
+| `from feature_engine.selection import SmartCorrelatedSelection` | feature_engine | Imports class to detect and remove highly correlated features to reduce multicollinearity. |
+| `from feature_engine.encoding import OrdinalEncoder` | feature_engine | Encodes categorical variables using arbitrary integers. Useful for tree-based models. |
+| `from feature_engine.transformation import LogTransformer` | feature_engine | Applies logarithmic transformation to reduce skewness in numeric features. |
+| `from feature_engine.imputation import MeanMedianImputer, CategoricalImputer` | feature_engine | Imputes missing values using mean/median for numeric and mode for categorical variables. |
+| `from src.preprocessing import drop_unwanted_columns` | custom module | Imports user-defined function to remove low-value or irrelevant columns from the dataset. |
+| `class HyperparameterOptimizationSearch:` | custom code | Custom class to perform hyperparameter tuning and model evaluation across multiple algorithms. |
+| `y_log = np.log10(df['SalePrice'])` | numpy, pandas | Log-transforms target variable to stabilize variance and handle outliers. |
+| `X_train, X_test, y_train, y_test = train_test_split(X, y_log, test_size=0.2, random_state=0)` | sklearn | Splits the dataset into training and testing sets, using the transformed target. |
+| `pipeline = PipelineDataCleaningAndFeatureEngineering()`<br>`X_train = pipeline.fit_transform(X_train)`<br>`X_test = pipeline.transform(X_test)` | sklearn (custom pipeline) | Applies preprocessing pipeline to both training and test data, ensuring consistent transformations. |
 
 #### Regression pipeline
 
@@ -595,14 +628,20 @@ Models Used:
 Hyperparameter Tuning:
 
 * Conducted using GridSearchCV or RandomizedSearchCV to find the optimal combination of parameters for each algorithm.
+* Train-test split after transforming the target
+* Apply the pipeline to training and testing features
+* Check Target Imbalance
+* Apply algorithms to Train data
+* Final model selection was based on validation performance metrics. The model with the best performance was integrated into the final pipeline using only the top 5    features for simplicity and performance.
+* Identify best hyperparameter:
+* Apply only the most relevant features:
 
-Model Selection:
-
-Final model selection was based on validation performance metrics. The model with the best performance was integrated into the final pipeline using only the top 5 features for simplicity and performance.
-
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+| **Code snippet** | **Library** | **Comment** |
+|------------------|-------------|-------------|
+| `models_quick_search = { ... }`<br>`params_quick_search = { ... }` | sklearn, xgboost | Defines multiple regression models (e.g., `XGBRegressor`, `RandomForestRegressor`) with default or empty hyperparameters for later comparison and tuning. Useful for quick model testing. |
+| `search = HyperparameterOptimizationSearch(models=models_quick_search, params=params_quick_search)`<br>`search.fit(X_train, y_train, scoring='neg_mean_absolute_error', n_jobs=-1, cv=5)`<br>`search.score_summary(sort_by='mean_score')` | custom/extended sklearn (possibly from `mlxtend` or a custom wrapper) | Runs a hyperparameter optimization search over defined models using cross-validation and a scoring metric (negative MAE). Summarizes performance for comparison. |
+| `model = ExtraTreesRegressor(n_estimators=100, random_state=42)`<br>`model.fit(X_train, y_train)` | sklearn | Initializes and fits an `ExtraTreesRegressor` on the training data. A fast and accurate ensemble method useful for feature importance and prediction. |
+| `models_quick_search = {"ExtraTreesRegressor": ExtraTreesRegressor(random_state=0)}`<br>`params_quick_search = { "ExtraTreesRegressor": { "model__n_estimators": [100, 200], "model__max_depth": [None, 20], "model__min_samples_split": [2, 5] }}` | sklearn | Sets up model and grid of hyperparameters for `ExtraTreesRegressor` to be used in grid search or tuning, allowing exploration of different configurations. |
 
 ### Evaluation
 
@@ -619,16 +658,14 @@ First approach for pipeline_regressor:
 |R² Score | 0.83 | Your model explains 83% of the variance in sale prices — this is very good for a regression problem in real estate, where 70–85% is typically strong.|
 
 
-
-
-
-
-
-
-
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| ... | ... | ... | ... |
+| **Code snippet** | **Library** | **Comment** |
+|------------------|-------------|-------------|
+| `from sklearn.metrics import mean_absolute_error, r2_score` | sklearn | Imports evaluation metrics for measuring model performance. |
+| `y_pred_log = pipeline_regressor.predict(X_test)` | sklearn | Predicts target values using the trained model; outputs are in log scale. |
+| `y_pred = np.power(10, y_pred_log)`<br>`y_test_actual = np.power(10, y_test)` | numpy | Converts log-scale predictions and true values back to their original scale. |
+| `mae = mean_absolute_error(y_test_actual, y_pred)` | sklearn | Calculates the average absolute error between predicted and actual prices. |
+| `mse = mean_squared_error(y_test_actual, y_pred)`<br>`rmse = mean_squared_error(y_test_actual, y_pred, squared=False)` | sklearn | Computes squared error and its root, capturing average and large prediction errors. |
+| `r2 = r2_score(y_test_actual, y_pred)` | sklearn | Measures how well the model explains the variance in actual house prices. |
 
 ### Outcome / Business impact
 
@@ -707,9 +744,561 @@ For detailed testing information, see the content related to testing in [TESTING
 
 ### Code
 
-* Data Analytics Packages ML: feature-engine Feature Engine Unit 2-4
-* 
-*
+I (re)used mainly the code provided in the Code Institute trianing section in the different training chapters and in the Walkthrough projects. In the following not all but main code I resused and adjsuted it for my project.
+
+***Data Analytics Packages ML: feature-engine Feature Engine Unit 2-4***
+
+<details>
+    <summary>feature engineering</summary>
+
+</details>
+
+***Walkthrough Project 02 - Data collection***
+
+<details>
+    <summary>Change working directory</summary>
+
+    import os
+    current_dir = os.getcwd()
+    current_dir
+
+    os.chdir(os.path.dirname(current_dir))
+    print("You set a new current directory")
+
+    current_dir = os.getcwd()
+    current_dir
+
+</details>
+
+<details>
+    <summary>Load Kaggle data</summary>
+
+    import os
+    os.environ['KAGGLE_CONFIG_DIR'] = os.getcwd()
+    ! chmod 600 kaggle.json
+
+    KaggleDatasetPath = "codeinstitute/telecom-churn-dataset"
+    DestinationFolder = "inputs/datasets/raw"   
+    ! kaggle datasets download -d {KaggleDatasetPath} -p {DestinationFolder}
+
+    ! unzip {DestinationFolder}/*.zip -d {DestinationFolder} \
+    && rm {DestinationFolder}/*.zip \
+    && rm kaggle.json
+
+    import pandas as pd
+    df = pd.read_csv(f"inputs/datasets/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+    df.head()
+
+</details>
+
+<details>
+    <summary>Push files to Repo</summary>
+
+    import os
+    try:
+      os.makedirs(name='outputs/datasets/collection') # create outputs/datasets/collection folder
+    except Exception as e:
+      print(e)
+
+    df.to_csv(f"outputs/datasets/collection/TelcoCustomerChurn.csv",index=False)
+
+</details>
+
+***Walkthrough Project 02 - Churned Customer Study***
+
+<details>
+    <summary>Walkthrough Project 02</summary>
+
+      from ydata_profiling import ProfileReport
+      pandas_report = ProfileReport(df=df, minimal=True)
+      pandas_report.to_notebook_iframe()
+
+      from feature_engine.encoding import OneHotEncoder
+      encoder = OneHotEncoder(variables=df.columns[df.dtypes=='object'].to_list(), drop_last=False)
+      df_ohe = encoder.fit_transform(df)
+      print(df_ohe.shape)
+      df_ohe.head(3)
+
+</details>
+
+***Walkthrough Project 02 - Data Cleaning***
+
+<details>
+    <summary>Walkthrough Project 02</summary>
+
+      missing_data_absolute = df.isnull().sum()
+
+      from sklearn.model_selection import train_test_split
+      TrainSet, TestSet, _, __ = train_test_split(
+                                        df,
+                                        df['Churn'],
+                                        test_size=0.2,
+                                        random_state=0) 
+
+      TrainSet.to_csv("outputs/datasets/cleaned/TrainSetCleaned.csv", index=False)
+
+      TestSet.to_csv("outputs/datasets/cleaned/TestSetCleaned.csv", index=False)
+
+</details>
+
+***Walkthrough Project 02 - featureEngineering***
+
+Function has been customized, however, a lot code is reused from here.
+
+<details>
+    <summary>Walkthrough Project 02</summary>
+
+      import scipy.stats as stats
+      import matplotlib.pyplot as plt
+      import seaborn as sns
+      import pandas as pd
+      import warnings
+      from feature_engine import transformation as vt
+      from feature_engine.outliers import Winsorizer
+      from feature_engine.encoding import OrdinalEncoder
+      sns.set(style="whitegrid")
+      warnings.filterwarnings('ignore')
+
+
+      def FeatureEngineeringAnalysis(df, analysis_type=None):
+          """
+          - used for quick feature engineering on numerical and categorical variables
+          to decide which transformation can better transform the distribution shape
+          - Once transformed, use a reporting tool, like ydata-profiling, to evaluate distributions
+          """
+          check_missing_values(df)
+          allowed_types = ['numerical', 'ordinal_encoder', 'outlier_winsorizer']
+          check_user_entry_on_analysis_type(analysis_type, allowed_types)
+          list_column_transformers = define_list_column_transformers(analysis_type)
+
+          # Loop in each variable and engineer the data according to the analysis type
+          df_feat_eng = pd.DataFrame([])
+          for column in df.columns:
+              # create additional columns (column_method) to apply the methods
+              df_feat_eng = pd.concat([df_feat_eng, df[column]], axis=1)
+              for method in list_column_transformers:
+                  df_feat_eng[f"{column}_{method}"] = df[column]
+
+              # Apply transformers in respective column_transformers
+              df_feat_eng, list_applied_transformers = apply_transformers(
+                  analysis_type, df_feat_eng, column)
+
+              # For each variable, assess how the transformations perform
+              transformer_evaluation(
+                  column, list_applied_transformers, analysis_type, df_feat_eng)
+
+          return df_feat_eng
+
+
+      def check_user_entry_on_analysis_type(analysis_type, allowed_types):
+          """ Check analysis type """
+          if analysis_type is None:
+              raise SystemExit(
+                  f"You should pass analysis_type parameter as one of the following options: {allowed_types}")
+          if analysis_type not in allowed_types:
+              raise SystemExit(
+                  f"analysis_type argument should be one of these options: {allowed_types}")
+
+
+      def check_missing_values(df):
+          if df.isna().sum().sum() != 0:
+              raise SystemExit(
+                  f"There is a missing value in your dataset. Please handle that before getting into feature engineering.")
+
+
+      def define_list_column_transformers(analysis_type):
+          """ Set suffix columns according to analysis_type"""
+          if analysis_type == 'numerical':
+              list_column_transformers = [
+                  "log_e", "log_10", "reciprocal", "power", "box_cox", "yeo_johnson"]
+
+          elif analysis_type == 'ordinal_encoder':
+              list_column_transformers = ["ordinal_encoder"]
+
+          elif analysis_type == 'outlier_winsorizer':
+              list_column_transformers = ['iqr']
+
+          return list_column_transformers
+
+
+      def apply_transformers(analysis_type, df_feat_eng, column):
+          for col in df_feat_eng.select_dtypes(include='category').columns:
+              df_feat_eng[col] = df_feat_eng[col].astype('object')
+
+          if analysis_type == 'numerical':
+              df_feat_eng, list_applied_transformers = FeatEngineering_Numerical(
+                  df_feat_eng, column)
+
+          elif analysis_type == 'outlier_winsorizer':
+              df_feat_eng, list_applied_transformers = FeatEngineering_OutlierWinsorizer(
+                  df_feat_eng, column)
+
+          elif analysis_type == 'ordinal_encoder':
+              df_feat_eng, list_applied_transformers = FeatEngineering_CategoricalEncoder(
+                  df_feat_eng, column)
+
+          return df_feat_eng, list_applied_transformers
+
+
+      def transformer_evaluation(column, list_applied_transformers, analysis_type, df_feat_eng):
+          # For each variable, assess how the transformations perform
+          print(f"* Variable Analyzed: {column}")
+          print(f"* Applied transformation: {list_applied_transformers} \n")
+          for col in [column] + list_applied_transformers:
+
+              if analysis_type != 'ordinal_encoder':
+                  DiagnosticPlots_Numerical(df_feat_eng, col)
+
+              else:
+                  if col == column:
+                      DiagnosticPlots_Categories(df_feat_eng, col)
+                  else:
+                      DiagnosticPlots_Numerical(df_feat_eng, col)
+
+              print("\n")
+
+
+      def DiagnosticPlots_Categories(df_feat_eng, col):
+          plt.figure(figsize=(4, 3))
+          sns.countplot(data=df_feat_eng, x=col, palette=[
+                        '#432371'], order=df_feat_eng[col].value_counts().index)
+          plt.xticks(rotation=90)
+          plt.suptitle(f"{col}", fontsize=30, y=1.05)
+          plt.show()
+          print("\n")
+
+
+      def DiagnosticPlots_Numerical(df, variable):
+          fig, axes = plt.subplots(1, 3, figsize=(12, 4))
+          sns.histplot(data=df, x=variable, kde=True, element="step", ax=axes[0])
+          stats.probplot(df[variable], dist="norm", plot=axes[1])
+          sns.boxplot(x=df[variable], ax=axes[2])
+
+          axes[0].set_title('Histogram')
+          axes[1].set_title('QQ Plot')
+          axes[2].set_title('Boxplot')
+          fig.suptitle(f"{variable}", fontsize=30, y=1.05)
+          plt.tight_layout()
+          plt.show()
+
+
+      def FeatEngineering_CategoricalEncoder(df_feat_eng, column):
+          list_methods_worked = []
+          try:
+              encoder = OrdinalEncoder(encoding_method='arbitrary', variables=[
+                                      f"{column}_ordinal_encoder"])
+              df_feat_eng = encoder.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_ordinal_encoder")
+
+          except Exception:
+              df_feat_eng.drop([f"{column}_ordinal_encoder"], axis=1, inplace=True)
+
+          return df_feat_eng, list_methods_worked
+
+
+      def FeatEngineering_OutlierWinsorizer(df_feat_eng, column):
+          list_methods_worked = []
+
+          # Winsorizer iqr
+          try:
+              disc = Winsorizer(
+                  capping_method='iqr', tail='both', fold=1.5, variables=[f"{column}_iqr"])
+              df_feat_eng = disc.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_iqr")
+          except Exception:
+              df_feat_eng.drop([f"{column}_iqr"], axis=1, inplace=True)
+
+          return df_feat_eng, list_methods_worked
+
+
+      def FeatEngineering_Numerical(df_feat_eng, column):
+          list_methods_worked = []
+
+          # LogTransformer base e
+          try:
+              lt = vt.LogTransformer(variables=[f"{column}_log_e"])
+              df_feat_eng = lt.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_log_e")
+          except Exception:
+              df_feat_eng.drop([f"{column}_log_e"], axis=1, inplace=True)
+
+          # LogTransformer base 10
+          try:
+              lt = vt.LogTransformer(variables=[f"{column}_log_10"], base='10')
+              df_feat_eng = lt.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_log_10")
+          except Exception:
+              df_feat_eng.drop([f"{column}_log_10"], axis=1, inplace=True)
+
+          # ReciprocalTransformer
+          try:
+              rt = vt.ReciprocalTransformer(variables=[f"{column}_reciprocal"])
+              df_feat_eng = rt.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_reciprocal")
+          except Exception:
+              df_feat_eng.drop([f"{column}_reciprocal"], axis=1, inplace=True)
+
+          # PowerTransformer
+          try:
+              pt = vt.PowerTransformer(variables=[f"{column}_power"])
+              df_feat_eng = pt.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_power")
+          except Exception:
+              df_feat_eng.drop([f"{column}_power"], axis=1, inplace=True)
+
+          # BoxCoxTransformer
+          try:
+              bct = vt.BoxCoxTransformer(variables=[f"{column}_box_cox"])
+              df_feat_eng = bct.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_box_cox")
+          except Exception:
+              df_feat_eng.drop([f"{column}_box_cox"], axis=1, inplace=True)
+
+          # YeoJohnsonTransformer
+          try:
+              yjt = vt.YeoJohnsonTransformer(variables=[f"{column}_yeo_johnson"])
+              df_feat_eng = yjt.fit_transform(df_feat_eng)
+              list_methods_worked.append(f"{column}_yeo_johnson")
+          except Exception:
+              df_feat_eng.drop([f"{column}_yeo_johnson"], axis=1, inplace=True)
+
+          return df_feat_eng, list_methods_worked
+
+
+
+      from feature_engine.selection import SmartCorrelatedSelection
+      corr_sel = SmartCorrelatedSelection(variables=None, method="spearman", threshold=0.6, selection_method="variance")
+
+      corr_sel.fit_transform(df_engineering)
+      corr_sel.correlated_feature_sets_
+      
+      corr_sel.features_to_drop_
+
+</details>
+
+***Walkthrough Project 02 - Modeling and Evaluation - Predict Churn***
+
+<details>
+    <summary>Walkthrough Project 02 - feature egineering pipeline, partly customized</summary>
+
+      from sklearn.pipeline import Pipeline
+
+      # Feature Engineering
+      from feature_engine.selection import SmartCorrelatedSelection
+      from feature_engine.encoding import OrdinalEncoder
+
+
+      def PipelineDataCleaningAndFeatureEngineering():
+          pipeline_base = Pipeline([
+              ("OrdinalCategoricalEncoder", OrdinalEncoder(encoding_method='arbitrary',
+                                                          variables=['gender', 'Partner', 'Dependents', 'PhoneService',
+                                                                      'MultipleLines', 'InternetService', 'OnlineSecurity',
+                                                                      'OnlineBackup', 'DeviceProtection', 'TechSupport',
+                                                                      'StreamingTV', 'StreamingMovies', 'Contract',
+                                                                      'PaperlessBilling', 'PaymentMethod'])),
+
+              ("SmartCorrelatedSelection", SmartCorrelatedSelection(variables=None,
+              method="spearman", threshold=0.6, selection_method="variance")),
+
+          ])
+
+          return pipeline_base
+
+
+      PipelineDataCleaningAndFeatureEngineering()
+
+</details>
+
+<details>
+    <summary>Walkthrough Project 02 - Custom Class for Hyperparameter Optimisation</summary>
+
+      from sklearn.model_selection import GridSearchCV
+
+
+class HyperparameterOptimizationSearch:
+
+    def __init__(self, models, params):
+        self.models = models
+        self.params = params
+        self.keys = models.keys()
+        self.grid_searches = {}
+
+    def fit(self, X, y, cv, n_jobs, verbose=1, scoring=None, refit=False):
+        for key in self.keys:
+            print(f"\nRunning GridSearchCV for {key} \n")
+
+            model = PipelineClf(self.models[key])
+            params = self.params[key]
+            gs = GridSearchCV(model, params, cv=cv, n_jobs=n_jobs,
+                              verbose=verbose, scoring=scoring, )
+            gs.fit(X, y)
+            self.grid_searches[key] = gs
+
+    def score_summary(self, sort_by='mean_score'):
+        def row(key, scores, params):
+            d = {
+                'estimator': key,
+                'min_score': min(scores),
+                'max_score': max(scores),
+                'mean_score': np.mean(scores),
+                'std_score': np.std(scores),
+            }
+            return pd.Series({**params, **d})
+
+        rows = []
+        for k in self.grid_searches:
+            params = self.grid_searches[k].cv_results_['params']
+            scores = []
+            for i in range(self.grid_searches[k].cv):
+                key = "split{}_test_score".format(i)
+                r = self.grid_searches[k].cv_results_[key]
+                scores.append(r.reshape(len(params), 1))
+
+            all_scores = np.hstack(scores)
+            for p, s in zip(params, all_scores):
+                rows.append((row(k, s, p)))
+
+        df = pd.concat(rows, axis=1).T.sort_values([sort_by], ascending=False)
+        columns = ['estimator', 'min_score',
+                   'mean_score', 'max_score', 'std_score']
+        columns = columns + [c for c in df.columns if c not in columns]
+        return df[columns], self.grid_searches
+
+</details>
+
+<details>
+    <summary>Walkthrough Project 02 - fit model to trian data</summary>
+
+      pipeline_data_cleaning_feat_eng = PipelineDataCleaningAndFeatureEngineering()
+      X_train = pipeline_data_cleaning_feat_eng.fit_transform(X_train)
+      X_test = pipeline_data_cleaning_feat_eng.transform(X_test)
+      print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
+
+</details>
+
+<details>
+    <summary>Walkthrough Project 02 - split test data</summary>
+
+      from sklearn.model_selection import train_test_split
+      X_train, X_test, y_train, y_test = train_test_split(
+          df.drop(['Churn'], axis=1),
+          df['Churn'],
+          test_size=0.2,
+          random_state=0,
+      )
+
+      print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
+
+    X_train = X_train.filter(best_features)
+    X_test = X_test.filter(best_features)
+
+    print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
+    X_train.head(3)
+
+</details>
+
+<details>
+    <summary>Walkthrough Project 02 - Finding best hyperparameter</summary>
+
+      models_search = {
+          "XGBClassifier":XGBClassifier(random_state=0),
+      }
+
+      params_search = {
+          "XGBClassifier":{
+              'model__learning_rate': [1e-1,1e-2,1e-3], 
+              'model__max_depth': [3,10,None],
+          }
+      }
+
+</details>
+
+***Walkthrough Project 02 - Streamlit pages and preparation***
+
+<details>
+    <summary>Walkthrough Project 02 - reuse structure of app.py </summary>
+
+      import streamlit as st
+      from app_pages.multipage import MultiPage
+
+      # load pages scripts
+      from app_pages.page_summary import page_summary_body
+      from app_pages.page_churned_customer_study import page_churned_customer_study_body
+      from app_pages.page_prospect import page_prospect_body
+      from app_pages.page_project_hypothesis import page_project_hypothesis_body
+      from app_pages.page_predict_churn import page_predict_churn_body
+      from app_pages.page_predict_tenure import page_predict_tenure_body
+      from app_pages.page_cluster import page_cluster_body
+
+      app = MultiPage(app_name= "Churnometer") # Create an instance of the app 
+
+      # Add your app pages here using .add_page()
+      app.add_page("Quick Project Summary", page_summary_body)
+      app.add_page("Customer Base Churn Study", page_churned_customer_study_body)
+      app.add_page("Prospect Churnometer", page_prospect_body)
+      app.add_page("Project Hypothesis and Validation", page_project_hypothesis_body)
+      app.add_page("ML: Prospect Churn", page_predict_churn_body)
+      app.add_page("ML: Prospect Tenure", page_predict_tenure_body)
+      app.add_page("ML: Cluster Analysis", page_cluster_body)
+
+      app.run() # Run the  app
+</details>
+
+<details>
+    <summary>Walkthrough Project 02 - reuse structure of src/predictive_analysis_ui </summary>
+
+      import streamlit as st
+
+
+      def predict_churn(X_live, churn_features, churn_pipeline_dc_fe, churn_pipeline_model):
+
+          # from live data, subset features related to this pipeline
+          X_live_churn = X_live.filter(churn_features)
+
+          # apply data cleaning / feat engine pipeline to live data
+          X_live_churn_dc_fe = churn_pipeline_dc_fe.transform(X_live_churn)
+
+          # predict
+          churn_prediction = churn_pipeline_model.predict(X_live_churn_dc_fe)
+          churn_prediction_proba = churn_pipeline_model.predict_proba(
+              X_live_churn_dc_fe)
+          # st.write(churn_prediction_proba)
+
+          # Create a logic to display the results
+          churn_prob = churn_prediction_proba[0, churn_prediction][0]*100
+          if churn_prediction == 1:
+              churn_result = 'will'
+          else:
+              churn_result = 'will not'
+
+          statement = (
+              f'### There is {churn_prob.round(1)}% probability '
+              f'that this prospect **{churn_result} churn**.')
+
+          st.write(statement)
+
+          return churn_prediction
+
+</details>
+
+<details>
+    <summary>Walkthrough Project 02 - reuse structure of src/data_management </summary>
+
+      import streamlit as st
+      import pandas as pd
+      import numpy as np
+      import joblib
+
+      @st.cache_data
+      def load_telco_data():
+          df = pd.read_csv("outputs/datasets/collection/TelcoCustomerChurn.csv")
+          return df
+
+
+      def load_pkl_file(file_path):
+          return joblib.load(filename=file_path)
+
+</details>
 
 ### Templates
 
