@@ -1,7 +1,12 @@
 import streamlit as st
 import numpy as np
 
-def predict_sales_price(X_live, house_features, preprocessing, pipline_regressor):
+
+def predict_sales_price(
+        X_live, house_features,
+        preprocessing,
+        pipline_regressor
+):
 
     # from live data, subset features related to this pipeline
     X_live = X_live.filter(house_features)

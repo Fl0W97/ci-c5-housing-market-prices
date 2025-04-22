@@ -5,22 +5,29 @@ from src.preprocessing import drop_unwanted_columns
 from src.data_management import load_house_market_data, load_pkl_file
 from src.machine_learning.predictive_analysis_ui import (predict_sales_price)
 
+
 def page_sales_price_evaluation_body():
 
     # load predict sales price files
     version = 'v1'
     pipeline_dc_fe = load_pkl_file(
-        f'outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_data_cleaning_feat_opt.pkl')
+        f"outputs/ml_pipelines/predict_SalePrice/{version}/"
+        f"pipeline_data_cleaning_feat_opt.pkl"
+    )
     pipeline_regressor = load_pkl_file(
-        f"outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_regressor.pkl")
-    house_features = (pd.read_csv(f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train.csv")
-                      .columns
-                      .to_list()
-                      )
+        f"outputs/ml_pipelines/predict_SalePrice/{version}/"
+        f"pipeline_regressor.pkl"
+    )
+    house_features = (
+        pd.read_csv(
+            f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train.csv"
+        ).columns.to_list()
+    )
 
     st.write("### Sales Price Evaluator")
     st.info(
-        f"* This tool provides an estimation if the entered sales price is a good one according to the market. "
+        f"* This tool provides an estimation if the entered sales price is "
+        f"a good one according to the market. "
     )
     st.write("---")
 
@@ -49,11 +56,18 @@ def page_sales_price_evaluation_body():
             price_difference = input_sales_price - predicted_value
 
             if input_sales_price < predicted_value:
-                st.success("💰 Good Deal! The property is listed **below** market value.")
+                st.success(
+                    "Good Deal! The property is listed **below** market value."
+                )
             elif input_sales_price > predicted_value:
-                st.warning("⚠️ Bad Deal! The property is listed **above** market value.")
+                st.warning(
+                    "Bad Deal! The property is listed **above** market value."
+                )
             else:
-                st.info("✅ Fair Deal. The property price matches the market estimate.")
+                st.info(
+                    "Fair Deal. The property price matches the market "
+                    "estimate."
+                )
 
     st.write("---")
 
@@ -71,7 +85,7 @@ def DrawInputsWidgets():
     # create an empty DataFrame, which will be the live data
     X_live = pd.DataFrame([], index=[0])
 
-    # from here on we draw the widget based on the variable type (numerical or categorical)
+    # from here on we draw the widget based on the variable type
     # and set initial values
     with col1:
         feature = "GrLivArea"

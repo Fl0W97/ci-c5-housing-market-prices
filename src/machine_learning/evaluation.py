@@ -3,18 +3,17 @@ import pandas as pd
 import streamlit as st
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
+
 def regression_performance(y_test_opt_log, y_pred_opt_log, log_base=10):
     """
     Inverse transforms predictions and actuals from log scale
     and displays common regression metrics for a single model.
-    
+
     Arguments:
         y_true_log: Ground truth (actual) values in log scale.
         y_pred_log: Predicted values in log scale.
         log_base: The logarithmic base (default is 10).
-        
-    Returns:
-        None. Displays results directly in Streamlit.
+
     """
     # Inverse transformation: from log scale back to original SalePrice
     y_test_actual = np.power(log_base, y_test_opt_log)

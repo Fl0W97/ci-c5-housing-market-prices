@@ -18,9 +18,9 @@ def page_house_market_study_body():
 
     st.write("### House Market Study")
     st.info(
-        f"The client is interested in understanding the house market and the relevant attributes "
-        f"so that the client can learn the most relevant variables correlated "
-        f"to sales price.")
+        f"The client is interested in understanding the house market and the "
+        f"relevant attributes so that the client can learn the most relevant "
+        f"variables correlated to sales price.")
 
     # inspect dataset
     if st.checkbox("Inspect House market dataset"):
@@ -40,9 +40,25 @@ def page_house_market_study_body():
         median_sales_price = df['SalePrice'].median()
 
         fig_dist, ax = plt.subplots(figsize=(10, 6))
-        sns.histplot(df['SalePrice'], kde=True, bins=40, color='skyblue', ax=ax)
-        ax.axvline(average_sales_price, color='red', linestyle='--', label=f'Mean: ${average_sales_price:,.0f}')
-        ax.axvline(median_sales_price, color='green', linestyle='--', label=f'Median: ${median_sales_price:,.0f}')
+        sns.histplot(
+            df['SalePrice'],
+            kde=True,
+            bins=40,
+            color='skyblue',
+            ax=ax
+        )
+        ax.axvline(
+            average_sales_price,
+            color='red',
+            linestyle='--',
+            label=f'Mean: ${average_sales_price:,.0f}'
+        )
+        ax.axvline(
+            median_sales_price,
+            color='green',
+            linestyle='--',
+            label=f'Median: ${median_sales_price:,.0f}'
+            )
         ax.set_title('Distribution of Sale Prices')
         ax.set_xlabel('Sale Price')
         ax.set_ylabel('Frequency')
@@ -53,8 +69,8 @@ def page_house_market_study_body():
 
     # Correlation Study Summary
     st.info(
-        f"A correlation study was conducted in the notebook to better understand how "
-        f"the variables are correlated to SalePrice. \n"
+        f"A correlation study was conducted in the notebook to better "
+        f"understand how the variables are correlated to SalePrice. \n"
         f"The most correlated variable are: **{vars_to_study}**"
     )
 
@@ -65,16 +81,27 @@ def page_house_market_study_body():
 
         correlation_matrix = df.corr()
         fig_all, ax = plt.subplots(figsize=(12, 8))
-        sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True, ax=ax)
+        sns.heatmap(
+            correlation_matrix,
+            annot=True,
+            fmt=".2f",
+            cmap="coolwarm",
+            cbar=True,
+            ax=ax
+        )
         ax.set_title("Correlation Matrix")
         st.pyplot(fig_all)
 
-    # Text based on "02 - Data Collection" notebook - "Conclusions and Next steps" section
+    # Text based on "02 - Data Collection" notebook
     st.info(
-        f"The correlation indications and plots below interpretation converge. "
-        f"It is indicated that: \n"
-        f"* A property with a high sales price typically has huge ground living area. \n"
-        f"* A property with a high sales price typically has a high kitchen quality. \n"
-        f"* A property with a high sales price typically has a high overall quality. \n"
-        f"* The sales price has a low correlation with basement exposure, number of bedrooms or the overall condition. \n"
+        f"The correlation indications and plots below interpretation "
+        f"converge. It is indicated that: \n"
+        f"* A property with a high sales price typically has huge ground "
+        f"living area. \n"
+        f"* A property with a high sales price typically has a high "
+        f"kitchen quality. \n"
+        f"* A property with a high sales price typically has a high overall "
+        f"quality. \n"
+        f"* The sales price has a low correlation with basement exposure, "
+        f"number of bedrooms or the overall condition. \n"
     )

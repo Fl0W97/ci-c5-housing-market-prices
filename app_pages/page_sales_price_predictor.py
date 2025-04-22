@@ -3,20 +3,26 @@ import pandas as pd
 import numpy as np
 from src.preprocessing import drop_unwanted_columns
 from src.data_management import load_house_market_data, load_pkl_file
-from src.machine_learning.predictive_analysis_ui import (predict_sales_price)
+from src.machine_learning.predictive_analysis_ui import predict_sales_price
+
 
 def page_sales_price_predictor_body():
 
     # load predict sales price files
     version = 'v1'
     pipeline_dc_fe = load_pkl_file(
-        f'outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_data_cleaning_feat_opt.pkl')
+        f"outputs/ml_pipelines/predict_SalePrice/{version}/"
+        f"pipeline_data_cleaning_feat_opt.pkl"
+    )
     pipeline_regressor = load_pkl_file(
-        f"outputs/ml_pipelines/predict_SalePrice/{version}/pipeline_regressor.pkl")
-    house_features = (pd.read_csv(f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train.csv")
-                      .columns
-                      .to_list()
-                      )
+        f"outputs/ml_pipelines/predict_SalePrice/{version}/"
+        f"pipeline_regressor.pkl"
+    )
+    house_features = (
+        pd.read_csv(
+            f"outputs/ml_pipelines/predict_SalePrice/{version}/X_train.csv"
+            ).columns.to_list()
+    )
 
     st.write("### Sales Price Predictor")
     st.info(
@@ -76,14 +82,22 @@ def page_sales_price_predictor_body():
         if st.button(f"Predict sales price for {label}"):
             X_df = pd.DataFrame([features])
             st.write(X_df.head(1))
-            
-            prediction = predict_sales_price(X_df, house_features, pipeline_dc_fe, pipeline_regressor)
+
+            prediction = predict_sales_price(
+                X_df, house_features,
+                pipeline_dc_fe,
+                pipeline_regressor
+            )
 
             if prediction is not None:
                 predicted_value = prediction.item()
-                st.success(f"Predicted sales price for {label}: ${predicted_value:,.2f}")
+                st.success(
+                    f"Predicted sales price for {label}: "
+                    f"${predicted_value:,.2f}"
+                )
 
-    st.write("---") 
+    st.write("---")
+
 
 def DrawInputsWidgets():
 
@@ -98,7 +112,7 @@ def DrawInputsWidgets():
     # create an empty DataFrame, which will be the live data
     X_live = pd.DataFrame([], index=[0])
 
-    # from here on we draw the widget based on the variable type (numerical or categorical)
+    # from here on we draw the widget based on the variable type
     # and set initial values
     with col1:
         feature = "GrLivArea"

@@ -70,7 +70,7 @@ There are no unfixed bugs.
 
 Log transformation to 'GrLivArea', but not to 'SalePrice'.
 
-If the model was trained to predict raw SalePrice, but one of the main predictor variables (GrLivArea) was log-transformed, the relationship might not be linear anymore — making it hard for your model to learn properly.
+If the model was trained to predict raw SalePrice, but one of the main predictor variables (GrLivArea) was log-transformed, the relationship might not be linear anymore — making it hard the model to learn properly.
 
 Options:
 
@@ -94,43 +94,47 @@ No errors were returned.
 
 #### app_pages/multipage.py
 
-<img src="images/ci_python_validator_multipage.PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_multipage.PNG" alt="shows result of validation of multipage" width="650">
 
 #### app_pages/page_project_summary.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_page_project_summary.PNG" alt="shows result of validation of page_project_summary" width="650">
 
 #### app_pages/page_house_market_study.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_page_hose_market_price.PNG" alt="shows result of validation of page_house_market_price" width="650">
 
 #### app_pages/page_hypothesis_and_validation.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_hypothesis_and_validation.PNG" alt="shows result of validation of validator_hypothesis_and_validation" width="650">
 
 #### app_pages/page_sales_price_predictor.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_page_sale_price_predictor.PNG" alt="shows result of validation of page_sale_price_predictor" width="650">
 
 #### app_pages/page_sales_price_evaluation.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_page_sale_price_evaluation.PNG" alt="shows result of validation of page_sale_price_evaluation" width="650">
 
 #### app_pages/page_pipeline_performance.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_page_pipeline_performance.PNG" alt="shows result of validation of page_pipeline_performance" width="650">
 
 #### src/data_management.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_data_management.PNG" alt="shows result of validation of data_management py" width="650">
 
 #### src/preprocessing.py
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_preprocessing.PNG" alt="shows result of validation of preprocessing py" width="650">
 
 #### src/machine_learning/predictive_analysis_ui
 
-<img src="readme.images/....PNG" alt="shows result of validation of ..." width="650">
+<img src="images/ci_python_validator_predictive_analysis_ui.PNG" alt="shows result of validation of predictive_analysis_ui py" width="650">
+
+#### src/machine_learning/evaluation
+
+<img src="images/ci_python_validator_evaluation.PNG" alt="shows result of validation of evaluation py" width="650">
 
 </details>
 
