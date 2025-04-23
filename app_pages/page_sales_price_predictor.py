@@ -49,28 +49,28 @@ def page_sales_price_predictor_body():
     inherited_houses = {
         "House 1": {
             'GrLivArea': 896,
-            'GarageArea': 730.0,
+            # 'GarageArea': 730.0,
             'MasVnrArea': 0,
             'YearBuilt': 1961,
             'OverallQual': 5
         },
         "House 2": {
             'GrLivArea': 1329,
-            'GarageArea': 312.0,
+            # 'GarageArea': 312.0,
             'MasVnrArea': 108.0,
             'YearBuilt': 1958,
             'OverallQual': 6
         },
         "House 3": {
             'GrLivArea': 928,
-            'GarageArea': 482.0,
+            # 'GarageArea': 482.0,
             'MasVnrArea': 0,
             'YearBuilt': 1997,
             'OverallQual': 5
         },
         "House 4": {
             'GrLivArea': 926,
-            'GarageArea': 470.0,
+            # 'GarageArea': 470.0,
             'MasVnrArea': 20.0,
             'YearBuilt': 1998,
             'OverallQual': 6
@@ -125,26 +125,14 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col2:
-        feature = "GarageArea"
-        st_widget = st.number_input(
+        feature = "OverallQual"
+        st_widget = st.selectbox(
             label=feature,
-            min_value=df[feature].min()*percentageMin,
-            max_value=df[feature].max()*percentageMax,
-            value=df[feature].median()
+            options=df[feature].unique()
         )
     X_live[feature] = st_widget
 
     with col3:
-        feature = "MasVnrArea"
-        st_widget = st.number_input(
-            label=feature,
-            min_value=df[feature].min()*percentageMin,
-            max_value=df[feature].max()*percentageMax,
-            value=df[feature].median()
-        )
-    X_live[feature] = st_widget
-
-    with col4:
         feature = "YearBuilt"
         st_widget = st.number_input(
             label=feature,
@@ -154,13 +142,25 @@ def DrawInputsWidgets():
         )
     X_live[feature] = st_widget
 
-    with col5:
-        feature = "OverallQual"
-        st_widget = st.selectbox(
+    with col4:
+        feature = "MasVnrArea"
+        st_widget = st.number_input(
             label=feature,
-            options=df[feature].unique()
+            min_value=df[feature].min()*percentageMin,
+            max_value=df[feature].max()*percentageMax,
+            value=df[feature].median()
         )
     X_live[feature] = st_widget
+
+    #with col2:
+    #    feature = "GarageArea"
+    #    st_widget = st.number_input(
+    #        label=feature,
+    #        min_value=df[feature].min()*percentageMin,
+    #        max_value=df[feature].max()*percentageMax,
+    #        value=df[feature].median()
+    #    )
+    #X_live[feature] = st_widget
 
     st.write(X_live)
 

@@ -81,12 +81,15 @@ def page_project_hypothesis_and_validation_body():
         f"the number of bedrooms which are not related to the sales price "
         f"or saquare feets. In addition, below the distribution of "
         f"OverallCond by SalePrice\n\n"
-        f"However, there seems to be a crutial difference between "
+        f"However, it seems there is a crutial difference between "
         f"'OverallCond' and 'OverallQual', because 'OverallCond indeed shows "
         f"a very high correlation to SalePrice (0,79).\n\n"
     )
 
-    if st.checkbox("See here the distribution 'OverallCond vs SalePrice'"):
+    if st.checkbox(
+        f"See here the distribution 'OverallCond vs SalePrice' and "
+        f"OverallQual vs SalePrice"
+    ):
 
         fig, ax = plt.subplots(figsize=(10, 6))
         sns.scatterplot(x='SalePrice', y='OverallCond', data=df, ax=ax)

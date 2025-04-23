@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 def page_pipeline_performance_body():
-    st.write("### Pipeline performance")
+    st.write("### ML Pipeline performance of Predict Sales Price")
 
     version = 'v1'
     # load needed files
@@ -37,17 +37,14 @@ def page_pipeline_performance_body():
         f"y_test_opt.csv"
     ).values.squeeze()
 
-    st.write("### ML Pipeline: Predict Sales Price")
     # display pipeline training summary conclusions
     st.info(
          f"* The model explains 83% of the variance in sale prices \n"
          f"* On average, the model's predictions are off by less than $20K. "
          f"For house prices, that’s very acceptable, especially for "
-         f"mid-to-upper priced homes."
+         f"mid-to-upper priced homes. \n"
+         f"* However, a few extreme outliers still exist in the model. "
     )
-
-    # Apply data cleaning & feature engineering pipeline to the test data
-    # test_opt_transformed = pipeline_dc_fe_opt.transform(X_test_opt)
 
     # Make predictions with the final regression model
     y_pred_opt = pipeline_regressor.predict(X_test_opt)
