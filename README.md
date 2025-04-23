@@ -73,7 +73,7 @@ The project scope is defined as an MVP. The main functionalities for adding comm
 
 #### Data Practitioners
 
-|Story No.|Titel|User Story|
+|**Story No.**|**Titel**|**User Story**|
 |---|---|---|
 |[#2](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/2)|MVP: Data collection (Create Jupyter Notebook)|As Data Practitioner I can access and upload the client's dataset to prepare for next analysis steps.|
 |[#3](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/3)|MVP: Data Cleaning (Create Jupyter Notebook)|As Data Practitioner I preprocess the dataset so that I can continue with the analysis|
@@ -85,7 +85,7 @@ The project scope is defined as an MVP. The main functionalities for adding comm
 
 #### User / friend
 
-|Story No.|Titel|User Story|
+|**Story No.**|**Titel**|**User Story**|
 |---|---|---|
 |[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|MVP: Project Deployment|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard|
 |[#7](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/7)|MVP: Testing Streamlit Dashboard |As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.|
@@ -121,7 +121,7 @@ The first step in the project focuses on developing a solid understanding of the
 * The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). A fictitious user story is applied where predictive analytics can be applied in a real project in the workplace.
 * The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (i.e. Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
 
-|Variable|Meaning|Units|
+|**Variable**|**Meaning**|**Units**|
 |:----|:----|:----|
 |1stFlrSF|First Floor square feet|334 - 4692|
 |2ndFlrSF|Second-floor square feet|0 - 2065|
@@ -169,7 +169,7 @@ By using pandas a DataFrame is defined and an initial inspection is performed to
 
 [BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
 
-In addition, the dataset is analyzed to detect columns with missing values. The number of missing entries per column is calculated and presented in descending order to highlight areas requiring attention. 
+In addition, the dataset is analyzed to detect columns with missing values. The number of missing entries per column is calculated and presented in descending order to highlight areas requiring attention.
 
 **The following columns have missing Values:**
 
@@ -185,11 +185,11 @@ All values should remain, since it is an indication that the relevant attribute 
 
 With regards to the used code, here a few exampes of the mostly used code snippets that has been (re)used:
 
-|Code snippet|library|Explanation|Comment|
-|---|---|---|---|
-| `df.info()` | pandas | Provides dataset df information | |
-| `df.isnull()` | pandas | identifies missing values in the dataset df | |
-| `os.makedirs(name='outputs/data_collected')` | os | creates a folder in repo | |
+|**Code snippet**|**library**|**Comment**|
+|---|---|---|
+| `df.info()` | pandas | Provides dataset df information |
+| `df.isnull()` | pandas | identifies missing values in the dataset df |
+| `os.makedirs(name='outputs/data_collected')` | os | creates a folder in repo |
 
 ### Data cleaning
 
@@ -205,18 +205,16 @@ Columns with a high proportion of missing data — such as EnclosedPorch, WoodDe
 b. Imputing Missing Values:
 For columns with a moderate number of missing entries, imputation is a suitable approach, and the method used depends on the type of data:
 
-    Numeric columns: For '2ndFlrSF', 'BedroomAbvGr', 'LotFrontage', 'GarageYrBlt' the mean, median, or mode is used, depending on data distribution.
+* Numeric columns: For '2ndFlrSF', 'BedroomAbvGr', 'LotFrontage', 'GarageYrBlt' the mean, median, or mode is used, depending on data distribution.
+* Categorical columns: For 'BsmtExposure', 'BsmtFinType1', 'GarageFinish' missing values are filled in using the mode (most frequent value).
+* The Column with minimal missing values (MasVnrArea, only 8 missing) is imputed with the mean mode.
 
-    Categorical columns: For 'BsmtExposure', 'BsmtFinType1', 'GarageFinish' missing values are filled in using the mode (most frequent value).
-
-    The Column with minimal missing values (MasVnrArea, only 8 missing) is imputed with the mean mode.
-
-    Special case – GarageYrBlt (81 missing): Simple imputation (mean/mode) isn't ideal here. A better strategy might involve group-based imputation or predictive modeling. However, since this column will be removed later, no imputation is performed.
+Special case – GarageYrBlt (81 missing): Simple imputation (mean/mode) isn't ideal here. A better strategy might involve group-based imputation or predictive modeling. However, since this column will be removed later, no imputation is performed.
 
 c. Filling with Specific Values:
 For certain categorical fields, missing values can be replaced with a placeholder like 'None' or 'Unknown', especially when that makes logical sense in the dataset context.
 
-|Code snippet|library|Comment|
+|**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `df.drop(columns=['column_name', 'column_name'])` | pandas | Is used to drop columns |
 | `df['column_name'].fillna(df['column_name'].median())` | pandas | Is used to impute values by using the median value |
@@ -240,7 +238,7 @@ For further analysing steps and for the pipeline processing it is mandatory to t
 5. Check the unique values to confirm that the columns contain only valid values
 6. Apply numeric conversion safely (handle non-numeric values)
 
-|Code snippet|library|Comment|
+|**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `df.info() | pandas | Provides information about range index, Non-Null Count, Dtypes |
 | `df['column_name'].asype(str)` | pandas | Converts a column to string data type.|
@@ -319,7 +317,7 @@ In addition, it shows that there are 13 columns that contains varibales with a m
 
 The split into trianing and test data is processed a few times wihtin this project. Both datasets are mandatory to apply a ML pipleline. It is a preparation for the next chapters.
 
-|Code snippet|library|Comment|
+|**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `os.makedirs(name='...')` | os | Create a directory (e.g., for saving train/test sets); exist_ok=True avoids errors if the folder already exists. |
 | `TrainSet, TestSet = train_test_split(df, test_size=0.3, random_state=42)` | sklearn.model_selection | Split the DataFrame into training and testing sets using a 70/30 ratio. |
@@ -423,7 +421,7 @@ See correlation analysis above. The Correlation value year_built/SalePrice is me
 
 List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
 
-|Business requierement|relevant section of visualisations and ML task|
+|**Business requierement**|**relevant section of visualisations and ML task**|
 |---|---|
 | 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb)|
 | 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb)|
@@ -438,7 +436,7 @@ Durign the feature Engineering process different tools has been used such as yda
 
 The report enables to have a closer look at each variable. The following insighs are noticeable:
 
-|Variable|Comment|
+|**Variable**|**Comment**|
 |--|--|
 | 2stFlrSF | ~59% zeros, only 41% of the houses have a 2st floor |
 | BsmtFinSF1 | 32% of the houses don't have a basement |
@@ -450,7 +448,7 @@ The report enables to have a closer look at each variable. The following insighs
 <img src="images/ydata_profiling_example1.PNG" alt="see ydata profiling report" width="350">
 <img src="images/ydata_profiling_example2.PNG" alt="see ydata profiling report" width="350">
 
-|Code snippet|library|Comment|
+|**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `from ydata_profiling import ProfileReport`<br>`pandas_report = ProfileReport(df=TrainSet, minimal=True)`<br>`pandas_report.to_notebook_iframe()`| ydata_profiling, pandas | This code imports the ProfileReport class from the ydata_profiling library, which is used to generate an interactive data profiling report for the given dataset (TrainSet). The minimal=True argument generates a simplified version of the report. Finally, to_notebook_iframe() renders the report in a Jupyter Notebook as an iframe, making it interactive within the notebook. |
 
@@ -461,7 +459,7 @@ Categorical variables represent discrete categories. Machine learning models gen
 In the jupyter notebook '02_data cleaning'. The following parameters has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
 In jupyter notebook '04_modeling_and_evaluation'. The following parameters has been transformed (for pipeline model): (...).
 
-|Code snippet|library|Comment|
+|**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `from feature_engine.encoding import OrdinalEncoder`<br>`def FeatEngineering_CategoricalEncoder(df_feat_eng, column):`<br>`list_methods_worked = []`<br>`try:`<br>`encoder = OrdinalEncoder(encoding_method='arbitrary', variables=[`<br>`f"{column}_ordinal_encoder"])`<br>`df_feat_eng = encoder.fit_transform(df_feat_eng)`<br>`list_methods_worked.append(f"{column}_ordinal_encoder")`<br>`except Exception:`<br>`df_feat_eng.drop([f"{column}_ordinal_encoder"], axis=1, inplace=True)`<br>`return df_feat_eng, list_methods_worked` | feature_engine | This code defines a function to perform ordinal encoding on a specified categorical column of a DataFrame (`df_feat_eng`). It uses the `OrdinalEncoder` from the `feature_engine` library to convert categories into numeric values based on an arbitrary encoding method. If the encoding is successful, the column is added to the DataFrame, and the method is logged. If an error occurs, the new column is dropped. The function returns the modified DataFrame and a list of methods applied. |
 
@@ -517,7 +515,7 @@ Action: This feature is kept. However, feature 2ndFlrSF is being dropped to simp
 
 This is the log-transformed version of the target variable, SalePrice. It's highly correlated with GarageArea as well, as shown in the earlier analysis. Since SalePrice is the target variable (the dependent variable you are trying to predict), it should not be used as an independent variable in the model. Hence, it’s correct to drop this feature from the set of predictors, but still necessary for the train and test set.
 
-Action:  'Saleprice' is kept for test and train set. 'GarageArea' is dropped.
+Action: 'Saleprice' is kept for test and train set. 'GarageArea' is dropped.
 
 ***OverallQual***:
 
@@ -548,9 +546,9 @@ Although this method is effective, in this case, the outliers in the SalePrice c
 
 To address the skewness introduced by these extreme values, a log transformation was applied to the SalePrice variable. This transformation compresses the range of high values, resulting in a more symmetric distribution and reducing the influence of outliers. As a result, after the transformation, the data no longer contains extreme values that exceed the IQR threshold, and no additional outlier treatment is necessary.
 
-#### Feature Engineering Spreadsheet summary (IN PROGRESS, final features still has to be clarified!
+#### Feature Engineering Spreadsheet summary
 
-|Variables|Comment| Correlation with SalePrice|Potential Feature Engineering Transformers|
+|**Variables**|**Comment**| **Correlation with SalePrice**|**Potential Feature Engineering Transformers**|
 |---------|-------|---------------------------|------------------------------------------|
 | SalePrice| Target variable; log-transformed to normalize skewness| 1.00| Numerical Transformation (log)|
 | EnclosedPorch| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.13| Dropped|
@@ -578,8 +576,9 @@ To address the skewness introduced by these extreme values, a log transformation
 | **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
 
 Special thoughts: Keeping GrargeArea or GarageFinished.
-* GarageArea has a high  correlation with Sales price
-* GarageFinish has no real correlation with any attribute... it seems just not important.. and additional effort is needed for data cleaning, also imputation due to missing values is needed in the pipeline. 
+
+* GarageArea has a high correlation with Sales price
+* GarageFinish has no real correlation with any attribute... it seems just not important.. and additional effort is needed for data cleaning, also imputation due to missing values is needed in the pipeline.
 
 ### Modeling
 
@@ -593,25 +592,25 @@ Classification models are designed for predicting discrete classes (e.g., “hig
 
 A comprehensive data cleaning and transformation pipeline was implemented using the **scikit-learn** and **feature-engine** libraries. The process begins by loading the data from the "collected_data" folder.
 
-**Step 1: Data Cleaning and Feature Engineering**
+* **Step 1: Data Cleaning and Feature Engineering**
 
 The first machine learning pipeline focuses on preprocessing the data and includes the following transformers:
 
-- **DropUnwantedFeatures**: Removes unnecessary columns (defined separately in preprocessing.py)
-- **ImputeMasVnrArea**: Fills missing values in the `MasVnrArea` column.
-- **ImputeGarageFinish**: Fills missing values in the `GarageFinish` column.
-- **OrdinalCategoricalEncoder**: Encodes ordinal categorical features.
-- **SmartCorrelatedSelection**: Selects relevant features based on correlation analysis.
-- **LogTransformation**: Applies a log10 transformation to the `GrLivArea` feature.
+* **DropUnwantedFeatures**: Removes unnecessary columns (defined separately in preprocessing.py)
+* **ImputeMasVnrArea**: Fills missing values in the `MasVnrArea` column.
+* **ImputeGarageFinish**: Fills missing values in the `GarageFinish` column.
+* **OrdinalCategoricalEncoder**: Encodes ordinal categorical features.
+* **SmartCorrelatedSelection**: Selects relevant features based on correlation analysis.
+ **LogTransformation**: Applies a log10 transformation to the `GrLivArea` feature.
 
 This pipeline is applied to the dataset, resulting in a transformed DataFrame (`df_transformed`).
 
-**Step 2: Train-Test Split and Target Transformation**
+* **Step 2: Train-Test Split and Target Transformation**
 
 After preprocessing, the target variable, `SalePrice`, is transformed using the log10 scale to ensure consistency across both the training and test datasets. The transformed target variable is then split into training and testing sets:
 
-- **X_train** and **y_train** are used for model training.
-- **X_test** and **y_test** are reserved for model evaluation.
+* **X_train** and **y_train** are used for model training.
+* **X_test** and **y_test** are reserved for model evaluation.
 
 The feature set (`X`) excludes the target variable `SalePrice`. Following the transformation, the target variable’s distribution is checked for imbalance. As the `SalePrice` variable was log-transformed, no further adjustments are necessary, as the distribution is well-balanced.
 
@@ -632,27 +631,26 @@ The feature set (`X`) excludes the target variable `SalePrice`. Following the tr
 
 The second pipeline focuses on regression modeling and sales price prediction. The key steps are as follows:
 
-- **Hyperparameter Optimization**: A search for the best model and hyperparameters is conducted. Multiple regression algorithms, including ExtraTreesRegressor, GradientBoostingRegressor, and others, are evaluated. Among the algorithms tested, ExtraTreesRegressor provided the best performance.
+* **Hyperparameter Optimization**: A search for the best model and hyperparameters is conducted. Multiple regression algorithms, including ExtraTreesRegressor, GradientBoostingRegressor, and others, are evaluated. Among the algorithms tested, ExtraTreesRegressor provided the best performance.
 
-- **Multiple Regression Models**: Several regression models were trained and evaluated with hyperparameter optimization using GridSearchCV. The models tested included:
+* **Multiple Regression Models**: Several regression models were trained and evaluated with hyperparameter optimization using GridSearchCV. The models tested included:
 
-    - **ExtraTreesRegressor**: Mean score around -0.056811 (best performance).
-    - **GradientBoostingRegressor**: Mean score around -0.066239.
-    - **XGBRegressor**: Mean score around -0.069641.
-    - **RandomForestRegressor**: Mean score around -0.072316.
-    - **AdaBoostRegressor**: Mean score around -0.076377.
-    - **DecisionTreeRegressor**: Mean score around -0.083047 (lowest performance).
+* **ExtraTreesRegressor**: Mean score around -0.056811 (best performance).
+* **GradientBoostingRegressor**: Mean score around -0.066239.
+* **XGBRegressor**: Mean score around -0.069641.
+* **RandomForestRegressor**: Mean score around -0.072316.* **AdaBoostRegressor**: Mean score around -0.076377.
+* **DecisionTreeRegressor**: Mean score around -0.083047 (lowest performance).
 
-- **Hyperparameter Tuning for ExtraTreesRegressor**: Several hyperparameters for the ExtraTreesRegressor were tested to identify the optimal configuration. The hyperparameters were defined using the `params_quick_search` method.
+* **Hyperparameter Tuning for ExtraTreesRegressor**: Several hyperparameters for the ExtraTreesRegressor were tested to identify the optimal configuration. The hyperparameters were defined using the `params_quick_search` method.
 
-- **Model Selection**: After the optimization process, the best-performing model and corresponding hyperparameters were selected based on the evaluation results.
+* **Model Selection**: After the optimization process, the best-performing model and corresponding hyperparameters were selected based on the valuation results.
 
-- **Model Evaluation**: Predictions were made using the trained model, and performance was evaluated using various metrics. A visual comparison of the actual vs. predicted sales prices was generated. Different scoring methods, such as `neg_mean_absolute_error` and `r2`, were used to assess the pipeline's overall effectiveness.
+* **Model Evaluation**: Predictions were made using the trained model, and performance was evaluated using various metrics. A visual comparison of the actual vs. predicted sales prices was generated. Different scoring methods, such as `neg_mean_absolute_error` and `r2`, were used to assess the pipeline's overall effectiveness.
 
-- **Feature Importance**: The most important features contributing to the model's predictions were identified. The top features in terms of importance were:
-    - `OverallQual`
-    - `GrLivArea`
-    - `YearBuilt`
+* **Feature Importance**: The most important features contributing to the model's predictions were identified. The top features in terms of importance were:
+* `OverallQual`
+* `GrLivArea`
+* `YearBuilt`
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
@@ -660,7 +658,7 @@ The second pipeline focuses on regression modeling and sales price prediction. T
 | `search = HyperparameterOptimizationSearch(models=models_quick_search, params=params_quick_search)`<br>`search.fit(X_train, y_train, scoring='neg_mean_absolute_error', n_jobs=-1, cv=5)`<br>`search.score_summary(sort_by='mean_score')` | custom/extended sklearn (possibly from `mlxtend` or a custom wrapper) | Runs a hyperparameter optimization search over defined models using cross-validation and a scoring metric (negative MAE). Summarizes performance for comparison. |
 | `model = ExtraTreesRegressor(n_estimators=100, random_state=42)`<br>`model.fit(X_train, y_train)` | sklearn | Initializes and fits an `ExtraTreesRegressor` on the training data. A fast and accurate ensemble method useful for feature importance and prediction. |
 | `models_quick_search = {"ExtraTreesRegressor": ExtraTreesRegressor(random_state=0)}`<br>`params_quick_search = { "ExtraTreesRegressor": { "model__n_estimators": [100, 200], "model__max_depth": [None, 20], "model__min_samples_split": [2, 5] }}` | sklearn | Sets up model and grid of hyperparameters for `ExtraTreesRegressor` to be used in grid search or tuning, allowing exploration of different configurations. |
-| `df_feature_importance = (pd.DataFrame(data={ 'Feature': X_train.columns[feat_selector.get_support()], 'Importance': model.feature_importances_})`<br>`    .sort_values(by='Importance', ascending=False)` | pandas, sklearn | Creates a DataFrame to display feature importance values from the trained model. |
+| `df_feature_importance = (pd.DataFrame(data={ 'Feature': X_train.columns[feat_selector.get_support()], 'Importance': model.feature_importances_})`<br>`.sort_values(by='Importance', ascending=False)` | pandas, sklearn | Creates a DataFrame to display feature importance values from the trained model. |
 | `best_features = df_feature_importance['Feature'].to_list()` | pandas | Extracts the list of important features based on their importance scores. |
 | `df_feature_importance.plot(kind='bar', x='Feature', y='Importance')` | pandas, matplotlib | Plots a bar chart of feature importance for visual analysis. |
 
@@ -668,9 +666,9 @@ The second pipeline focuses on regression modeling and sales price prediction. T
 
 In this step, the pipeline is refined by evaluating additional features. The primary objective is to determine whether the three most important features (`OverallQual`, `GrLivArea`, and `YearBuilt`) alone provide the best results, or if adding one or two more features can enhance the model's performance.
 
-- **Feature Evaluation**: Several feature combinations were tested to identify the optimal feature set for the model. The focus was on whether adding features beyond the top three most important ones would result in better predictive performance.
+* **Feature Evaluation**: Several feature combinations were tested to identify the optimal feature set for the model. The focus was on whether adding features beyond the top three most important ones would result in better predictive performance.
 
-- **Outcome**: Adding the `MasVnrArea` feature led to a slight improvement in the model's performance. This feature was incorporated into the existing pipeline without requiring additional encoding steps. Unlike the `GarageFinish` feature, which would have required an encoder transformer for categorical data, the `MasVnrArea` feature could be seamlessly integrated into the pipeline. This streamlined integration ensured that the model retained its performance without significant changes to the preprocessing pipeline.
+* **Outcome**: Adding the `MasVnrArea` feature led to a slight improvement in the model's performance. This feature was incorporated into the existing pipeline without requiring additional encoding steps. Unlike the `GarageFinish` feature, which would have required an encoder transformer for categorical data, the `MasVnrArea` feature could be seamlessly integrated into the pipeline. This streamlined integration ensured that the model retained its performance without significant changes to the preprocessing pipeline.
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
@@ -686,8 +684,7 @@ The final training and evaluation process includes:
 * Applying the Regressor Pipeline, which includes the best model, hyperparameters, and features, to the training set.
 * Evaluating the model’s performance, with results visualized through graphics comparing actual vs. predicted sales prices.
 
-
-|Metric | Value | What It Means|
+|**Metric** | **Value** | **What It Means**|
 |-------|-------|--------------|
 |MAE | $19,473 | On average, your model's predictions are off by less than $20K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.|
 |RMSE | $33,867 | This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error.|
@@ -710,11 +707,18 @@ Once the final model has been trained and evaluated, the training data, test dat
 
 The final step involves merging the two separate pipelines (data cleaning and feature engineering, and regressor pipeline) into a unified pipeline. This consolidated pipeline streamlines the entire process, from data preprocessing to prediction, ensuring consistency across training, testing, and deployment.
 
-### Suggestions for Future Improvements:
+### Suggestions for Future Improvements
 
-* Setting up one complete pipeline that combines the data cleaning and feature engineering pipeline and teh regressor pipeine.
-* Model Monitoring: After deployment, consider adding monitoring tools to track the model's performance on new, unseen data.
-* Cross-Validation: To ensure robustness, consider using cross-validation techniques for model evaluation.
+* Consider combining the data cleaning, feature engineering, and regression modeling steps into a single, end-to-end pipeline. This would simplify deployment and ensure consistency between training and inference, minimizing the risk of data leakage or transformation mismatches.
+
+* Model Monitoring: Once the model is deployed (e.g., via Heroku or Streamlit Cloud), implement monitoring tools to track its performance over time. This can help detect data drift, anomalies, or degradation in prediction accuracy when the model is exposed to real-world data.
+
+|**Story No.**|**Titel**|**User Story**|
+|---|---|---|
+|[#16](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/16)|MVP2: Create Page Invest in potential objects|As a User I get an overview of potential houses which have a low value currently because of poor features, however which are adjustable such as OverallQual, MasVnrSF so that I can renovate to increase the property value.|
+|[#17](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/17)|MVP2: Increase Dashboard Performance|As a User I want that the Dashboard is loaded quickly so that I can work with it without interruptions.|
+|[#18](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/18)|MVP2: combine the data cleaning, feature engineering, and regression modeling steps into a single, end-to-end pipeline|As a Data Partitioner I can work with one end-to-end pipeline so that I can easier deploy and enure a consistency between training and inference, minimizing the risk of data leakage or transformation mismatches.|
+|[#19](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/19)|MVP2: Implement monitoring tools to track the pipeline performance over time|As a Data Partitioner I want to implement monitoring tools for the deployed ML pipeline, so that I can continuously track model performance, detect data drift, and respond to performance degradation in a timely manner.|
 
 ### Outcome / Business impact
 
@@ -734,8 +738,8 @@ For detailed testing information, see the content related to testing in [TESTING
 
 ### Main Data Analysis and Machine Learning Libraries
 
-| Library / Package         | Purpose / Description                                                                 | Comment |
-|---------------------------|----------------------------------------------------------------------------------------|--------| 
+| **Library / Package**         | **Purpose / Description**                                                                 | **Comment** |
+|---------------------------|----------------------------------------------------------------------------------------|--------|
 | numpy==1.26.1             | Numerical operations and array handling                                                ||
 | pandas==2.1.1             | Data manipulation and analysis                                                         ||
 | matplotlib==3.8.0         | Static data visualization                                                              ||
@@ -777,7 +781,7 @@ For detailed testing information, see the content related to testing in [TESTING
 * [Specific YouTube Tutorial](https://www.youtube.com/) Ideas and supprot of plot analysis was taken from (to be added)
 * [Project Methods Library](https://github.com/Fl0W97/ci-p4-methods-library)The structure of the documentation has been reused from my project 4
 * [Code_Institute](https://codeinstitute.net) - The code and text for project and Dashboard was taken partly from Code Institute Walkthorugh 02 and 01
-* [Code Institute](https://codeinstitute.net) - Tutorial: Data Analytics Packages ML: feature-engine, Data Analytics Packages ML: Scikit-learn ... 
+* [Code Institute](https://codeinstitute.net) - Tutorial: Data Analytics Packages ML: feature-engine, Data Analytics Packages ML: Scikit-learn ...
 * [Code_Institute](https://codeinstitute.net) - The template for this project was provided by Code Institute
 * [Code_Institute](https://codeinstitute.net) - Mentor Rohit: Providing guidance and tips for my project
 * [Youtube](https://www.youtube.com/): for access to a huge community of developers who facing similar challenges like me

@@ -7,6 +7,7 @@
 * Manual input tests were carried out to simulate real-world usage of the application. This involved entering data manually into the system to ensure that all inputs were handled correctly and that the user interface responded appropriately.
 
 ## Manual Testing Plan
+
 |Test Area|Objective|Test Steps|Test Cases|Test Completed|Comments|
 |---|---|---|---|---|---|
 |Navigation Functionality|Ensure that the website navigation is intuitive and functional.| 1. Open the homepage. <br> 2. Click on various menu items or links. <br> 3. Verify correct redirection. <br> 4. Verify active menu item highlight. <br> 5. Test the menu hide feature.|- **Responsive Navigation**: Test navigation across different screen sizes. <br> - **Menu Items**: Ensure the menu items lead to correct pages.|[ y ]|---|
@@ -30,7 +31,7 @@ These are additional tests to ensure the overall quality, performance, security,
 
 ### User Stories for Data Practitioner
 
-**No.** | **User Story** | **Requirement met (y/n)** |
+| **No.** | **User Story** | **Requirement met (y/n)** |
 | ------|--------------- |---------------------------|
 |#2|As Data Practitioner I can access and upload the client's dataset to prepare for next analysis steps.| y |
 |#3|As Data Practitioner I preprocess the dataset so that I can continue with the analysis| y |
@@ -42,7 +43,7 @@ These are additional tests to ensure the overall quality, performance, security,
 
 ### User Stories for User
 
-**No.** | **User Story** | **Requirement met (y/n)** |
+| **No.** | **User Story** | **Requirement met (y/n)** |
 | ------|--------------- |---------------------------|
 |[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard| y |
 |#7|As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.| y |
@@ -61,11 +62,11 @@ There are no unfixed bugs.
 
 Image (Error):
 
-<img src="images/fixed_bugs_run_multiple_algorithms_error.PNG" width="800"/>
+<img src="images/fixed_bugs_run_multiple_algorithms_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_run_multiple_algorithms_code2.PNG" width="800"/>
+<img src="images/fixed_bugs_run_multiple_algorithms_code2.PNG" alt="see code" width="800"/>
 
 Comment:
 The name PipelineClf was used by mistake due to copy-paste from an earlier classification project. It does not exist in this context.
@@ -79,11 +80,11 @@ Updated to use the correct pipeline name for regression.
 
 Image (Error):
 
-<img src="images/fixed_bugs_scale_data_error.PNG" width="800"/>
+<img src="images/fixed_bugs_scale_data_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_scale_data_code.PNG" width="800"/>
+<img src="images/fixed_bugs_scale_data_code.PNG" alt="see code" width="800"/>
 
 Comment:
 Data scaling failed due to unexpected input types or missing values.
@@ -99,16 +100,16 @@ Error: Target Imbalance (Visualization)
 
 Image (Error):
 
-<img src="images/fixed_bugs_target_imbalance_error.PNG" width="800"/>
+<img src="images/fixed_bugs_target_imbalance_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_target_imbalance_code1.PNG" width="800"/> 
+<img src="images/fixed_bugs_target_imbalance_code1.PNG" alt="see code" width="800"/>
 
-<img src="images/fixed_bugs_target_imbalance_code2.PNG" width= "800"/>
+<img src="images/fixed_bugs_target_imbalance_code2.PNG" alt="see code" width= "800"/>
 
 Fix:
-<img src="images/fixed_bugs_target_imbalance_fix.PNG" width="800"/>
+<img src="images/fixed_bugs_target_imbalance_fix.PNG" alt="see fixation in code" width="800"/>
 
 Comment:
 Initial suspicion of imbalance in target distribution was resolved after applying a log10 transformation.
@@ -119,13 +120,13 @@ Initial suspicion of imbalance in target distribution was resolved after applyin
 
 Widget dashboard columns are not dropped
 
-Image (Error): 
+Image (Error):
 
-<img src="images/fixed_bugs_widget_dashboard_columns_are_not_dropped_error.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_columns_are_not_dropped_error.PNG" alt="see error" width="800"/>
 
-Image (Code): 
+Image (Code):
 
-<img src="images/fixed_bugs_widget_dashboard_columns_are_not_dropped_code.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_columns_are_not_dropped_code.PNG" alt="see code" width="800"/>
 
 Comment:
 Drop functionality in the dashboard did not execute correctly due to notebook environment limitations.
@@ -156,17 +157,17 @@ The variable TotalArea was removed from the drop list.
 
 Widget dashboard column mismatch
 
-Image (Error): 
+Image (Error):
 
-<img src="images/fixed_bugs_widget_dashboard_columns_drop_error.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_columns_drop_error.PNG" alt="see error" width="800"/>
 
-Image (Code): 
+Image (Code):
 
-<img src="images/fixed_bugs_widget_dashboard_columns_drop_code.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_columns_drop_code.PNG" alt="see code" width="800"/>
 
 Fix:
 
-<img src="images/fixed_bugs_widget_dashboard_columns_drop_fix.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_columns_drop_fix.PNG" alt="see fixation in code" width="800"/>
 
 Comment:
 Test set had a mismatch in columns due to inconsistencies in feature dropping.
@@ -179,15 +180,15 @@ Error: Typo in widget name OverallQual
 
 Image (Error):
 
-<img src="images/fixed_bugs_widget_dashboard_overallqual_error.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_overallqual_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_widget_dashboard_overallqual_code.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_overallqual_code.PNG" alt="see code" width="800"/>
 
 Fix:
 
-<img src="images/fixed_bugs_widget_dashboard_overallqual_fix.PNG" width="800"/>
+<img src="images/fixed_bugs_widget_dashboard_overallqual_fix.PNG" alt="see fixation in code" width="800"/>
 
 Comment:
 Typo in the widget name caused the dashboard to break.
@@ -200,15 +201,15 @@ Page Pipeline performance is not displayed when streamlit is started.
 
 Image (Error):
 
-<img src="images/fixed_bugs_show testdata_pipeline_performance_error.PNG" width="800"/>
+<img src="images/fixed_bugs_show testdata_pipeline_performance_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_show testdata_pipeline_performance_code.PNG" width="800"/>
+<img src="images/fixed_bugs_show testdata_pipeline_performance_code.PNG" alt="see code" width="800"/>
 
 Fix:
 
-<img src="images/fixed_bugs_show testdata_pipeline_performance_fix.PNG" width="800"/>
+<img src="images/fixed_bugs_show testdata_pipeline_performance_fix.PNG" alt="see fixation in code" width="800"/>
 
 Comment:
 Model pipeline was not loaded or passed properly, resulting in evaluation failure.
@@ -222,15 +223,15 @@ Missing df in predictor.
 
 Image (Error):
 
-<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_error.PNG" width="800"/>
+<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_code.PNG" width="800"/>
+<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_code.PNG" alt="see code" width="800"/>
 
 Fix:
 
-<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_fix.PNG" width="800"/>
+<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_fix.PNG" alt="see fixation in code" width="800"/>
 
 Comment:
 df was not correctly loaded or defined in the prediction function scope.
@@ -243,15 +244,15 @@ Streamlit page is not running.
 
 Image (Error):
 
-<img src="images/fixed_bugs_missing_import_pipeline_performance_error.PNG" width="800"/>
+<img src="images/fixed_bugs_missing_import_pipeline_performance_error.PNG" alt="see error" width="800"/>
 
 Image (Code):
 
-<img src="images/fixed_bugs_missing_import_pipeline_performance_code.PNG" width="800"/>
+<img src="images/fixed_bugs_missing_import_pipeline_performance_code.PNG" alt="see code" width="800"/>
 
 Fix:
 
-<br> <img src="images/fixed_bugs_missing_import_pipeline_performance_fix.PNG" width="800"/>
+<br> <img src="images/fixed_bugs_missing_import_pipeline_performance_fix.PNG" alt="see fixation in code" width="800"/>
 
 Comment:
 Forgot to import a required pipeline function 'mean_absolute_error' in the evaluation script.
@@ -264,7 +265,7 @@ Error was displayed during Heroku Deployment.
 
 Image (Error):
 
-<img src="images/fixed_bugs_heroku_deployment_error.PNG" width="800"/>
+<img src="images/fixed_bugs_heroku_deployment_error.PNG" alt="see error" width="800"/>
 
 Comment:
 Errors occurred due to missing files or incorrect file paths during Heroku deployment.
@@ -275,9 +276,11 @@ Added proper working directory setup using os.chdir() and ensured file availabil
 </details>
 
 ## Validator Testing
+
 Validator testing has been done on:
 
 ### [CI Python validator](https://pep8ci.herokuapp.com/)
+
 No errors were returned.
 
 <details>
@@ -334,6 +337,7 @@ No errors were returned.
 </details>
 
 ### [HTML validator](https://validator.w3.org/)
+
 No errors were returned. However, a few warnings. They will be not fixed. HTML is not focus of this porject and is be provided from streamlit standard.
 
 <details>
@@ -344,6 +348,7 @@ No errors were returned. However, a few warnings. They will be not fixed. HTML i
 </details>
 
 ### [CSS validator](https://jigsaw.w3.org/css-validator/)
+
 A few errors has been returned. However, the errors do not seem to interfere with the use of the dashboard I ignore them. CSS is not focus of this project and is be provided from streamlit standard.
 
 <details>
@@ -354,18 +359,22 @@ A few errors has been returned. However, the errors do not seem to interfere wit
 </details>
 
 ### Validation functions for Dashboard
+
 In Streamlit a few validation funtions are applied as standard i.e. by using a widget input data is only accepted when they are correct.
 
 ## Lighthouse Reports
+
 LightHouse is a web performance testing tool used to assess a website's performance. The report is generated through Google Chrome.
 The scoring for SEO, Accessibility and Best PRactices is high. Room for improvement is the Performance. This might be happen due to the project's size of around 450MB. The soft limit of the maximal slug size from Heroku is reached. By ignoring certain data already via .slugignore the Performance has been already improved.
 
 <img src="readme.images/lighthouse_validation_report"shows Lighthouse report generated by GoogleChrome" width="700">
 
 ## Responsivness
+
 The responsiveness was manually tested using Chrome's devtools throughout the entire development process.
 
 <img src="images/amiresponsive.PNG" alt="shows usage of DevTool by GoogleChrome" width="700">
 
 ## Accessability
+
 I confirm that the selected colors and fonts are easy to read and accessible by using Lighthouse in devtools (Chrome), see chapter "Lighthouse reports".

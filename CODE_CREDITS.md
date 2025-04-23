@@ -1,3 +1,5 @@
+# Code Creadits
+
 I (re)used mainly the code provided in the Code Institute trianing section in the different training chapters and in the Walkthrough projects. In the following not all but main code I resused and adjsuted it for my project.
 
 ***Data Analytics Packages ML: feature-engine Feature Engine Unit 2-4***
@@ -367,7 +369,6 @@ Function has been customized, however, a lot code is reused from here.
     <summary>Walkthrough Project 02 - Custom Class for Hyperparameter Optimisation</summary>
 
       from sklearn.model_selection import GridSearchCV
-
 
 class HyperparameterOptimizationSearch:
 

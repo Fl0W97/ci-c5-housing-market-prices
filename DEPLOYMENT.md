@@ -45,21 +45,24 @@ Make sure that the following files are created in the project environment before
 
 ## Deployment steps
 
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+### 1. Create a Heroku account
 
-## Cloud IDE Reminders (???)
+If you haven't already, sign up for a Heroku account.
 
-To log into the Heroku toolbelt CLI:
+### 2. Create a new app on Heroku
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+1. Log in to Heroku
+2. Navigate to the Heroku dashboard
+3. Click on the "New" button.
+4. Select "Create new app."
+5. Choose a name for your app.
+6. Select a region.
+7. Click the "Create app" button.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
+### 3. Add your GitHub repository to the Heroku app
+
+1. At the Deploy tab, select GitHub as the deployment method.
+2. Select your repository name and click Search. Once it is found, click Connect.
+3. Select the branch you want to deploy, then click Deploy Branch.
+4. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
+5. If the slug size is too large then add large files not required for the app to the .slugignore file.
