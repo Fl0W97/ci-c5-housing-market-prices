@@ -1,10 +1,10 @@
 # Testing
 
-*Testing was conducted regularly in small intervals throughout the development process as well as at the end of the project to ensure functionality and identify any potential issues early on.
-*Bugs that were encountered during testing have been thoroughly documented in the Bug section, detailing the nature of the issue and the steps taken to resolve it.
-*Validators were used to ensure that the code meets all necessary standards and specifications. More details can be found in the Validators chapter.
-*Logic checks were performed to verify that the program's operations and algorithms were working as intended. This included testing different scenarios and edge cases to ensure robustness.
-*Manual input tests were carried out to simulate real-world usage of the application. This involved entering data manually into the system to ensure that all inputs were handled correctly and that the user interface responded appropriately.
+* Testing was conducted regularly in small intervals throughout the development process as well as at the end of the project to ensure functionality and identify any potential issues early on.
+* Bugs that were encountered during testing have been thoroughly documented in the Bug section, detailing the nature of the issue and the steps taken to resolve it.
+* Validators were used to ensure that the code meets all necessary standards and specifications. More details can be found in the Validators chapter.
+* Logic checks were performed to verify that the program's operations and algorithms were working as intended. This included testing different scenarios and edge cases to ensure robustness.
+* Manual input tests were carried out to simulate real-world usage of the application. This involved entering data manually into the system to ensure that all inputs were handled correctly and that the user interface responded appropriately.
 
 ## Manual Testing Plan
 |Test Area|Objective|Test Steps|Test Cases|Test Completed|Comments|
@@ -55,29 +55,224 @@ These are additional tests to ensure the overall quality, performance, security,
 
 There are no unfixed bugs.
 
-## Fixed Bugs
+## Fixed Bugs & Errors messages
 
-| Bug name |Error message|Image error message|Code|Comment, description|Fix|
-|---|---|---|---|---|---|
-| Error missing variable | KeyError: "['TotalArea'] not found in axis" |<img src="" alt="" width="300">| df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea']) | The variable 'TotalArea' is not existing (anymore) It was added to create a new varibale and combine other variable such as GrLivArea, 1stFlr, 2ndFllr. But it did not added value to the analysis. | The variable has been removed. |
-| Error running multiple algorithms | NameError: name 'PipelineClf' is not defined | <img src="images/fixed_bugs_run_multiple_algorithms_error.PNG" alt="see error description" width="300"> | <img src="images/fixed_bugs_run_multiple_algorithms_code1.PNG" alt="see code" width="300"> <img src="images/fixed_bugs_run_multiple_algorithms_code2.PNG" alt="see code" width="300"> | ... | The pipeline was renamed. 'PipelineClf' doesn't exist. It was a copy & paste failure |
-| Error scaling data |---|---|---|---|---|
-| Error target imbalancing  |---|---|---|---|---|
-| Error by running streamlit |---|---|---|---|---|
-| Error widget dashboard drop unwanted columns |---|---|---| ipynb format cannot be handled. | The Drop function has been shifted to an own file src.preprocessing.py |
-| Error widget dashboard columns drop |---|---|---| wrong variables in test/train |---|
-| Error widget dashboard overallqual |---|---|---| Due to a typo the widget name couldn't be found | name is corrected |
+<details><summary>***NameError: name 'PipelineClf' is not defined***</summary>
 
-Log transformation to 'GrLivArea', but not to 'SalePrice'.
+Image (Error):
 
-If the model was trained to predict raw SalePrice, but one of the main predictor variables (GrLivArea) was log-transformed, the relationship might not be linear anymore — making it hard the model to learn properly.
+<img src="images/fixed_bugs_run_multiple_algorithms_error.PNG" width="800"/>
 
-Options:
+Image (Code):
 
-* Also log-transform SalePrice in training and inverse-transform it after prediction,
-* OR Don’t transform GrLivArea unless you're transforming SalePrice too.
+<img src="images/fixed_bugs_run_multiple_algorithms_code2.PNG" width="800"/>
 
-This mismatch may cause your model to underfit or mispredict higher-end values.
+Comment:
+The name PipelineClf was used by mistake due to copy-paste from an earlier classification project. It does not exist in this context.
+
+Fix:
+Updated to use the correct pipeline name for regression.
+
+</details>
+
+<details><summary>***ValueError: could not convert str to float: 'No' ***</summary>
+
+Image (Error):
+
+<img src="images/fixed_bugs_scale_data_error.PNG" width="800"/>
+
+Image (Code):
+
+<img src="images/fixed_bugs_scale_data_code.PNG" width="800"/>
+
+Comment:
+Data scaling failed due to unexpected input types or missing values.
+
+Fix:
+Ensured that input features are correctly preprocessed and numeric before scaling.
+
+</details>
+
+<details><summary>***KeyError: "[SalePRice"] not in index"***</summary>
+
+Error: Target Imbalance (Visualization)
+
+Image (Error):
+
+<img src="images/fixed_bugs_target_imbalance_error.PNG" width="800"/>
+
+Image (Code):
+
+<img src="images/fixed_bugs_target_imbalance_code1.PNG" width="800"/> 
+
+<img src="images/fixed_bugs_target_imbalance_code2.PNG" width= "800"/>
+
+Fix:
+<img src="images/fixed_bugs_target_imbalance_fix.PNG" width="800"/>
+
+Comment:
+Initial suspicion of imbalance in target distribution was resolved after applying a log10 transformation.
+
+</details>
+
+<details><summary>***KeyError: "['LotFrontage','GarageFinish', '2ndFlrSF' (...)] not found in axis" (1)***</summary>
+
+Widget dashboard columns are not dropped
+
+Image (Error): 
+
+<img src="images/fixed_bugs_widget_dashboard_columns_are_not_dropped_error.PNG" width="800"/>
+
+Image (Code): 
+
+<img src="images/fixed_bugs_widget_dashboard_columns_are_not_dropped_code.PNG" width="800"/>
+
+Comment:
+Drop functionality in the dashboard did not execute correctly due to notebook environment limitations.
+
+Fix:
+Moved the drop logic into a dedicated Python file: src.preprocessing.py.
+
+</details>
+
+<details><summary>***Error: KeyError: "['TotalArea'] not found in axis"***</summary>
+
+Image (Error):
+No image provided
+
+Code:
+
+`df_engineering = df_engineering.drop(columns=['TotalBsmtSF', '1stFlrSF', 'GarageArea', '2ndFlrSF', 'KitchenQual', 'YearBuilt', 'TotalArea'])`
+
+Comment:
+The variable TotalArea does not exist anymore. It was originally introduced to combine variables like GrLivArea, 1stFlr, and 2ndFlr, but later removed due to low value.
+
+Fix:
+The variable TotalArea was removed from the drop list.
+
+</details>
+
+<details><summary>***KeyError: "['LotFrontage','GarageFinish', '2ndFlrSF' (...)] not found in axis" (2)***</summary>
+
+Widget dashboard column mismatch
+
+Image (Error): 
+
+<img src="images/fixed_bugs_widget_dashboard_columns_drop_error.PNG" width="800"/>
+
+Image (Code): 
+
+<img src="images/fixed_bugs_widget_dashboard_columns_drop_code.PNG" width="800"/>
+
+Fix:
+
+<img src="images/fixed_bugs_widget_dashboard_columns_drop_fix.PNG" width="800"/>
+
+Comment:
+Test set had a mismatch in columns due to inconsistencies in feature dropping.
+
+</details>
+
+<details><summary>***KeyError: OverallQual ***</summary>
+
+Error: Typo in widget name OverallQual
+
+Image (Error):
+
+<img src="images/fixed_bugs_widget_dashboard_overallqual_error.PNG" width="800"/>
+
+Image (Code):
+
+<img src="images/fixed_bugs_widget_dashboard_overallqual_code.PNG" width="800"/>
+
+Fix:
+
+<img src="images/fixed_bugs_widget_dashboard_overallqual_fix.PNG" width="800"/>
+
+Comment:
+Typo in the widget name caused the dashboard to break.
+
+</details>
+
+<details><summary>***NameError: name 'y_test_opt_log' is not defined.***</summary>
+
+Page Pipeline performance is not displayed when streamlit is started.
+
+Image (Error):
+
+<img src="images/fixed_bugs_show testdata_pipeline_performance_error.PNG" width="800"/>
+
+Image (Code):
+
+<img src="images/fixed_bugs_show testdata_pipeline_performance_code.PNG" width="800"/>
+
+Fix:
+
+<img src="images/fixed_bugs_show testdata_pipeline_performance_fix.PNG" width="800"/>
+
+Comment:
+Model pipeline was not loaded or passed properly, resulting in evaluation failure.
+
+</details>
+
+<details><summary>***AttributeError: 'dict' object has no attribute 'filter'***</summary>
+
+Page_sales_price_predictor.py was not loaded via Streamlit.
+Missing df in predictor.
+
+Image (Error):
+
+<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_error.PNG" width="800"/>
+
+Image (Code):
+
+<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_code.PNG" width="800"/>
+
+Fix:
+
+<img src="images/fixed_bugs_page_sales_price_predictor_missing_df_fix.PNG" width="800"/>
+
+Comment:
+df was not correctly loaded or defined in the prediction function scope.
+
+</details>
+
+<details><summary>***NameError: name 'mean_absolute_error' is not defined***</summary>
+
+Streamlit page is not running.
+
+Image (Error):
+
+<img src="images/fixed_bugs_missing_import_pipeline_performance_error.PNG" width="800"/>
+
+Image (Code):
+
+<img src="images/fixed_bugs_missing_import_pipeline_performance_code.PNG" width="800"/>
+
+Fix:
+
+<br> <img src="images/fixed_bugs_missing_import_pipeline_performance_fix.PNG" width="800"/>
+
+Comment:
+Forgot to import a required pipeline function 'mean_absolute_error' in the evaluation script.
+
+</details>
+
+<details><summary>***FileNotFoundError***</summary>
+
+Error was displayed during Heroku Deployment.
+
+Image (Error):
+
+<img src="images/fixed_bugs_heroku_deployment_error.PNG" width="800"/>
+
+Comment:
+Errors occurred due to missing files or incorrect file paths during Heroku deployment.
+
+Fix:
+Added proper working directory setup using os.chdir() and ensured file availability.
+
+</details>
 
 ## Validator Testing
 Validator testing has been done on:
@@ -139,7 +334,7 @@ No errors were returned.
 </details>
 
 ### [HTML validator](https://validator.w3.org/)
-No errors were returned. However, a few warnings. They will be not fixed.
+No errors were returned. However, a few warnings. They will be not fixed. HTML is not focus of this porject and is be provided from streamlit standard.
 
 <details>
 <summary>see details about HTML validator</summary>
@@ -149,7 +344,7 @@ No errors were returned. However, a few warnings. They will be not fixed.
 </details>
 
 ### [CSS validator](https://jigsaw.w3.org/css-validator/)
-A few errors has been returned. However, since the streamlit app creates the CSS code and the errors do not seem to interfere with the use of the dashboard I ignore them.
+A few errors has been returned. However, the errors do not seem to interfere with the use of the dashboard I ignore them. CSS is not focus of this project and is be provided from streamlit standard.
 
 <details>
 <summary>see details about CSS validator</summary>
