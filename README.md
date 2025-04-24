@@ -551,34 +551,29 @@ To address the skewness introduced by these extreme values, a log transformation
 |**Variables**|**Comment**| **Correlation with SalePrice**|**Potential Feature Engineering Transformers**|
 |---------|-------|---------------------------|------------------------------------------|
 | SalePrice| Target variable; log-transformed to normalize skewness| 1.00| Numerical Transformation (log)|
-| EnclosedPorch| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.13| Dropped|
-| WoodDeckSF| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.32| Dropped|
-| OpenPorchSF| Dropped during data cleaning process, after house market study, due to low correlation| 0.32| Dropped|
-| BsmtFinType1| Dropped during data cleaning process due to low correlation| 0.26| Dropped|
-| LotArea| Dropped during data cleaning process due to low correlation| 0.26| Dropped|
-| BsmtFinSF1| Dropped during data cleaning process due to low correlation| 0.39| Dropped|
-| BsmtUnfSF| Dropped during data cleaning process due to low correlation| 0.21| Dropped|
-| LotFrontage| Dropped during data cleaning process due to low correlation| 0.35| Dropped|
-| BsmtExposure| Categorical values, Dropped during data cleaning process, after house market study, due to low correlation| 0.12| Dropped|
-| BedroomAbvGr| Dropped during data cleaning process, after house market study, due to low correlation, analysis for BedroomAbvGr done| 0.17| Dropped|
-| OverallCond| Dropped during data cleaning process, after house market study, due to low correlation, analysis for CverallCond done| 0.08| Dropped|
-| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection| 0.61| Dropped|
-| 2ndFlrSF| Missing values filled using median(), dropped during Smart Correlated Selection| 0.32| Dropped|
-| GarageYrBlt| Highly correlated with YearBuilt dropped during Smart Correlated Selection| 0.49| Dropped|
-| KitchenQual| Categorical; encoded using OrdinalEncoder; removed during Smart Correlated Selection| 0.51| Dropped|
-| YearRemodAdd| Closely related to YearBuilt, removed during Smart Correlated Selection | 0.51| Dropped|
-| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during Smart Correlated Selection| 0.61| Dropped|
+| EnclosedPorch| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.13| None|
+| WoodDeckSF| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.32| None|
+| BsmtFinType1| Dropped during data cleaning process due to low correlation| 0.26| None|
+| LotArea| Dropped during data cleaning process due to low correlation| 0.26| None|
+| BsmtFinSF1| Dropped during data cleaning process due to low correlation| 0.39| None|
+| BsmtUnfSF| Dropped during data cleaning process due to low correlation| 0.21| None|
+| LotFrontage| Dropped during data cleaning process due to low correlation| 0.35| None|
+| BsmtExposure| Categorical values, Dropped during data cleaning process, after house market study, due to low correlation| 0.12| None|
+| BedroomAbvGr| Dropped during data cleaning process, after house market study, due to low correlation, analysis for BedroomAbvGr done| 0.17| None|
+| OverallCond| Dropped during data cleaning process, after house market study, due to low correlation, analysis for CverallCond done| 0.08| None|
+| 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection| 0.61| None|
+| 2ndFlrSF| Missing values filled using median(), dropped during Smart Correlated Selection| 0.32| None|
+| GarageYrBlt| Highly correlated with YearBuilt dropped during Smart Correlated Selection| 0.49| None|
+| KitchenQual| Categorical; encoded using OrdinalEncoder; removed during Smart Correlated Selection| 0.51| None|
+| YearRemodAdd| Closely related to YearBuilt, removed during Smart Correlated Selection | 0.51| None|
+| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during Smart Correlated Selection| 0.61| None|
 | GarageArea| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| None|
 | GarageFinish| Categorical; imputed with most frequent value; encoded using OrdinalEncoder, removed during Smart Correlated Selection | 0.55| CategoricalImputer, OrdinalEncoder|
+| MasVnrArea| Imputed with mean values; dropped after feature importance analysis| 0.48| MeanMedianImputer|
+| **OpenPorchSF**| retained in final features after feature importance analysis| 0.32| Dropped|
 | **YearBuilt**| closely related to YearRemodAdd, retained in final features| 0.52| None|
 | **OverallQual**| Strongly correlated with target; retained in final features| 0.79| None|
-| ***MasVnrArea***| Imputed with mean values; retained in final model| 0.48| MeanMedianImputer|
 | **GrLivArea**| Log-transformed due to skewness; retained in final features| 0.71| Numerical Transformation (log)|
-
-Special thoughts: Keeping GrargeArea or GarageFinished.
-
-* GarageArea has a high correlation with Sales price
-* GarageFinish has no real correlation with any attribute... it seems just not important.. and additional effort is needed for data cleaning, also imputation due to missing values is needed in the pipeline.
 
 ### Modeling
 
@@ -590,9 +585,11 @@ Classification models are designed for predicting discrete classes (e.g., “hig
 
 #### Data Cleaning and Feature Engineering pipeline (Data Preprocessing Pipeline)
 
-A comprehensive data cleaning and transformation pipeline was implemented using the **scikit-learn** and **feature-engine** libraries. The process begins by loading the data from the "collected_data" folder.
+A comprehensive data cleaning and transformation pipeline was implemented using the **scikit-learn** and **feature-engine** libraries. 
 
-* **Step 1: Data Cleaning and Feature Engineering**
+* **Step 1: The process begins by loading the data from the "collected_data" folder.**
+
+* **Step 2: Data Cleaning and Feature Engineering**
 
 The first machine learning pipeline focuses on preprocessing the data and includes the following transformers:
 
@@ -601,16 +598,16 @@ The first machine learning pipeline focuses on preprocessing the data and includ
 * **ImputeGarageFinish**: Fills missing values in the `GarageFinish` column.
 * **OrdinalCategoricalEncoder**: Encodes ordinal categorical features.
 * **SmartCorrelatedSelection**: Selects relevant features based on correlation analysis.
- **LogTransformation**: Applies a log10 transformation to the `GrLivArea` feature.
+* **LogTransformation**: Applies a log10 transformation to the `GrLivArea` feature.
 
 This pipeline is applied to the dataset, resulting in a transformed DataFrame (`df_transformed`).
 
-* **Step 2: Train-Test Split and Target Transformation**
+* **Train-Test Split and Target Transformation**
 
 After preprocessing, the target variable, `SalePrice`, is transformed using the log10 scale to ensure consistency across both the training and test datasets. The transformed target variable is then split into training and testing sets:
 
-* **X_train** and **y_train** are used for model training.
-* **X_test** and **y_test** are reserved for model evaluation.
+* ***X_train*** and ***y_train*** are used for model training.
+* ***X_test*** and ***y_test*** are reserved for model evaluation.
 
 The feature set (`X`) excludes the target variable `SalePrice`. Following the transformation, the target variable’s distribution is checked for imbalance. As the `SalePrice` variable was log-transformed, no further adjustments are necessary, as the distribution is well-balanced.
 
@@ -629,19 +626,22 @@ The feature set (`X`) excludes the target variable `SalePrice`. Following the tr
 
 #### Regression pipeline
 
+* **Step2b: Set up ML pipeline for regression modeling and predicting the sales price**
 The second pipeline focuses on regression modeling and sales price prediction. The key steps are as follows:
 
 * **Hyperparameter Optimization**: A search for the best model and hyperparameters is conducted. Multiple regression algorithms, including ExtraTreesRegressor, GradientBoostingRegressor, and others, are evaluated. Among the algorithms tested, ExtraTreesRegressor provided the best performance.
 
-* **Multiple Regression Models**: Several regression models were trained and evaluated with hyperparameter optimization using GridSearchCV. The models tested included:
+* **Multiple Regression Models**: Several regression models were trained and evaluated with hyperparameter optimization using GridSearchCV. 
 
-* **ExtraTreesRegressor**: Mean score around -0.056811 (best performance).
-* **GradientBoostingRegressor**: Mean score around -0.066239.
-* **XGBRegressor**: Mean score around -0.069641.
-* **RandomForestRegressor**: Mean score around -0.072316.* **AdaBoostRegressor**: Mean score around -0.076377.
-* **DecisionTreeRegressor**: Mean score around -0.083047 (lowest performance).
+The results of the tests show that ExtraTreesRegressor is the best algorithm for this approach:
+
+<img src="images/HyperparameterOptimizationSearch_neg_mean_absolute_error_multiple algorithms.PNG" alt="see table with results of algorithm performance" width="400">
 
 * **Hyperparameter Tuning for ExtraTreesRegressor**: Several hyperparameters for the ExtraTreesRegressor were tested to identify the optimal configuration. The hyperparameters were defined using the `params_quick_search` method.
+
+The result show that the best hyperparameter set ups for the defined algorithm are 274, 301, 58, 31 with mean_score -0.053359
+
+<img src="images/HyperparameterOptimizationSearch_neg_mean_absolute_error__big_params_quick_search.PNG" alt="see table with results of hyperparameter optimization search" width="400">
 
 * **Model Selection**: After the optimization process, the best-performing model and corresponding hyperparameters were selected based on the valuation results.
 
@@ -666,9 +666,20 @@ The second pipeline focuses on regression modeling and sales price prediction. T
 
 In this step, the pipeline is refined by evaluating additional features. The primary objective is to determine whether the three most important features (`OverallQual`, `GrLivArea`, and `YearBuilt`) alone provide the best results, or if adding one or two more features can enhance the model's performance.
 
-* **Feature Evaluation**: Several feature combinations were tested to identify the optimal feature set for the model. The focus was on whether adding features beyond the top three most important ones would result in better predictive performance.
+* **Feature Evaluation**: Several feature combinations were tested to identify the optimal feature set for the model. The focus was on whether adding features beyond the top three most important ones would result in better predictive performance. Considered have been both the Mean Absolute Error (MAE) and the r² Scoring.
 
-* **Outcome**: Adding the `MasVnrArea` feature led to a slight improvement in the model's performance. This feature was incorporated into the existing pipeline without requiring additional encoding steps. Unlike the `GarageFinish` feature, which would have required an encoder transformer for categorical data, the `MasVnrArea` feature could be seamlessly integrated into the pipeline. This streamlined integration ensured that the model retained its performance without significant changes to the preprocessing pipeline.
+* **Outcome**: Selecting the final set of features among the four candidates—GarageArea, GarageFinish, OpenPorchSF, and MasVnrArea—required careful consideration.
+
+GarageArea showed a moderate correlation with GrLivArea, which suggested potential redundancy; as a result, it was excluded from the final pipeline. GarageFinish, while potentially valuable, required additional preprocessing steps, including a categorical encoder and an imputation transformer due to 235 missing values in the original dataset. This added complexity led to its exclusion as well.
+
+On the other hand, OpenPorchSF demonstrated a surprising positive impact on both MAE and R² scores. Since it integrates seamlessly into the pipeline without the need for additional preprocessing, it was retained. Although both MasVnrArea and GarageFinish also contributed positively to model performance, the improvement achieved using only OpenPorchSF was comparable, making it the more efficient choice.
+
+The pipeline, when using all 11 features (prior to feature selection), achieved better performance based on the chosen evaluation metrics. However, comparable results can be obtained by using only the top 4 most relevant features. Given considerations such as model loading time and ease of use, focusing on a smaller, more informative set of features is the more practical approach.
+
+Scoring with 11 features:
+
+<img src="images/mae_r2_score_results_regressor_pipeline.PNG" alt="see table with results of hyperparameter optimization search" width="400">
+
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
@@ -684,11 +695,64 @@ The final training and evaluation process includes:
 * Applying the Regressor Pipeline, which includes the best model, hyperparameters, and features, to the training set.
 * Evaluating the model’s performance, with results visualized through graphics comparing actual vs. predicted sales prices.
 
-|**Metric** | **Value** | **What It Means**|
-|-------|-------|--------------|
-|MAE | $19,473 | On average, your model's predictions are off by less than $20K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.|
-|RMSE | $33,867 | This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error.|
-|R² Score | 0.83 | Your model explains 83% of the variance in sale prices — this is very good for a regression problem in real estate, where 70–85% is typically strong.|
+<details>
+    <summary>***Test results for various potential best feature combinations***</summary>
+
+Result (Top3 Features)
+* Mean Absolute Error (MAE): $22,978.61
+* Mean Squared Error (MSE): 1,704,931,568.84
+* Root Mean Squared Error (RMSE): $41,290.82
+* R² Score: 0.7531
+
+Result (Top3 + GarageFinish)
+* Mean Absolute Error (MAE): $22,190
+* Mean Squared Error (MSE): 1,511,014,712
+* Root Mean Squared Error (RMSE): $38,872
+* R² Score: 0.7812
+
+Result (Top3 + MasVNrSF)
+* Mean Absolute Error (MAE): $29,383
+* Mean Squared Error (MSE): 2,060,466,886
+* Root Mean Squared Error (RMSE): $45,392
+* R² Score: 0.7016
+
+***Result (Top3 + OpenPorchSF)***
+* Mean Absolute Error (MAE): $21,690.49
+* Mean Squared Error (MSE): 1,339,023,474.89
+* Root Mean Squared Error (RMSE): $36,592.67
+* R² Score: 0.8061
+
+Result (Top3 + GarageFinish + MasVnrSF)
+* Mean Absolute Error (MAE): $23,026
+* Mean Squared Error (MSE): 1,305,153,965
+* Root Mean Squared Error (RMSE): $36,127
+* R² Score: 0.8110
+
+Result (Top3 + GarageFinish + OpenPorchSF)
+* Mean Absolute Error (MAE): $21,362.36
+* Mean Squared Error (MSE): 1,306,608,760.06
+* Root Mean Squared Error (RMSE): $36,147.04
+* R² Score: 0.8108
+
+Result (Top3 + GarageFinish + OpenPorchSF + MasVNrSF)
+* Mean Absolute Error (MAE): $21,685
+* Mean Squared Error (MSE): 1,478,103,232
+* Root Mean Squared Error (RMSE): $38,446
+* R² Score: 0.7860
+
+Result (Top3 + MasnVnrSF + Garage Area)
+* Mean Absolute Error (MAE): $22,510
+* Mean Squared Error (MSE): 1,501,798,847
+* Root Mean Squared Error (RMSE): $38,753
+* R² Score: 0.7825
+
+</details>
+
+* **Interpretation of the scoring results:**
+
+*MAE: $21,690.49 - On average, the model'spredictions are off by around $21K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.
+* RMSE: $36,592.67 - This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error. However, there are still outliers and it's important to question the result.
+* R² Score: 0.8061 - The model explains 80% of the variance in sale prices — this is good for a regression problem in real estate, where 70–85% is typically strong.
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
@@ -703,7 +767,7 @@ The final training and evaluation process includes:
 
 Once the final model has been trained and evaluated, the training data, test data, and pipeline (in .pkl format) are stored in the repository for future use.
 
-#### Integration of Pipelines (in progress)
+#### Integration of both Pipelines (in progress)
 
 The final step involves merging the two separate pipelines (data cleaning and feature engineering, and regressor pipeline) into a unified pipeline. This consolidated pipeline streamlines the entire process, from data preprocessing to prediction, ensuring consistency across training, testing, and deployment.
 
@@ -723,6 +787,13 @@ The final step involves merging the two separate pipelines (data cleaning and fe
 ### Outcome / Business impact
 
 The final machine learning model achieved a strong level of predictive accuracy while relying on just five key features, making it both efficient and easy to interpret. By carefully balancing data preprocessing, feature selection, and algorithm tuning, the solution is optimized for performance and scalability. The streamlined pipeline is well-suited for integration into real-world applications where reliable, fast, and accurate house price estimation is essential.
+
+The salse price for the 4 inherited houses has been predicted:
+
+* Predicted sales price for House 1: **$195,995.16**
+* Predicted sales price for House 2: **$238,525.77**
+* Predicted sales price for House 3: **$220,289.20**
+* Predicted sales price for House 4: **$253,103.63**
 
 This predictive model delivers tangible value to the requestor (a friend) by significantly improving pricing accuracy, thereby reducing the risks associated with underpricing or overpricing properties. It enables more efficient operations by automating the valuation process and supports better decision-making through data-driven insights. This tool could be used by further stakeholders such as end users—buyers, sellers, and financial institutions—it enhances trust in pricing information, contributing to more transparent and confident transactions across the housing market.
 
@@ -790,6 +861,8 @@ For detailed testing information, see the content related to testing in [TESTING
 * [Scikit-learn](https://scikit-learn.org/stable/): for accessing to documentation and code
 * [Scilkt-learn ML algorithms](https://scikit-learn.org/stable/api/sklearn.ensemble.html): for various ML algorithms
 * [Matplot](https://matplotlib.org/): for accessing to documentation and code
+* [statisticsbyjim.com](https://statisticsbyjim.com/regression/interpret-r-squared-regression/)
+* |geeksforgeeks.org](https://www.geeksforgeeks.org/ordinary-least-squares-ols-using-statsmodels/)
 
 ### Media
 

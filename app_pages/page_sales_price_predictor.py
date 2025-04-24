@@ -49,29 +49,25 @@ def page_sales_price_predictor_body():
     inherited_houses = {
         "House 1": {
             'GrLivArea': 896,
-            # 'GarageArea': 730.0,
-            'MasVnrArea': 0,
+            'OpenPorchSF': 0,
             'YearBuilt': 1961,
             'OverallQual': 5
         },
         "House 2": {
             'GrLivArea': 1329,
-            # 'GarageArea': 312.0,
-            'MasVnrArea': 108.0,
+            'OpenPorchSF': 108.0,
             'YearBuilt': 1958,
             'OverallQual': 6
         },
         "House 3": {
             'GrLivArea': 928,
-            # 'GarageArea': 482.0,
-            'MasVnrArea': 0,
+            'OpenPorchSF': 0,
             'YearBuilt': 1997,
             'OverallQual': 5
         },
         "House 4": {
             'GrLivArea': 926,
-            # 'GarageArea': 470.0,
-            'MasVnrArea': 20.0,
+            'OpenPorchSF': 20.0,
             'YearBuilt': 1998,
             'OverallQual': 6
         }
@@ -107,7 +103,6 @@ def DrawInputsWidgets():
 
 # input widgets only for 5 house features
     col1, col2, col3, col4 = st.columns(4)
-    col5, col6, col7, col8 = st.columns(4)
 
     # create an empty DataFrame, which will be the live data
     X_live = pd.DataFrame([], index=[0])
@@ -143,7 +138,7 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col4:
-        feature = "MasVnrArea"
+        feature = "OpenPorchSF"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,
@@ -151,16 +146,6 @@ def DrawInputsWidgets():
             value=df[feature].median()
         )
     X_live[feature] = st_widget
-
-    #with col2:
-    #    feature = "GarageArea"
-    #    st_widget = st.number_input(
-    #        label=feature,
-    #        min_value=df[feature].min()*percentageMin,
-    #        max_value=df[feature].max()*percentageMax,
-    #        value=df[feature].median()
-    #    )
-    #X_live[feature] = st_widget
 
     st.write(X_live)
 

@@ -78,9 +78,8 @@ def DrawInputsWidgets():
     df = load_house_market_data()
     percentageMin, percentageMax = 0.4, 2.0
 
-# input widgets only for 5 house features
+# input widgets only for 4 house features
     col1, col2, col3, col4 = st.columns(4)
-    col5, col6, col7, col8 = st.columns(4)
 
     # create an empty DataFrame, which will be the live data
     X_live = pd.DataFrame([], index=[0])
@@ -116,7 +115,7 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col4:
-        feature = "MasVnrArea"
+        feature = "OpenPorchSF"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,
@@ -124,16 +123,6 @@ def DrawInputsWidgets():
             value=df[feature].median()
         )
     X_live[feature] = st_widget
-
-    #with col5:
-    #    feature = "GarageArea"
-    #    st_widget = st.number_input(
-    #        label=feature,
-    #        min_value=df[feature].min()*percentageMin,
-    #        max_value=df[feature].max()*percentageMax,
-    #        value=df[feature].median()
-    #    )
-    #X_live[feature] = st_widget
 
     st.write(X_live)
 

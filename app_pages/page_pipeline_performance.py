@@ -39,8 +39,8 @@ def page_pipeline_performance_body():
 
     # display pipeline training summary conclusions
     st.info(
-         f"* The model explains 83% of the variance in sale prices \n"
-         f"* On average, the model's predictions are off by less than $20K. "
+         f"* The model explains ~80% of the variance in sale prices \n"
+         f"* On average, the model's predictions are off by less than $23K. "
          f"For house prices, that’s very acceptable, especially for "
          f"mid-to-upper priced homes. \n"
          f"* However, a few extreme outliers still exist in the model. "

@@ -13,12 +13,11 @@ def page_project_summary_body():
         f"as first & second floor square meters, kitchen quality, garage area "
         f", overall Condition, etc. "
         f" The most relevant parameter are: \n"
-        f" * GarageArea - Size of garage in square feet \n"
-        f" * YearBuilt - Original construction date \n"
-        f" * OverallQual - Rates overall material and finish of the house \n"
-        f" * MasVnrArea - Masonry veneer area in square feet \n"
-        f" * GrLivArea - Above grade (ground) living area square feet \n"
         f" * SalePrice - represents the value of the house \n"
+        f" * GrLivArea - Above grade (ground) living area square feet \n"
+        f" * OverallQual - Rates overall material and finish of the house \n"
+        f" * YearBuilt - Original construction date \n"
+        f" * OPenPorchSF - Masonry veneer area in square feet \n"
         )
 
     # Link to README file
