@@ -2,13 +2,6 @@
 
 I (re)used mainly the code provided in the Code Institute trianing section in the different training chapters and in the Walkthrough projects. In the following not all but main code I resused and adjsuted it for my project.
 
-***Data Analytics Packages ML: feature-engine Feature Engine Unit 2-4***
-
-<details>
-    <summary>feature engineering</summary>
-
-</details>
-
 ***Walkthrough Project 02 - Data collection***
 
 <details>

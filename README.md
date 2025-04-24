@@ -14,7 +14,7 @@ This menu is located on the right side and contains 6 links. It can be hidden. T
 
 ### Quick Project Summary, Page 1
 
-[page_project_summary](page_project_summary.py)
+[page_project_summary](app_pages\page_project_summary.py)
 
 This site contains info blocks and a redirection to the README.me file.
 
@@ -22,7 +22,7 @@ This site contains info blocks and a redirection to the README.me file.
 
 ### House Market Study, Page 2
 
-[page_house_market_study](page_house_market_study.py)
+[page_house_market_study](app_pages\page_house_market_study.py)
 
 This site contains 3 buttons (checkboxes) and graphics and three information blocks.
 
@@ -30,7 +30,7 @@ This site contains 3 buttons (checkboxes) and graphics and three information blo
 
 ### Project Hypothesis and Validation, Page 3
 
-[page_hypothesis_and_validation](page_hypothesis_and_validation.py)
+[page_hypothesis_and_validation](app_pages\page_hypothesis_and_validation.py)
 
 This site contains 5 hypothesis with text/info blocks and for each hypothesis there is a graphic to back up the result.
 By using the functions ".success" or ".warning" each hypothesis is visually highlighted if it's correct the box appears green, if it's wrong the box appears yellow. This page solves business requirement 1.
@@ -39,7 +39,7 @@ By using the functions ".success" or ".warning" each hypothesis is visually high
 
 ### Sales Price Predictor, Page 4
 
-[page_sales_price_predictor](page_sales_price_predictor.py)
+[page_sales_price_predictor](app_pages\page_sales_price_predictor.py)
 
 This site contains info text, a table, 5 widgets/input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the provided 4 inherited houses. This page solves business requirement 2.
 
@@ -47,7 +47,7 @@ This site contains info text, a table, 5 widgets/input forms and 5 buttons to pr
 
 ### Sales Price Evaluator, Page 5
 
-[page_sales_price_evaluation](page_sales_price_evaluation.py)
+[page_sales_price_evaluation](app_pages\page_sales_price_evaluation.py)
 
 This site contains info text, a table, 6 widgets/ input forms and 1 button to check if the provided sales price meets the predicted sales price. THis feature helps to validated if the deal is a good one or not.
 
@@ -55,7 +55,7 @@ This site contains info text, a table, 6 widgets/ input forms and 1 button to ch
 
 ### ML: Pipeline Perfoormance, Page 6
 
-[page_pipeline_performance](page_pipeline_performance.py)
+[page_pipeline_performance](app_pages\page_pipeline_performance.py)
 
 This site provides more detailed information about the two pipelines used within this project. The results of the evalaution are also mentioned (MAE, R² score).
 
@@ -284,7 +284,7 @@ The zeros represent absence of a feature (e.g., 2ndFlBsmt is a binary flag indic
 
 #### Correlation matrix
 
-<img src="02_correlation_matrix_salesprice" alt="correlation matrix" width="700">
+<img src="images\02_correlation_matrix_salesprice.PNG" alt="correlation matrix" width="700">
 
 The correlation gives an early insight into data quality, structure, and relationships, helping to clean and shape the data more effectively for modeling. It becomes clear that the highes correlations with 'SalePrice' are 'OverallQual' and 'GrLivArea'.
 In addition, it shows that there are 13 columns that contains varibales with a medium correlation between 0.3 and 0.7 and there are 6 columns with a correlation lower than 03.
@@ -442,7 +442,7 @@ See correlation analysis above. The Correlation value year_built/SalePrice is me
 
 ### Feature Engineering
 
-Jupyter notebook: [03_featureEngineering](jupyter_notebooks/featureEngineering.ipynb)
+Jupyter notebook: [03_featureEngineering](jupyter_notebooks\03_featureEngineering.ipynb)
 
 Durign the feature Engineering process different tools has been used such as ydata profiling reports and different transformers (categroical encoding, numerical Transformation and SmartCorrelation).
 
@@ -591,7 +591,7 @@ To address the skewness introduced by these extreme values, a log transformation
 
 ### Modeling
 
-Jupyter notebook: [04_modeling_and_evaluation_regression](04_modeling_and_evaluation_regression.ipynb)
+Jupyter notebook: [04_modeling_and_evaluation_regression](jupyter_notebooks\04_modeling_and_evaluation_regression.ipynb)
 
 A regression model was used in this project because the target variable—house sale price—is a continuous numerical value, not a category or group. It scales the data, selects features using model's feature importance and fits the model on the selected, scaled features.
 
