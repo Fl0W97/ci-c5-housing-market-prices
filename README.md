@@ -446,11 +446,16 @@ The report enables to have a closer look at each variable. The following insighs
 | YearRemodAdd | A noticable amount of houses has been renovated around 2000. |
 
 <img src="images/ydata_profiling_example1.PNG" alt="see ydata profiling report" width="350">
+
 <img src="images/ydata_profiling_example2.PNG" alt="see ydata profiling report" width="350">
+
+<details><summary>***Code details***</summary>
 
 |**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `from ydata_profiling import ProfileReport`<br>`pandas_report = ProfileReport(df=TrainSet, minimal=True)`<br>`pandas_report.to_notebook_iframe()`| ydata_profiling, pandas | This code imports the ProfileReport class from the ydata_profiling library, which is used to generate an interactive data profiling report for the given dataset (TrainSet). The minimal=True argument generates a simplified version of the report. Finally, to_notebook_iframe() renders the report in a Jupyter Notebook as an iframe, making it interactive within the notebook. |
+
+</details>
 
 #### 1. Categorical Encoding
 
@@ -459,9 +464,13 @@ Categorical variables represent discrete categories. Machine learning models gen
 In the jupyter notebook '02_data cleaning'. The following parameters has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
 In jupyter notebook '04_modeling_and_evaluation'. The following parameters has been transformed (for pipeline model): (...).
 
+<details><summary>***Code details***</summary>
+
 |**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `from feature_engine.encoding import OrdinalEncoder`<br>`def FeatEngineering_CategoricalEncoder(df_feat_eng, column):`<br>`list_methods_worked = []`<br>`try:`<br>`encoder = OrdinalEncoder(encoding_method='arbitrary', variables=[`<br>`f"{column}_ordinal_encoder"])`<br>`df_feat_eng = encoder.fit_transform(df_feat_eng)`<br>`list_methods_worked.append(f"{column}_ordinal_encoder")`<br>`except Exception:`<br>`df_feat_eng.drop([f"{column}_ordinal_encoder"], axis=1, inplace=True)`<br>`return df_feat_eng, list_methods_worked` | feature_engine | This code defines a function to perform ordinal encoding on a specified categorical column of a DataFrame (`df_feat_eng`). It uses the `OrdinalEncoder` from the `feature_engine` library to convert categories into numeric values based on an arbitrary encoding method. If the encoding is successful, the column is added to the DataFrame, and the method is logged. If an error occurs, the new column is dropped. The function returns the modified DataFrame and a list of methods applied. |
+
+</details>
 
 #### 2. Numerical Transformation
 
@@ -475,11 +484,16 @@ Common Transformation Techniques:
 Within this project the log transformation is done for 'SalePrice' and 'GarageArea' since their distribution is skewed.
 
 The graphics show the improvement of the distribution by using log10:
+
 <img src="images/03_feature_engineering_saleprice_log10.PNG" alt="see saleprice_log10_transformation" width="350">
+
 <img src="images/03_feature_engineering_saleprice_w_o_log10.PNG" alt="see saleprice_w_o_log10_transformation" width="350">
 
 <img src="images/03_feature_engineering_grlivarea_log10.PNG" alt="see grlivarea_log10_transformation" width="350">
+
 <img src="images/03_feature_engineering_grlivarea_w_o_log10.PNG" alt="see grlivarea_w_o_log10_transformation" width="350">
+
+<details><summary>***Code details***</summary>
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|------------|
@@ -487,6 +501,8 @@ The graphics show the improvement of the distribution by using log10:
 | `TrainSet['column_name'] = np.log10(TrainSet['column_name'])`<br>`TestSet['column_name'] = np.log10(TestSet['column_name'])` | numpy, pandas | This code applies a log transformation with base 10 to the relevant column of both the training set (`TrainSet`) and the test set (`TestSet`). The transformation helps compress the high values, making the distribution more symmetric and reducing the impact of extreme values. The result is that both datasets now have log-transformed values, which can improve model performance by handling skewed data. |
 
 Similar like the code above further transformer are applied and tested: LogTransformer base e, ReciprocalTransformer, PowerTransformer, BoxCoxTransformer, YeoJohnsonTransformer.
+
+</details>
 
 #### 3. Smart Correlation Selection
 
@@ -496,43 +512,27 @@ Method to Select Features Based on Correlation:
 * Correlation Matrix: You can compute the correlation matrix to find highly correlated pairs.
 * Threshold-based Feature Removal: Remove features that have a correlation higher than a certain threshold, e.g., 0.8 or -0.8.
 
-Within this project, based on the correlation analysis for salePrice and further interpretation of the context the following parameters will be ignored:
-'TotalBsmtSF', '1stFlrSF', 'YearRemodAdd', 'GarageYrBlt', 'MasVnrArea', 'BsmtFinSF1', '2ndFlrSF'
+Based on the correlation analysis for salePrice and further interpretation of the context the following parameters will be ignored:
+'TotalBsmtSF', '1stFlrSF', 'YearRemodAdd', 'GarageYrBlt', 'MasVnrArea', 'BsmtFinSF1', '2ndFlrSF'.
 
-***1stFlrSF***:
+The further features are intensivley analyzed during the Smart Correlation Selection Analysis:
 
-This feature represents the area of the first floor. It is likely correlated with other features like GrLivArea (the total above-ground living area) or TotalBsmtSF (the total basement area). Including both could introduce redundancy in the model.
+| Feature     | Explanation | Action |
+|-------------|-------------|--------|
+| 1stFlrSF | It is likely correlated with features like GrLivArea (total above-ground living area) or TotalBsmtSF (basement area). Including all of them could introduce redundancy. | Drop this feature to avoid multicollinearity. Keep GrLivArea instead, as it is likely more informative. |
+| GrLivArea | It’s a strong indicator of house size and price. Highly correlated with 1stFlrSF, TotalBsmtSF, TotalArea, and possibly 2ndFlrSF. | Keep this feature. Drop 2ndFlrSF to simplify the model and reduce multicollinearity. |
+| SalePrice | This is the log-transformed target variable. Highly correlated with GarageArea. Since it’s the dependent variable we aim to predict, it must not be used as a predictor. | Keep in train/test sets for modeling. Drop GarageArea to avoid leakage, as it is strongly correlated with the target. |
+| OverallQual | Highly correlated with KitchenQual and YearBuilt. Considered more informative than specific features like KitchenQual. Shows highest correlation with SalePrice in correlation analysis. | Keep OverallQual and also keep YearBuilt. |
+| KitchenQual | Overlaps with OverallQual. Retaining both could create redundancy. | Drop KitchenQual, as OverallQual likely captures this aspect already. |
 
-Action: Drop this feature to avoid multicollinearity. Keep GrLivArea as it represents the total above-ground living space, which is likely more informative.
-
-***GrLivArea***:
-
-This feature is related to some variables related to the total above-ground living area, which is a strong indicator of house size and price. It’s already closely related to 1stFlrSF, TotalBsmtSF, TotalArea and might also have a relationship with 2ndFlrSF.
-
-Action: This feature is kept. However, feature 2ndFlrSF is being dropped to simplify the model and reduce multicollinearity.
-
-***SalePrice***:
-
-This is the log-transformed version of the target variable, SalePrice. It's highly correlated with GarageArea as well, as shown in the earlier analysis. Since SalePrice is the target variable (the dependent variable you are trying to predict), it should not be used as an independent variable in the model. Hence, it’s correct to drop this feature from the set of predictors, but still necessary for the train and test set.
-
-Action: 'Saleprice' is kept for test and train set. 'GarageArea' is dropped.
-
-***OverallQual***:
-
-This feature represents the overall quality of the house and is highly correlated with KitchenQual and YearBuilt. Since OverallQual is a general measure of the house’s quality, it may be more valuable for predicting SalePrice than other more specific quality features like KitchenQual. In addition, OverallQual does have the highest correlation to SalePrice in the correlation anylsis (02_data_cleaning).
-
-Action: OverallQual is kept, YearBuilt is kept.
-
-***KitchenQual***:
-
-This feature represents the quality of the kitchen, which may be closely related to the overall quality of the house (OverallQual). Dropping one of these two features will reduce redundancy in your dataset.
-
-Action: Drop KitchenQual because OverallQual might already capture the overall quality of the house, including the kitchen.
+<details><summary>***Code details***</summary>
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|------------|
 | `from feature_engine.selection import SmartCorrelatedSelection`<br>`corr_sel = SmartCorrelatedSelection(variables=None, method="spearman", threshold=0.6, selection_method="variance")`<br>`corr_sel.fit_transform(df_engineering)`<br>`corr_sel.correlated_feature_sets_` | feature_engine | This code imports the `SmartCorrelatedSelection` class from the `feature_engine` library. It initializes an object `corr_sel` with specific parameters to select correlated features from a DataFrame. The method uses the Spearman correlation and a threshold of 0.6 to identify features that are highly correlated. The `fit_transform()` function fits the model to the data and transforms the input DataFrame by removing correlated features based on the specified threshold. The `correlated_feature_sets_` attribute holds the sets of correlated features identified by the method. |
 | `corr_sel.features_to_drop_` | feature_engine | This line retrieves the list of features that should be dropped based on the correlation analysis. The `features_to_drop_` attribute of the `SmartCorrelatedSelection` object contains the names of features that have been identified as highly correlated with others and are removed from the dataset. This helps reduce multicollinearity and improves model performance by removing redundant information. |
+
+</details>
 
 #### 4. Discretization (Binning) - not applied
 
@@ -553,20 +553,20 @@ To address the skewness introduced by these extreme values, a log transformation
 | SalePrice| Target variable; log-transformed to normalize skewness| 1.00| Numerical Transformation (log)|
 | EnclosedPorch| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.13| None|
 | WoodDeckSF| Dropped during data cleaning process due to low correlation and high amount of missing values| 0.32| None|
-| BsmtFinType1| Dropped during data cleaning process due to low correlation| 0.26| None|
+| BsmtFinType1| Dropped during data cleaning process due to low correlation| 0.26| CategoricalImputer|
 | LotArea| Dropped during data cleaning process due to low correlation| 0.26| None|
 | BsmtFinSF1| Dropped during data cleaning process due to low correlation| 0.39| None|
 | BsmtUnfSF| Dropped during data cleaning process due to low correlation| 0.21| None|
-| LotFrontage| Dropped during data cleaning process due to low correlation| 0.35| None|
-| BsmtExposure| Categorical values, Dropped during data cleaning process, after house market study, due to low correlation| 0.12| None|
-| BedroomAbvGr| Dropped during data cleaning process, after house market study, due to low correlation, analysis for BedroomAbvGr done| 0.17| None|
+| LotFrontage| Dropped during data cleaning process due to low correlation| 0.35| MeanMedianImputer|
+| BsmtExposure| Categorical values, Dropped during data cleaning process, after house market study, due to low correlation| 0.12| CategoricalImputer|
+| BedroomAbvGr| Dropped during data cleaning process, after house market study, due to low correlation, analysis for BedroomAbvGr done| 0.17| MeanMedianImputer|
 | OverallCond| Dropped during data cleaning process, after house market study, due to low correlation, analysis for CverallCond done| 0.08| None|
 | 1stFlrSF| Highly correlated with TotalBsmtSF; dropped during Smart Correlated Selection| 0.61| None|
-| 2ndFlrSF| Missing values filled using median(), dropped during Smart Correlated Selection| 0.32| None|
-| GarageYrBlt| Highly correlated with YearBuilt dropped during Smart Correlated Selection| 0.49| None|
-| KitchenQual| Categorical; encoded using OrdinalEncoder; removed during Smart Correlated Selection| 0.51| None|
-| YearRemodAdd| Closely related to YearBuilt, removed during Smart Correlated Selection | 0.51| None|
-| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during Smart Correlated Selection| 0.61| None|
+| 2ndFlrSF| Missing values filled using median(), dropped during Smart Correlated Selection| 0.32| MeanMedianImputer|
+| GarageYrBlt| Highly correlated with YearBuilt dropped during Smart Correlated Selection| 0.49| MeanMedianImputer, SmartCorrelatedSelection|
+| KitchenQual| Categorical; encoded using OrdinalEncoder; removed during Smart Correlated Selection| 0.51| OrdinalEncoder|
+| YearRemodAdd| Closely related to YearBuilt, removed during Smart Correlated Selection | 0.51| SmartCorrelatedSelection|
+| TotalBsmtSF| Highly correlated with 1stFlrSF; removed during Smart Correlated Selection| 0.61| SmartCorrelatedSelection|
 | GarageArea| Highly correlated with GrLivArea; removed during Smart Correlated Selection| 0.62| None|
 | GarageFinish| Categorical; imputed with most frequent value; encoded using OrdinalEncoder, removed during Smart Correlated Selection | 0.55| CategoricalImputer, OrdinalEncoder|
 | MasVnrArea| Imputed with mean values; dropped after feature importance analysis| 0.48| MeanMedianImputer|
@@ -611,6 +611,8 @@ After preprocessing, the target variable, `SalePrice`, is transformed using the 
 
 The feature set (`X`) excludes the target variable `SalePrice`. Following the transformation, the target variable’s distribution is checked for imbalance. As the `SalePrice` variable was log-transformed, no further adjustments are necessary, as the distribution is well-balanced.
 
+<details><summary>***Code details***</summary>
+
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
 | `from feature_engine.selection import SmartCorrelatedSelection` | feature_engine | Imports class to detect and remove highly correlated features to reduce multicollinearity. |
@@ -623,6 +625,8 @@ The feature set (`X`) excludes the target variable `SalePrice`. Following the tr
 | `X_train, X_test, y_train, y_test = train_test_split(X, y_log, test_size=0.2, random_state=0)` | sklearn | Splits the dataset into training and testing sets, using the transformed target. |
 | `pipeline = PipelineDataCleaningAndFeatureEngineering()`<br>`X_train = pipeline.fit_transform(X_train)`<br>`X_test = pipeline.transform(X_test)` | sklearn (custom pipeline) | Applies preprocessing pipeline to both training and test data, ensuring consistent transformations. |
 | `plt.figure(figsize=(10, 6))`<br>`sns.histplot(y_train, bins=40, kde=True, color='skyblue')`<br>`plt.axvline(y_train.mean(), color='red', linestyle='--', label=f'Mean: ${y_train.mean():,.0f}')`<br>`plt.axvline(y_train.median(), color='green', linestyle='--', label=f'Median: ${y_train.median():,.0f}')`<br>`plt.title("Distribution of Sale Prices in Training Set")`<br>`plt.xlabel("SalePrice")`<br>`plt.ylabel("Frequency")`<br>`plt.legend()`<br>`plt.show()` | matplotlib, seaborn | Visualizes the distribution of the `SalePrice` in the training set, highlighting mean and median. |
+
+</details>
 
 #### Regression pipeline
 
@@ -643,7 +647,7 @@ The result show that the best hyperparameter set ups for the defined algorithm a
 
 <img src="images/HyperparameterOptimizationSearch_neg_mean_absolute_error__big_params_quick_search.PNG" alt="see table with results of hyperparameter optimization search" width="400">
 
-* **Model Selection**: After the optimization process, the best-performing model and corresponding hyperparameters were selected based on the valuation results.
+* **Step 3 Model Selection**: After the optimization process, the best-performing model and corresponding hyperparameters were selected based on the valuation results.
 
 * **Model Evaluation**: Predictions were made using the trained model, and performance was evaluated using various metrics. A visual comparison of the actual vs. predicted sales prices was generated. Different scoring methods, such as `neg_mean_absolute_error` and `r2`, were used to assess the pipeline's overall effectiveness.
 
@@ -651,6 +655,8 @@ The result show that the best hyperparameter set ups for the defined algorithm a
 * `OverallQual`
 * `GrLivArea`
 * `YearBuilt`
+
+<details><summary>***Code details***</summary>
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
@@ -661,6 +667,8 @@ The result show that the best hyperparameter set ups for the defined algorithm a
 | `df_feature_importance = (pd.DataFrame(data={ 'Feature': X_train.columns[feat_selector.get_support()], 'Importance': model.feature_importances_})`<br>`.sort_values(by='Importance', ascending=False)` | pandas, sklearn | Creates a DataFrame to display feature importance values from the trained model. |
 | `best_features = df_feature_importance['Feature'].to_list()` | pandas | Extracts the list of important features based on their importance scores. |
 | `df_feature_importance.plot(kind='bar', x='Feature', y='Importance')` | pandas, matplotlib | Plots a bar chart of feature importance for visual analysis. |
+
+</details>
 
 #### Feature Refinement
 
@@ -680,11 +688,14 @@ Scoring with 11 features:
 
 <img src="images/mae_r2_score_results_regressor_pipeline.PNG" alt="see table with results of hyperparameter optimization search" width="400">
 
+<details><summary>***Code details***</summary>
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
 | `X_train_refined = X_train[['OverallQual', 'GrLivArea', 'YearBuilt', 'MasVnrArea']]` | pandas | Creates a refined training set by selecting important features (`OverallQual`, `GrLivArea`, `YearBuilt`, `MasVnrArea`) for model training. |
 | `model.fit(X_train_refined, y_train)` | sklearn | Fits the regression model using the refined feature set. |
+
+</details>
 
 #### Final Model Training and Evaluation
 
@@ -717,10 +728,10 @@ Result (Top3 + MasVNrSF)
 * R² Score: 0.7016
 
 ***Result (Top3 + OpenPorchSF)***
-* Mean Absolute Error (MAE): $21,690.49
+* Mean Absolute Error (MAE): $21,747.55
 * Mean Squared Error (MSE): 1,339,023,474.89
-* Root Mean Squared Error (RMSE): $36,592.67
-* R² Score: 0.8061
+* Root Mean Squared Error (RMSE): $36,798.42
+* R² Score: 0.8039
 
 Result (Top3 + GarageFinish + MasVnrSF)
 * Mean Absolute Error (MAE): $23,026
@@ -748,11 +759,13 @@ Result (Top3 + MasnVnrSF + Garage Area)
 
 </details>
 
-* **Interpretation of the scoring results:**
+#### Interpretation of the scoring results:**
 
-*MAE: $21,690.49 - On average, the model'spredictions are off by around $21K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.
-* RMSE: $36,592.67 - This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error. However, there are still outliers and it's important to question the result.
-* R² Score: 0.8061 - The model explains 80% of the variance in sale prices — this is good for a regression problem in real estate, where 70–85% is typically strong.
+* MAE: $21,747.55 - On average, the model'spredictions are off by around $21K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.
+* RMSE: $36,798.42 - This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error. However, there are still outliers and it's important to question the result.
+* R² Score: 0.8039 - The model explains 80% of the variance in sale prices — this is good for a regression problem in real estate, where 70–85% is typically strong.
+
+<details><summary>***Code details***</summary>
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|-------------|
@@ -763,30 +776,19 @@ Result (Top3 + MasnVnrSF + Garage Area)
 | `mse = mean_squared_error(y_test_actual, y_pred)`<br>`rmse = mean_squared_error(y_test_actual, y_pred, squared=False)` | sklearn | Computes squared error and its root, capturing average and large prediction errors. |
 | `r2 = r2_score(y_test_actual, y_pred)` | sklearn | Measures how well the model explains the variance in actual house prices. |
 
+</details>
+
 #### Model and Data Storage
 
 Once the final model has been trained and evaluated, the training data, test data, and pipeline (in .pkl format) are stored in the repository for future use.
 
 #### Integration of both Pipelines (in progress)
 
-The final step involves merging the two separate pipelines (data cleaning and feature engineering, and regressor pipeline) into a unified pipeline. This consolidated pipeline streamlines the entire process, from data preprocessing to prediction, ensuring consistency across training, testing, and deployment.
-
-### Suggestions for Future Improvements
-
-* Consider combining the data cleaning, feature engineering, and regression modeling steps into a single, end-to-end pipeline. This would simplify deployment and ensure consistency between training and inference, minimizing the risk of data leakage or transformation mismatches.
-
-* Model Monitoring: Once the model is deployed (e.g., via Heroku or Streamlit Cloud), implement monitoring tools to track its performance over time. This can help detect data drift, anomalies, or degradation in prediction accuracy when the model is exposed to real-world data.
-
-|**Story No.**|**Titel**|**User Story**|
-|---|---|---|
-|[#16](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/16)|MVP2: Create Page Invest in potential objects|As a User I get an overview of potential houses which have a low value currently because of poor features, however which are adjustable such as OverallQual, MasVnrSF so that I can renovate to increase the property value.|
-|[#17](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/17)|MVP2: Increase Dashboard Performance|As a User I want that the Dashboard is loaded quickly so that I can work with it without interruptions.|
-|[#18](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/18)|MVP2: combine the data cleaning, feature engineering, and regression modeling steps into a single, end-to-end pipeline|As a Data Partitioner I can work with one end-to-end pipeline so that I can easier deploy and enure a consistency between training and inference, minimizing the risk of data leakage or transformation mismatches.|
-|[#19](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/19)|MVP2: Implement monitoring tools to track the pipeline performance over time|As a Data Partitioner I want to implement monitoring tools for the deployed ML pipeline, so that I can continuously track model performance, detect data drift, and respond to performance degradation in a timely manner.|
+The final step involves merging the two separate pipelines (data cleaning and feature engineering, and regressor pipeline) into a unified pipeline. This consolidated pipeline streamlines the entire process, from data preprocessing to prediction, ensuring consistency across training, testing, and deployment. This step is in progress and not part anymore of the assignment for MVP1.
 
 ### Outcome / Business impact
 
-The final machine learning model achieved a strong level of predictive accuracy while relying on just five key features, making it both efficient and easy to interpret. By carefully balancing data preprocessing, feature selection, and algorithm tuning, the solution is optimized for performance and scalability. The streamlined pipeline is well-suited for integration into real-world applications where reliable, fast, and accurate house price estimation is essential.
+The final machine learning model achieved a strong level of predictive accuracy in the sales price range $100,000 to $300,000 while relying on just five key features, making it both efficient and easy to interpret. By carefully balancing data preprocessing, feature selection, and algorithm tuning, the solution is optimized for performance and scalability. The streamlined pipeline is well-suited for integration into real-world applications where reliable, fast, and accurate house price estimation is essential.
 
 The salse price for the 4 inherited houses has been predicted:
 
@@ -796,6 +798,23 @@ The salse price for the 4 inherited houses has been predicted:
 * Predicted sales price for House 4: **$253,103.63**
 
 This predictive model delivers tangible value to the requestor (a friend) by significantly improving pricing accuracy, thereby reducing the risks associated with underpricing or overpricing properties. It enables more efficient operations by automating the valuation process and supports better decision-making through data-driven insights. This tool could be used by further stakeholders such as end users—buyers, sellers, and financial institutions—it enhances trust in pricing information, contributing to more transparent and confident transactions across the housing market.
+
+## Suggestions for Future Improvements
+
+* Consider combining the data cleaning, feature engineering, and regression modeling steps into a single, end-to-end pipeline. This would simplify deployment and ensure consistency between training and inference, minimizing the risk of data leakage or transformation mismatches.
+
+* Extend the train dataset. Especially, for lower and upper class houses the data contains only a few samples. By providing more training data for this ranges the model is able to improve its prediction also for these house types. 
+
+* Model Monitoring: Once the model is deployed (e.g., via Heroku or Streamlit Cloud), implement monitoring tools to track its performance over time. This can help detect data drift, anomalies, or degradation in prediction accuracy when the model is exposed to real-world data.
+
+A few improvments has been already started and are defined as User Story for MVP2:
+
+|**Story No.**|**Titel**|**User Story**|
+|---|---|---|
+|[#16](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/16)|MVP2: Create Page Invest in potential objects|As a User I get an overview of potential houses which have a low value currently because of poor features, however which are adjustable such as OverallQual, MasVnrSF so that I can renovate to increase the property value.|
+|[#17](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/17)|MVP2: Increase Dashboard Performance|As a User I want that the Dashboard is loaded quickly so that I can work with it without interruptions.|
+|[#18](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/18)|MVP2: combine the data cleaning, feature engineering, and regression modeling steps into a single, end-to-end pipeline|As a Data Partitioner I can work with one end-to-end pipeline so that I can easier deploy and enure a consistency between training and inference, minimizing the risk of data leakage or transformation mismatches.|
+|[#19](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/19)|MVP2: Implement monitoring tools to track the pipeline performance over time|As a Data Partitioner I want to implement monitoring tools for the deployed ML pipeline, so that I can continuously track model performance, detect data drift, and respond to performance degradation in a timely manner.|
 
 ## Deployment
 
@@ -826,7 +845,7 @@ For detailed testing information, see the content related to testing in [TESTING
 
 ### Languages
 
-*Python 3.12.1: The primary programming language used for developing the backend of the website.
+* Python 3.12.1: The primary programming language used for developing the backend of the website.
 
 ### Other tools
 
