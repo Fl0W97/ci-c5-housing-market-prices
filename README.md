@@ -729,7 +729,7 @@ Result (Top3 + MasVNrSF)
 
 ***Result (Top3 + OpenPorchSF)***
 * Mean Absolute Error (MAE): $21,747.55
-* Mean Squared Error (MSE): 1,339,023,474.89
+* Mean Squared Error (MSE): 1,354,123,702.03
 * Root Mean Squared Error (RMSE): $36,798.42
 * R² Score: 0.8039
 
@@ -792,10 +792,10 @@ The final machine learning model achieved a strong level of predictive accuracy 
 
 The salse price for the 4 inherited houses has been predicted:
 
-* Predicted sales price for House 1: **$195,995.16**
-* Predicted sales price for House 2: **$238,525.77**
-* Predicted sales price for House 3: **$220,289.20**
-* Predicted sales price for House 4: **$253,103.63**
+* Predicted sales price for House 1: **$187,801.76**
+* Predicted sales price for House 2: **$234,276.09**
+* Predicted sales price for House 3: **$203,894.40**
+* Predicted sales price for House 4: **$250,307.38**
 
 This predictive model delivers tangible value to the requestor (a friend) by significantly improving pricing accuracy, thereby reducing the risks associated with underpricing or overpricing properties. It enables more efficient operations by automating the valuation process and supports better decision-making through data-driven insights. This tool could be used by further stakeholders such as end users—buyers, sellers, and financial institutions—it enhances trust in pricing information, contributing to more transparent and confident transactions across the housing market.
 
