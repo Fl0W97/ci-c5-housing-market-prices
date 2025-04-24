@@ -26,8 +26,10 @@ def page_sales_price_evaluation_body():
 
     st.write("### Sales Price Evaluator")
     st.info(
-        f"* This tool provides an estimation if the entered sales price is "
-        f"a good one according to the market. "
+        f"This tool estimates whether the entered sales price is "
+        f"appropriate based on current market conditions. Please enter "
+        f"the property details in the five sections below, then click "
+        f"the button to evaluate."
     )
     st.write("---")
 

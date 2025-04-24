@@ -22,7 +22,7 @@ sys.path.append(os.path.abspath(os.path.join
                                 (os.path.dirname(__file__), "src")))
 
 # Create an instance of the app
-app = MultiPage(app_name="House Market Analysis")
+app = MultiPage(app_name="Project Housing Market Prices")
 
 # Add your app pages here using .add_page()
 app.add_page("Project Summary", page_project_summary_body)

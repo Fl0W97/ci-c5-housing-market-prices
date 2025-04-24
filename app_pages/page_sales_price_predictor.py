@@ -26,15 +26,14 @@ def page_sales_price_predictor_body():
 
     st.write("### Sales Price Predictor")
     st.info(
-        f"* The client is interested in receiving an predictive sales price, "
-        f"based on his input parameter. "
+        f"Based on the user's input a predictive sales price is provided. "
+        f"Please, Enter the details of the property in the four sections. "
+        f" and click the button below."
     )
     st.write("---")
 
     # Generate User Input (live) Data
     X_live = DrawInputsWidgets()
-
-    st.write('Enter the details of the property to predict the sales price.')
 
     # predict on User Input (live) Data
     if st.button("Run Predictive Analysis"):
@@ -72,6 +71,11 @@ def page_sales_price_predictor_body():
             'OverallQual': 6
         }
     }
+
+    st.info(
+        f"Click the button below to generate sales price "
+        f"predictions for the four inherited properties. "
+    )
 
     # Iterate through each house and create a button + prediction
     for label, features in inherited_houses.items():

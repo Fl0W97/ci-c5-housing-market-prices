@@ -17,7 +17,28 @@ def page_project_hypothesis_and_validation_body():
     df_filtered = load_house_market_study_data_filtered()
 
     st.write("### Project Hypothesis and Validation")
-    st.write("Find here the validated hypothesis H1-H5:")
+
+    st.info(
+        f"Before starting with the first hypothesis you can "
+        f"display the main SalePrice correations. ")
+
+    if st.checkbox("See here Top10 SalePrice correlations"):
+        
+
+        top_corr = df.corr()['SalePrice'].sort_values(ascending=False)
+        top_vars = top_corr[0:10].index  # Top 10 (excluding SalePrice itself)
+        filtered_corr = df[top_vars].corr()
+
+        fig_top, ax = plt.subplots(figsize=(10, 6))
+        sns.heatmap(
+            filtered_corr, annot=True,
+            fmt=".2f", cmap="coolwarm",
+            ax=ax
+        )
+        ax.set_title("Top Correlated Features with SalePrice")
+        st.pyplot(fig_top)
+
+    st.write("---")
 
     # conclusions taken from "02 - Data Collection" notebook
     st.success(
@@ -37,22 +58,6 @@ def page_project_hypothesis_and_validation_body():
         sns.scatterplot(x='SalePrice', y='GrLivArea', data=df, ax=ax)
         ax.set_title('GrLivArea vs SalePrice')
         st.pyplot(fig)
-
-    if st.checkbox("Focus only on SalePrice correlations"):
-        st.write(f"*See here the top 10 correlations")
-
-        top_corr = df.corr()['SalePrice'].sort_values(ascending=False)
-        top_vars = top_corr[0:10].index  # Top 10 (excluding SalePrice itself)
-        filtered_corr = df[top_vars].corr()
-
-        fig_top, ax = plt.subplots(figsize=(10, 6))
-        sns.heatmap(
-            filtered_corr, annot=True,
-            fmt=".2f", cmap="coolwarm",
-            ax=ax
-        )
-        ax.set_title("Top Correlated Features with SalePrice")
-        st.pyplot(fig_top)
 
     st.write("---")
 

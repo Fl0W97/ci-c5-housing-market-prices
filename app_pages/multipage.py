@@ -6,11 +6,8 @@ import streamlit as st
 class MultiPage:
 
     st.set_page_config(
-        page_title="House Market Analysis (Project 5)",
-        page_icon="📈")  # You may add an icon, to personalize your App
-    # check links below for additional icons reference
-    # https://docs.streamlit.io/en/stable/api.html#streamlit.set_page_config
-    # https://twemoji.maxcdn.com/2/test/preview.html
+        page_title="Project Housing Market Prices",
+        page_icon="📈")
 
     def __init__(self, app_name) -> None:
         self.pages = []

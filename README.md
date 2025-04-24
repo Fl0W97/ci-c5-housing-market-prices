@@ -326,7 +326,7 @@ The split into trianing and test data is processed a few times wihtin this proje
 
 ### House Market Study
 
-This study explores the key drivers of house prices within the dataset by validating five initial hypotheses using statistical correlation, visual inspection, and distributional comparisons. The dataset includes homes with sale prices ranging from $34,900 to $755,000, with a median sale price of $163,000 and a mean of $180,921. This indicates a slightly right-skewed distribution, with a few high-end properties pulling the average upward.
+This study explores the key drivers of house prices within the dataset by validating five initial hypotheses using statistical correlation, visual inspection, and distributional comparisons. The dataset includes homes with sale prices ranging from $34,900 to $755,000, with a median sale price of $163,000 and a mean of $180,921. This indicates a slightly right-skewed distribution, with a few high-end properties pulling the average upward. The most houses has been sold in the price range between $150,000 and $250,000.
 
 * The housing market appears to reward size (GrLivArea) more consistently than other features.
 * High-end properties, while fewer in number, significantly impact the mean price, suggesting a right-skewed market.
@@ -343,7 +343,7 @@ There are five hpothesis generated at the beginning of the project. In the follo
 
 ##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
 
-The first hypothesis suggests that houses with larger living areas tend to have higher sales prices. To validate this, we examined the correlation between square footage and sale price. The results confirmed a strong positive correlation, with larger homes generally commanding higher prices.
+The first hypothesis suggests that houses with larger living areas tend to have higher sales prices. To validate this, we examined the correlation between square footage and sale price. The results confirmed a strong positive correlation, with larger homes generally commanding higher prices. The distribution between GrLivArea and SalePrice indicates it as well. For instance, GrLivArea of 1,000 SF are mostly sold for $60,000 to 150,000, GrLivArea of 1,500 SF is sold for $90,000 to $220,000 and for 2,000 SF the price range just starts at $140,000 and goes up to $400,000. However, after 2,100 SF the correlation gets weak.
 
 * Analyse the dataset and provide a correlation analysis about sales price.
 * Plot a distribution of price vs square_footage. To separate both of these variables.
@@ -360,7 +360,7 @@ See correlation analysis. The Correlation value GrLivArea/SalePrice is high (0.7
 
 ##### Hypothesis (H2): More bedrooms, higher sales price. (Wrong.)
 
-This hypothesis posits that houses with more bedrooms should fetch higher prices. Upon further analysis, however, the correlation between the number of bedrooms and sale price was weak, suggesting that the number of bedrooms alone is not a significant predictor of price in this market.
+This hypothesis posits that houses with more bedrooms should fetch higher prices. Upon further analysis, however, the correlation between the number of bedrooms and sale price was weak, suggesting that the number of bedrooms alone is not a significant predictor of price in this market. The distribution shows that a house with four bedrooms is availabe in nearly each price category from $50,000 to even $745,000. 
 
 * Analyse the dataset and provide a correlation analysis about sales price.
 * Use boxplots or plot of price vs number of bedrooms to compare average prices across different numbers of bedrooms.
@@ -374,7 +374,7 @@ See correlation analysis above. The Correlation value BedroomAbvGr/SalePrice is 
 
 ##### Hypothesis (H3): Better OverallCond, higher sales price. (Wrong.)
 
-The third hypothesis proposed that homes in better overall condition would be sold at higher prices. However, the analysis showed a very weak negative correlation, indicating that overall condition had little to no effect on the sales price in this dataset.
+The third hypothesis proposed that homes in better overall condition would be sold at higher prices. However, the analysis showed a very weak negative correlation, indicating that overall condition had little to no effect on the sales price in this dataset. The distribution supports that. The overall condition category 5 is availabe for the whole price range from $40,000 to $745,000. There are relatively cheap house ($120,000) availabe for the overall condition category 9.
 
 * Analyse the dataset and provide a correlation analysis about sales price.
 * Use boxplots or plot of price vs overall condition to compare average prices across categories of overall condition.
@@ -388,11 +388,13 @@ See correlation analysis above. The Correlation value OverallCond/SalePrice is v
 
 ##### Hypothesis (H4): Renovated old houses sell for more than non-renovated old houses (Wrong.)
 
-Here, we hypothesized that houses that have been recently renovated would sell for a higher price. The results revealed a moderate correlation, with renovated houses tending to have higher prices, though the effect was not as strong as initially expected.
+Here, we hypothesized that houses that have been recently renovated would sell for a higher price. The results revealed a moderate correlation, with renovated houses tending to have higher prices. In the comparison graphic you see that the avarage price of both renovated and non renovated houses is similar around $130,000. A few more renovated houses seem to have a higher SalePrice. However, though the effect was not as strong as initially expected. During the analysis there was a split between renovated and non-renovated houses that leads to a new temporary feature "IsRenovated". Furthermore, it has been considered to isolate the effect of renovations by comparing renovated and non-renovated homes with similar characteristics—such as size, quality, and age. A OLS Regression has been applied. The results (p = 0.8871, p > 0.05) indicating that there is no statistically significant difference.
+
+Let’s compare apples to apples
 
 * Compare average prices of renovated vs not renovated homes.
 * Check if the year of renovation is recent, and see if it correlates with price increase.
-* Apply statistical test: t-test.
+* Apply statistical test: t-test (compare p-value)
 
 Validation:
 See correlation analysis above. The Correlation value YearRemodadd/SalePrice is medium (0.51)
@@ -403,12 +405,12 @@ See correlation analysis above. The Correlation value YearRemodadd/SalePrice is 
 
 ##### Hypothesis (H5): Newer houses are more expensive (Correct.)
 
-The final hypothesis suggests that newer houses are more expensive than older ones. Our findings supported this hypothesis to some extent, with a moderate correlation observed between the year of construction and sale price, though other factors also played a significant role in determining the price.
+The final hypothesis suggests that newer houses are more expensive than older ones. Our findings supported this hypothesis to some extent, with a moderate correlation observed between the year of construction and sale price, though other factors also played a significant role in determining the price. Here the comparison of the average sales price shows a significant difference. newer houses which are build after 2000 are sold for more ($195,000) then old houses ($180,000). According to the OLS regression (p = 0.0123, p < 0.05), there's a statistically significant difference.
 
 * Compare average prices of new vs old houses.
 * Run correlation and scatterplots, or use regression analysis.
 * Apply control for confounding. Compare houses of similar characteristics (e.g., same GrLivArea, OverallQual, etc.), only differing in YearBuilt.
-* Apply statistical test: t-test.
+* Apply statistical test: t-test (compare p-value)
 
 Validation:
 See correlation analysis above. The Correlation value year_built/SalePrice is medium (0.52)
@@ -788,7 +790,7 @@ The final step involves merging the two separate pipelines (data cleaning and fe
 
 ### Outcome / Business impact
 
-The final machine learning model achieved a strong level of predictive accuracy in the sales price range $100,000 to $300,000 while relying on just five key features, making it both efficient and easy to interpret. By carefully balancing data preprocessing, feature selection, and algorithm tuning, the solution is optimized for performance and scalability. The streamlined pipeline is well-suited for integration into real-world applications where reliable, fast, and accurate house price estimation is essential.
+The final machine learning model achieved a strong level of predictive accuracy in the sales price range $100,000 to $250,000 while relying on just five key features, making it both efficient and easy to interpret. By carefully balancing data preprocessing, feature selection, and algorithm tuning, the solution is optimized for performance and scalability. The streamlined pipeline is well-suited for integration into real-world applications where reliable, fast, and accurate house price estimation is essential.
 
 The salse price for the 4 inherited houses has been predicted:
 
@@ -830,18 +832,19 @@ For detailed testing information, see the content related to testing in [TESTING
 
 | **Library / Package**         | **Purpose / Description**                                                                 | **Comment** |
 |---------------------------|----------------------------------------------------------------------------------------|--------|
-| numpy==1.26.1             | Numerical operations and array handling                                                ||
-| pandas==2.1.1             | Data manipulation and analysis                                                         ||
-| matplotlib==3.8.0         | Static data visualization                                                              ||
-| seaborn==0.13.2           | Statistical data visualization built on top of matplotlib                             ||
-| ydata-profiling==4.12.0   | Automated EDA (exploratory data analysis) – removed before deployment                  |# removed from requirements before deployment|
-| plotly==5.17.0            | Interactive visualizations for exploratory analysis and dashboards                     ||
-| ppscore==1.1.0            | Predictive Power Score for evaluating feature-target relationships    |# removed from requirements before deployment|
-| streamlit==1.40.2         | Web application framework for deploying ML models and data apps                       ||
-| feature-engine==1.6.1     | Feature engineering and preprocessing tools for machine learning pipelines             ||
-| imbalanced-learn==0.11.0  | Handling class imbalance in datasets (TBC – usage may be limited in regression context)||
-| scikit-learn==1.3.1       | Core ML library used for modeling, pipelines, and evaluation                          ||
-| xgboost==1.7.6            | Gradient boosting algorithm used for high-performance regression                ||
+| numpy==1.26.1| Numerical operations and array handling||
+| pandas==2.1.1| Data manipulation and analysis||
+| matplotlib==3.8.0| Static data visualization||
+| seaborn==0.13.2| Statistical data visualization built on top of matplotlib||
+| ydata-profiling==4.12.0| Automated EDA (exploratory data analysis) – removed before deployment|# removed from requirements before deployment, added for analysing dataset|
+| plotly==5.17.0| Interactive visualizations for exploratory analysis and dashboards||
+| ppscore==1.1.0| Predictive Power Score for evaluating feature-target relationships|# removed from requirements before deployment|
+| streamlit==1.40.2| Web application framework for deploying ML models and data apps||
+| feature-engine==1.6.1| Feature engineering and preprocessing tools for machine learning pipelines||
+| imbalanced-learn==0.11.0| Handling class imbalance in datasets (TBC – usage may be limited in regression context)||
+| scikit-learn==1.3.1| Core ML library used for modeling, pipelines, and evaluation||
+| xgboost==1.7.6| Gradient boosting algorithm used for high-performance regression||
+| scipy==1.11.3| tatistical functions, distributions, and hypothesis testing| removed from requirements before deployment, added for OLS regression, ttest|
 
 ### Languages
 
@@ -881,7 +884,8 @@ For detailed testing information, see the content related to testing in [TESTING
 * [Scilkt-learn ML algorithms](https://scikit-learn.org/stable/api/sklearn.ensemble.html): for various ML algorithms
 * [Matplot](https://matplotlib.org/): for accessing to documentation and code
 * [statisticsbyjim.com](https://statisticsbyjim.com/regression/interpret-r-squared-regression/)
-* |geeksforgeeks.org](https://www.geeksforgeeks.org/ordinary-least-squares-ols-using-statsmodels/)
+* [geeksforgeeks.org](https://www.geeksforgeeks.org/ordinary-least-squares-ols-using-statsmodels/)
+* [https://docs.scipy.org]
 
 ### Media
 

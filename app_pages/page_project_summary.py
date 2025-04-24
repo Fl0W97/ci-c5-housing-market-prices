@@ -11,13 +11,14 @@ def page_project_summary_body():
         f"* The dataset represents a **house market study of Ames, Iowa** "
         f"containing individual house sales prices and further parameter such "
         f"as first & second floor square meters, kitchen quality, garage area "
-        f", overall Condition, etc. "
+        f", overall Condition, etc. \n"
+        f"* Equally to the term parameter also the term features is used. \n\n"
         f" The most relevant parameter are: \n"
         f" * SalePrice - represents the value of the house \n"
         f" * GrLivArea - Above grade (ground) living area square feet \n"
         f" * OverallQual - Rates overall material and finish of the house \n"
         f" * YearBuilt - Original construction date \n"
-        f" * OPenPorchSF - Masonry veneer area in square feet \n"
+        f" * OpenPorchSF - Masonry veneer area in square feet \n"
         )
 
     # Link to README file
