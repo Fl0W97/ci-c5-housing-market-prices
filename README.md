@@ -844,7 +844,7 @@ For detailed testing information, see the content related to testing in [TESTING
 | imbalanced-learn==0.11.0| Handling class imbalance in datasets (TBC – usage may be limited in regression context)||
 | scikit-learn==1.3.1| Core ML library used for modeling, pipelines, and evaluation||
 | xgboost==1.7.6| Gradient boosting algorithm used for high-performance regression||
-| scipy==1.11.3| tatistical functions, distributions, and hypothesis testing| removed from requirements before deployment, added for OLS regression, ttest|
+| scipy==1.11.3| tatistical functions, distributions, and hypothesis testing| removed from requirements before deployment, added for OLS regression, ttest (scipy.stats)|
 
 ### Languages
 
@@ -874,9 +874,10 @@ For detailed testing information, see the content related to testing in [TESTING
 * [Specific YouTube Tutorial](https://www.youtube.com/) Ideas and supprot of plot analysis was taken from (to be added)
 * [Project Methods Library](https://github.com/Fl0W97/ci-p4-methods-library)The structure of the documentation has been reused from my project 4
 * [Code_Institute](https://codeinstitute.net) - The code and text for project and Dashboard was taken partly from Code Institute Walkthorugh 02 and 01
-* [Code Institute](https://codeinstitute.net) - Tutorial: Data Analytics Packages ML: feature-engine, Data Analytics Packages ML: Scikit-learn ...
+* [Code Institute](https://codeinstitute.net) - Tutorial: Data Analytics Packages ML: feature-engine, Data Analytics Packages ML: Scikit-learn etc.
 * [Code_Institute](https://codeinstitute.net) - The template for this project was provided by Code Institute
 * [Code_Institute](https://codeinstitute.net) - Mentor Rohit: Providing guidance and tips for my project
+* [Code_Institute](https://codeinstitute.net) - Tutor Rebecca: Providing guidance during spontaneous IDE crash and shift to VC Code
 * [Youtube](https://www.youtube.com/): for access to a huge community of developers who facing similar challenges like me
 * [SessionLab](https://www.sessionlab.com/): for access to various free Methods to fill the database and insiration for functionalities
 * [Stackoverflow](https://stackoverflow.com/): for access to a huge community of developers who facing similar challenges like me
@@ -885,7 +886,7 @@ For detailed testing information, see the content related to testing in [TESTING
 * [Matplot](https://matplotlib.org/): for accessing to documentation and code
 * [statisticsbyjim.com](https://statisticsbyjim.com/regression/interpret-r-squared-regression/)
 * [geeksforgeeks.org](https://www.geeksforgeeks.org/ordinary-least-squares-ols-using-statsmodels/)
-* [https://docs.scipy.org]
+* [https://docs.scipy.org](https://docs.scipy.org/doc/scipy/reference/stats.html)
 
 ### Media
 
