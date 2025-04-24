@@ -442,7 +442,7 @@ See correlation analysis above. The Correlation value year_built/SalePrice is me
 
 ### Feature Engineering
 
-Jupyter notebook: [03_featureEngineering](jupyter_notebooks\03_featureEngineering.ipynb)
+Jupyter notebook: [03_featureEngineering](jupyter_notebooks/03_featureEngineering.ipynb)
 
 Durign the feature Engineering process different tools has been used such as ydata profiling reports and different transformers (categroical encoding, numerical Transformation and SmartCorrelation).
 
@@ -591,7 +591,7 @@ To address the skewness introduced by these extreme values, a log transformation
 
 ### Modeling
 
-Jupyter notebook: [04_modeling_and_evaluation_regression](jupyter_notebooks\04_modeling_and_evaluation_regression.ipynb)
+Jupyter notebook: [04_modeling_and_evaluation_regression](jupyter_notebooks/04_modeling_and_evaluation_regression.ipynb)
 
 A regression model was used in this project because the target variable—house sale price—is a continuous numerical value, not a category or group. It scales the data, selects features using model's feature importance and fits the model on the selected, scaled features.
 
