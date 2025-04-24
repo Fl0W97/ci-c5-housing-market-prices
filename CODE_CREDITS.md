@@ -415,7 +415,7 @@ class HyperparameterOptimizationSearch:
 </details>
 
 <details>
-    <summary>Walkthrough Project 02 - fit model to trian data</summary>
+    <summary>Walkthrough Project 02 - fit model to train data</summary>
 
       pipeline_data_cleaning_feat_eng = PipelineDataCleaningAndFeatureEngineering()
       X_train = pipeline_data_cleaning_feat_eng.fit_transform(X_train)

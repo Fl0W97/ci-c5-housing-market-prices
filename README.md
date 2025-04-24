@@ -41,7 +41,7 @@ By using the functions ".success" or ".warning" each hypothesis is visually high
 
 [page_sales_price_predictor](app_pages/page_sales_price_predictor.py)
 
-This site contains info text, a table, 5 widgets/input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the provided 4 inherited houses. This page solves business requirement 2.
+This site contains info text, a table, 4 widgets/input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the variables of the provided 4 inherited houses. This page solves business requirement 2.
 
 <img src="images/overview_sales_price_predictor.PNG" alt="see sales price predictor page" width="700">
 
@@ -49,7 +49,7 @@ This site contains info text, a table, 5 widgets/input forms and 5 buttons to pr
 
 [page_sales_price_evaluation](app_pages/page_sales_price_evaluation.py)
 
-This site contains info text, a table, 6 widgets/ input forms and 1 button to check if the provided sales price meets the predicted sales price. THis feature helps to validated if the deal is a good one or not.
+This site contains info text, a table, 5 widgets/ input forms and 1 button to check if the provided sales price meets the predicted sales price. THis feature helps to validated if the deal is a good one or not.
 
 <img src="images/overview_sales_price_evaluator.PNG" alt="see sales price predictor page" width="700">
 
@@ -168,7 +168,7 @@ Jupyter nootebook: [01_data_collection](jupyter_notebooks/01_data_collection.ipy
 The original dataset is downloaded from kaggle.com and provided by Code Institute, [Link details](https://www.kaggle.com/datasets/codeinstitute/housing-prices-data). It is unzipped and loaded into the project folder 'input'. There are three data files: One dataset contains the four inherited houses where the sales price should be defined, one file contains the metadata explanation and the last one "house_prices_records.csv" is the main dataset which is handled within this project, it contains variables.
 By using pandas a DataFrame is defined and an initial inspection is performed to understand its structure, dimensions, and content (Load and inspect the Kaggle dataset).There are 1460 entries, 0 to 1459, and 24 data columns. Data types of all columns are reviewed to distinguish between numerical and non-numerical features, which is essential for preprocessing and model selection.
 
-**The following parameter do not have a numeric type:**
+**The following variables do not have a numeric type:**
 
 [BsmtExposure', 'BsmtFinType1', 'GarageFinish', 'KitchenQual'], dtype='object'.
 
@@ -475,8 +475,8 @@ The report enables to have a closer look at each variable. The following insighs
 
 Categorical variables represent discrete categories. Machine learning models generally require numeric inputs, so categorical variables must be encoded into a numerical form. For the convertion the Label Encoding has been applied. It assigns each category a unique integer.
 
-In the jupyter notebook '02_data cleaning'. The following parameters has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
-In jupyter notebook '04_modeling_and_evaluation'. The following parameters has been transformed (for pipeline model): (...).
+In the jupyter notebook '02_data cleaning'. The following variables has been transformed (for correlation analysis): 'BsmtExposure', 'BsmtFinType1' and 'GarageFinish'.
+In jupyter notebook '04_modeling_and_evaluation'. The following variables has been transformed (for pipeline model): (...).
 
 <details><summary>***Code details***</summary>
 
@@ -526,7 +526,7 @@ Method to Select Features Based on Correlation:
 * Correlation Matrix: You can compute the correlation matrix to find highly correlated pairs.
 * Threshold-based Feature Removal: Remove features that have a correlation higher than a certain threshold, e.g., 0.8 or -0.8.
 
-Based on the correlation analysis for salePrice and further interpretation of the context the following parameters will be ignored:
+Based on the correlation analysis for salePrice and further interpretation of the context the following variables will be ignored:
 'TotalBsmtSF', '1stFlrSF', 'YearRemodAdd', 'GarageYrBlt', 'MasVnrArea', 'BsmtFinSF1', '2ndFlrSF'.
 
 The further features are intensivley analyzed during the Smart Correlation Selection Analysis:
@@ -543,7 +543,7 @@ The further features are intensivley analyzed during the Smart Correlation Selec
 
 | **Code snippet** | **Library** | **Comment** |
 |------------------|-------------|------------|
-| `from feature_engine.selection import SmartCorrelatedSelection`<br>`corr_sel = SmartCorrelatedSelection(variables=None, method="spearman", threshold=0.6, selection_method="variance")`<br>`corr_sel.fit_transform(df_engineering)`<br>`corr_sel.correlated_feature_sets_` | feature_engine | This code imports the `SmartCorrelatedSelection` class from the `feature_engine` library. It initializes an object `corr_sel` with specific parameters to select correlated features from a DataFrame. The method uses the Spearman correlation and a threshold of 0.6 to identify features that are highly correlated. The `fit_transform()` function fits the model to the data and transforms the input DataFrame by removing correlated features based on the specified threshold. The `correlated_feature_sets_` attribute holds the sets of correlated features identified by the method. |
+| `from feature_engine.selection import SmartCorrelatedSelection`<br>`corr_sel = SmartCorrelatedSelection(variables=None, method="spearman", threshold=0.6, selection_method="variance")`<br>`corr_sel.fit_transform(df_engineering)`<br>`corr_sel.correlated_feature_sets_` | feature_engine | This code imports the `SmartCorrelatedSelection` class from the `feature_engine` library. It initializes an object `corr_sel` with specific variables to select correlated features from a DataFrame. The method uses the Spearman correlation and a threshold of 0.6 to identify features that are highly correlated. The `fit_transform()` function fits the model to the data and transforms the input DataFrame by removing correlated features based on the specified threshold. The `correlated_feature_sets_` attribute holds the sets of correlated features identified by the method. |
 | `corr_sel.features_to_drop_` | feature_engine | This line retrieves the list of features that should be dropped based on the correlation analysis. The `features_to_drop_` attribute of the `SmartCorrelatedSelection` object contains the names of features that have been identified as highly correlated with others and are removed from the dataset. This helps reduce multicollinearity and improves model performance by removing redundant information. |
 
 </details>
@@ -890,15 +890,15 @@ For detailed testing information, see the content related to testing in [TESTING
 * [Code_Institute](https://codeinstitute.net) - The template for this project was provided by Code Institute
 * [Code_Institute](https://codeinstitute.net) - Mentor Rohit: Providing guidance and tips for my project
 * [Code_Institute](https://codeinstitute.net) - Tutor Rebecca: Providing guidance during spontaneous IDE crash and shift to VC Code
-* [Youtube](https://www.youtube.com/): for access to a huge community of developers who facing similar challenges like me
-* [SessionLab](https://www.sessionlab.com/): for access to various free Methods to fill the database and insiration for functionalities
-* [Stackoverflow](https://stackoverflow.com/): for access to a huge community of developers who facing similar challenges like me
-* [Scikit-learn](https://scikit-learn.org/stable/): for accessing to documentation and code
-* [Scilkt-learn ML algorithms](https://scikit-learn.org/stable/api/sklearn.ensemble.html): for various ML algorithms
-* [Matplot](https://matplotlib.org/): for accessing to documentation and code
-* [statisticsbyjim.com](https://statisticsbyjim.com/regression/interpret-r-squared-regression/)
-* [geeksforgeeks.org](https://www.geeksforgeeks.org/ordinary-least-squares-ols-using-statsmodels/)
-* [https://docs.scipy.org](https://docs.scipy.org/doc/scipy/reference/stats.html)
+* [Youtube](https://www.youtube.com/): - for access to a huge community of developers who facing similar challenges like me
+* [SessionLab](https://www.sessionlab.com/): - for access to various free Methods to fill the database and insiration for functionalities
+* [Stackoverflow](https://stackoverflow.com/): - for access to a huge community of developers who facing similar challenges like me
+* [Scikit-learn](https://scikit-learn.org/stable/): - for accessing to documentation and code
+* [Scilkt-learn ML algorithms](https://scikit-learn.org/stable/api/sklearn.ensemble.html): - for various ML algorithms
+* [Matplot](https://matplotlib.org/): - for accessing to documentation and code
+* [statisticsbyjim.com](https://statisticsbyjim.com/regression/interpret-r-squared-regression/) - for statistical analysis (i.e. interpretation r2)
+* [geeksforgeeks.org](https://www.geeksforgeeks.org/ordinary-least-squares-ols-using-statsmodels/) - for statistical analysis (i.e. ttest)
+* [https://docs.scipy.org](https://docs.scipy.org/doc/scipy/reference/stats.html) - (i.e. ttest)
 
 ### Media
 
