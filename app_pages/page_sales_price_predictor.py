@@ -117,7 +117,8 @@ def DrawInputsWidgets():
             label=feature,
             min_value=df[feature].min()*percentageMin,
             max_value=df[feature].max()*percentageMax,
-            value=df[feature].median()
+            value=df[feature].median(),
+            step=100.0
         )
     X_live[feature] = st_widget
 
@@ -127,7 +128,8 @@ def DrawInputsWidgets():
             label=feature,
             min_value=df[feature].min()*percentageMin,
             max_value=df[feature].max()*percentageMax,
-            value=df[feature].median()
+            value=df[feature].median(),
+            step=10.0
         )
     X_live[feature] = st_widget
 
@@ -135,7 +137,7 @@ def DrawInputsWidgets():
         feature = "OverallQual"
         st_widget = st.selectbox(
             label=feature,
-            options=df[feature].unique()
+            options=sorted(df[feature].unique())
         )
     X_live[feature] = st_widget
 
@@ -143,9 +145,10 @@ def DrawInputsWidgets():
         feature = "YearBuilt"
         st_widget = st.number_input(
             label=feature,
-            min_value=df[feature].min()*percentageMin,
-            max_value=df[feature].max()*percentageMax,
-            value=df[feature].median()
+            min_value=int(df[feature].min()*percentageMin),
+            max_value=int(df[feature].max()*percentageMax),
+            value=int(df[feature].median()),
+            step=1
         )
     X_live[feature] = st_widget
 

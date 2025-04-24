@@ -16,7 +16,8 @@ def page_project_summary_body():
         f" The most relevant parameter are: \n"
         f" * SalePrice - represents the value of the house \n"
         f" * GrLivArea - Above grade (ground) living area square feet \n"
-        f" * OverallQual - Rates overall material and finish of the house \n"
+        f" * OverallQual - Rates overall material and finish of the house "
+        f"(10 = highest value)\n"
         f" * YearBuilt - Original construction date \n"
         f" * OpenPorchSF - Masonry veneer area in square feet \n"
         )
