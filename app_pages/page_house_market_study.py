@@ -84,14 +84,14 @@ def page_house_market_study_body():
     # Correlation Study Summary
     st.info(
         f"A correlation study was conducted to better "
-        f"understand how the parameters are correlated to SalePrice. \n"
+        f"understand how the variables are correlated to SalePrice. \n"
     )
 
     # inspect data
     if st.checkbox("Inspect Correlation Heatmap"):
         st.write(
             f"Find below the correlation matrix"
-            f"The most correlated parameters are: **{vars_to_study}**")
+            f"The most correlated variables are: **{vars_to_study}**")
 
         correlation_matrix = df.corr()
         fig_all, ax = plt.subplots(figsize=(12, 8))
