@@ -46,6 +46,9 @@ def page_sales_price_evaluation_body():
 
     # predict on User Input (live) Data
     if st.button("Run Price Check"):
+        # Apply log10 transformation
+        X_live["GrLivArea"] = np.log10(X_live["GrLivArea"])
+
         sales_price_prediction = predict_sales_price(
             X_live, house_features, pipeline_dc_fe, pipeline_regressor)
 
@@ -99,15 +102,7 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col2:
-        feature = "OverallQual"
-        st_widget = st.selectbox(
-            label=feature,
-            options=df[feature].unique()
-        )
-    X_live[feature] = st_widget
-
-    with col3:
-        feature = "YearBuilt"
+        feature = "OpenPorchSF"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,
@@ -116,8 +111,16 @@ def DrawInputsWidgets():
         )
     X_live[feature] = st_widget
 
+    with col3:
+        feature = "OverallQual"
+        st_widget = st.selectbox(
+            label=feature,
+            options=df[feature].unique()
+        )
+    X_live[feature] = st_widget
+
     with col4:
-        feature = "OpenPorchSF"
+        feature = "YearBuilt"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,

@@ -37,6 +37,9 @@ def page_sales_price_predictor_body():
 
     # predict on User Input (live) Data
     if st.button("Run Predictive Analysis"):
+        # Apply log10 transformation
+        X_live["GrLivArea"] = np.log10(X_live["GrLivArea"])
+
         sales_price_prediction = predict_sales_price(
             X_live, house_features, pipeline_dc_fe, pipeline_regressor)
         sales_price_prediction = sales_price_prediction.item()
@@ -49,33 +52,28 @@ def page_sales_price_predictor_body():
         "House 1": {
             'GrLivArea': 896,
             'OpenPorchSF': 0,
-            'YearBuilt': 1961,
-            'OverallQual': 5
+            'OverallQual': 5,
+            'YearBuilt': 1961
         },
         "House 2": {
             'GrLivArea': 1329,
             'OpenPorchSF': 108.0,
-            'YearBuilt': 1958,
-            'OverallQual': 6
+            'OverallQual': 6,
+            'YearBuilt': 1958
         },
         "House 3": {
             'GrLivArea': 928,
             'OpenPorchSF': 0,
-            'YearBuilt': 1997,
-            'OverallQual': 5
+            'OverallQual': 5,
+            'YearBuilt': 1997
         },
         "House 4": {
             'GrLivArea': 926,
             'OpenPorchSF': 20.0,
-            'YearBuilt': 1998,
-            'OverallQual': 6
+            'OverallQual': 6,
+            'YearBuilt': 1998
         }
     }
-
-    st.info(
-        f"Click the button below to generate sales price "
-        f"predictions for the four inherited properties. "
-    )
 
     # Iterate through each house and create a button + prediction
     for label, features in inherited_houses.items():
@@ -124,15 +122,7 @@ def DrawInputsWidgets():
     X_live[feature] = st_widget
 
     with col2:
-        feature = "OverallQual"
-        st_widget = st.selectbox(
-            label=feature,
-            options=df[feature].unique()
-        )
-    X_live[feature] = st_widget
-
-    with col3:
-        feature = "YearBuilt"
+        feature = "OpenPorchSF"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,
@@ -141,8 +131,16 @@ def DrawInputsWidgets():
         )
     X_live[feature] = st_widget
 
+    with col3:
+        feature = "OverallQual"
+        st_widget = st.selectbox(
+            label=feature,
+            options=df[feature].unique()
+        )
+    X_live[feature] = st_widget
+
     with col4:
-        feature = "OpenPorchSF"
+        feature = "YearBuilt"
         st_widget = st.number_input(
             label=feature,
             min_value=df[feature].min()*percentageMin,

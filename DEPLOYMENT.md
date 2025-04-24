@@ -1,15 +1,16 @@
 # Deployment
 
 ## Heroku
+The site was deployed to a Heroku page using a GitHub repository for data storage.
 
 * The [App live link](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/)
-* The project was deployed to Heroku using the following steps.
+* The project is stored on [GitHub](https://github.com/Fl0W97/ci-c5-housing-market-prices)
 
 ## Preparation
 
 Make sure that the following files are created in the project environment before connect it with Heroku:
 
-* setup.sh
+### setup.sh
     mkdir -p ~/.streamlit/
     echo "\
     [server]\n\
@@ -19,13 +20,13 @@ Make sure that the following files are created in the project environment before
     \n\
     " > ~/.streamlit/config.toml """
 
-* Procfile
+### Procfile
     web: sh setup.sh && streamlit run app.py
 
-* runtime.txt
+### runtime.txt
     python-3.12.8
 
-* requirements.txt
+### requirements.txt
     numpy==1.26.1
     pandas==2.1.1
     matplotlib==3.8.0
@@ -38,21 +39,21 @@ Make sure that the following files are created in the project environment before
     imbalanced-learn==0.11.0
     scikit-learn==1.3.1
     xgboost==1.7.6
-    yellowbrick==1.5 (can be removed from requirements before deployment)
-    Pillow==10.0.1 (can be removed from requirements before deployment)
+    scipy==1.11.3 (can be removed from requirements before deployment)
 
-* Using .slugignore for reducing slug size
+
+### Using .slugignore for reducing slug size
 
 ## Deployment steps
 
 ### 1. Create a Heroku account
 
-If you haven't already, sign up for a Heroku account.
+If you haven't already, sign up for a [Heroku](https://www.heroku.com) account.
 
 ### 2. Create a new app on Heroku
 
 1. Log in to Heroku
-2. Navigate to the Heroku dashboard
+2. Navigate to the [Heroku dashboard](https://dashboard.heroku.com/apps)
 3. Click on the "New" button.
 4. Select "Create new app."
 5. Choose a name for your app.

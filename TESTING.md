@@ -275,6 +275,27 @@ Added proper working directory setup using os.chdir() and ensured file availabil
 
 </details>
 
+<details><summary>***Wrong Prediction***</summary>
+
+In the Dashboard the feature GrLivArea seem to be not correlating with the sales price when I press "Run Predictive Analysis".
+
+Image (Error):
+
+<img src="images\fixed_bugs_wrong_predicted_price1.PNG" alt="see error" width="800"/>
+
+<img src="images\fixed_bugs_wrong_predicted_price2.PNG" alt="see error" width="800"/>
+
+Comment:
+Errors occurred due to missing Log10 reverse transformation of feature GrLivArea.
+
+Fix:
+Added reverse transformation to the relevant functions before input is provided to the pipeline.
+It is relevant for function in page_sales_price_evaluation.py and page_sales_price_predictor.py
+
+<img src="images\fixed_bugs_wrong_prediction_fix.PNG" alt="see error" width="800"/>
+
+</details>
+
 ## Validator Testing
 
 Validator testing has been done on:

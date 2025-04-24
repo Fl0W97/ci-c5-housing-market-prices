@@ -1,6 +1,6 @@
 # Housing Market Prices
 
-Welcome to my fith project [market house pricing](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/). This dashboard contains a house market study and a prediction function for sales prices depending on house features. According to the project requriements and the introduction this dashboard is used by a friend who needs market insights since she is about to sell her four inherited houses in Iowa, Ames.
+Welcome to my 5th project [market house pricing](https://analyse-predict-house-market-5a00f7807683.herokuapp.com/). This dashboard contains a house market study and a prediction function for sales prices depending on house features. According to the project requirements and the introduction this dashboard is used by a friend who needs market insights since she is about to sell four inherited houses in Iowa, Ames.
 
 <img src="images/amiresponsive.PNG" alt="see dashboard on multiple screens" width="700">
 
@@ -63,7 +63,7 @@ This site provides more detailed information about the two pipelines used within
 
 ## Project Kanban Board and User Stories
 
-The project scope is defined as an MVP. The main functionalities for adding comments and methods, as well as browsing through the different methods, have been set up. The "must-have"-User Stories have been labeld in the GitHub project and all relevant tickets for the projec have the milestone: MVP. Further User Stories have been added along the (MVP) project. The user stories have been defined, and all relevant ones for MVP have been closed. In the column 'MVP2', there are user stories defined for further improvements and extensions after the project submission. Milestone MVP is created andd linked with the relevant stories.
+The project scope is defined as a MVP. The main functionalities like presenting graphs and insights of the house market study, adding house features via widgets, as well as providing a predictive sales price, have been set up. The "must-have"-User Stories have been labeld in the GitHub project and all relevant tickets for the projec have the milestone: MVP. Further User Stories have been added along the (MVP) project. The user stories have been defined, and all relevant ones for MVP have been closed. In the column 'MVP2', there are user stories defined for further improvements and extensions after the project submission. A few are in progress. Milestone MVP is created and linked with the relevant stories.
 
 ***[Project Kanban Board](https://github.com/users/Fl0W97/projects/4/views/1)***
 
@@ -80,20 +80,23 @@ The project scope is defined as an MVP. The main functionalities for adding comm
 |[#4](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/4)|MVP: House Market Study (Jupyter Notebook)|As Data Practioner I can get an overview about the house market so that I can prepare my next steps for feature Engineering and Modeling|
 |[#5](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/5)|MVP: Feature Engineering (Create Jupyter Notebook)|As a Data Practitioner I get an deep understanding of the dataset and using feature engineering tools so that I can prepare a data pipeline in the next work step.|
 |[#6](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/6)|MVP: Modeling and Evaluation (Create a Jupyter Notebook)|As Data Practitioner I create one or more pipeline models so that I can evaluate and also use the pipelines to meet the business requirement|
-|[#8](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/8)|MVP: Documentation (README.md)|As a Data Practitioner and Business Stakeholder I can read through a detailed project description so that I understand what the project is about and what might be adjusted.|
+|[#8](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/8)|MVP: Documentation (README.md)|As a Data Practitioner and User I can read through a detailed project description so that I understand what the project is about and what might be adjusted.|
 |[#11](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/11)|MVP: Create Page Pipeline Performance (Streamlit)|As Data Practitioner I can see information (and evaluations) about the used pipelines and their performance so that I understand the process and what happens to get the final predictions.|
 
 #### User / friend
 
-|**Story No.**|**Titel**|**User Story**|
-|---|---|---|
-|[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|MVP: Project Deployment|As a Site User I can *have live access to the dashboard so that I see the information and use functions of the dashboard|
-|[#7](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/7)|MVP: Testing Streamlit Dashboard |As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and are not stop from error messages or failing functions.|
-|[#9](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/9)|MVP: Create Page House Market Study (Streamlit)|As User I can see a house market study so that I get an understanding of the house market.|
-|[#10](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/10)|MVP: Create Page Hypothesis and Validation (Streamlist)|As User I can read hypothesis and validation approaches so that I understand if the hypothesis are correct or wrong.|
-|[#12](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/12)|MVP: Create Page Project Summary (Streamlit)|As User I get an overview of the project so that I can decide if it makes sense to deep dive.|
-|[#13](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/13)|MVP: Create Page Sales Price Predictor (Streamlit)|As User I can predict the sale price when I enter certain attributes so that I can define a sales price for my houses.|
-|[#14](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/14)|MVP: Create Page Sales Price Evaluator (Streamlit)|As User I can evaluate if the provided sale price is a good deal when I enter certain attributes and a sales price as offer so that I can define a sales price for my houses.|
+List of User Stories and business requirements to map those to the Data Visualisations and ML tasks which has been accomplish during the project.
+
+|**Business requirement**|**Story No.**|**Titel**|**User Story**|
+|---|---|---|---|
+|1, 2|[#1](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/1)|MVP: Project Deployment|As a Site User I can have live access to the dashboard so that I see the information and use functions of the dashboard|
+|1, 2|[#7](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/7)|MVP: Testing Streamlit Dashboard |As a User I want a properly working app so that I can understand the analysis of the house market properly, use the prediction feature and I am not stopped from error messages or failing functions.|
+|1, 2|[#8](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/8)|MVP: Documentation (README.md)|As a Data Practitioner and User I can read through a detailed project description so that I understand what the project is about and what might be adjusted.|
+|1|[#9](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/9)|MVP: Create Page House Market Study (Streamlit)|As User I can see a house market study so that I get an understanding of the house market.|
+|1|[#10](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/10)|MVP: Create Page Hypothesis and Validation (Streamlist)|As User I can read hypothesis and validation approaches so that I understand if the hypothesis are correct or wrong.|
+|1|[#12](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/12)|MVP: Create Page Project Summary (Streamlit)|As User I get an overview of the project so that I can decide if it makes sense to deep dive.|
+|2|[#13](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/13)|MVP: Create Page Sales Price Predictor (Streamlit)|As User I can predict the sale price when I enter certain attributes so that I can define a sales price for my houses.|
+|(3) Bonus|[#14](https://github.com/Fl0W97/ci-c5-housing-market-prices/issues/14)|MVP: Create Page Sales Price Evaluator (Streamlit)|As User I can evaluate if the provided sale price is a good deal when I enter certain attributes and a sales price as offer so that I can define a sales price for my houses.|
 
 ## (ML) Business case - Step by step
 
@@ -118,7 +121,7 @@ The first step in the project focuses on developing a solid understanding of the
 
 #### Dataset Content
 
-* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). A fictitious user story is applied where predictive analytics can be applied in a real project in the workplace.
+* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data).
 * The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (i.e. Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
 
 |**Variable**|**Meaning**|**Units**|
@@ -183,13 +186,15 @@ Last but not least, columns containing zero values are identified and evaluated.
 
 All values should remain, since it is an indication that the relevant attribute is not available.
 
-With regards to the used code, here a few exampes of the mostly used code snippets that has been (re)used:
+<details><summary>***Code details***</summary>
 
 |**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `df.info()` | pandas | Provides dataset df information |
 | `df.isnull()` | pandas | identifies missing values in the dataset df |
 | `os.makedirs(name='outputs/data_collected')` | os | creates a folder in repo |
+
+</details>
 
 ### Data cleaning
 
@@ -214,11 +219,15 @@ Special case – GarageYrBlt (81 missing): Simple imputation (mean/mode) isn't i
 c. Filling with Specific Values:
 For certain categorical fields, missing values can be replaced with a placeholder like 'None' or 'Unknown', especially when that makes logical sense in the dataset context.
 
+<details><summary>***Code details***</summary>
+
 |**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `df.drop(columns=['column_name', 'column_name'])` | pandas | Is used to drop columns |
 | `df['column_name'].fillna(df['column_name'].median())` | pandas | Is used to impute values by using the median value |
 | `df['column_name'].fillna(df['column_name'].mean())` | pandas | Is used to impute values by using the mean value |
+
+</details>
 
 #### Correcting incorrect data types
 
@@ -238,6 +247,8 @@ For further analysing steps and for the pipeline processing it is mandatory to t
 5. Check the unique values to confirm that the columns contain only valid values
 6. Apply numeric conversion safely (handle non-numeric values)
 
+<details><summary>***Code details***</summary>
+
 |**Code snippet**|**library**|**Comment**|
 |---|---|---|
 | `df.info() | pandas | Provides information about range index, Non-Null Count, Dtypes |
@@ -245,6 +256,8 @@ For further analysing steps and for the pipeline processing it is mandatory to t
 | `df['column_name'].str.strip()` | pandas | Removes leading and trailing whitespace from string values in a column. |
 | `df['column_name'].replace("nan", "Unknown")` | pandas | Replace string representation and map categorical values to numeric.|
 | `pd.to_numeric(df['column_name'], errors='coerce')` | pandas | Converts column values to numeric (int or float). Invalid parsing will raise an error unless you pass errors='coerce'.|
+
+</details>
 
 #### Handling zeros in the dataset
 
@@ -306,6 +319,8 @@ In addition, it shows that there are 13 columns that contains varibales with a m
 * BedroomAbvGr     0.155784
 * OverallCond     -0.077856
 
+<details><summary>***Code details***</summary>
+
 |Code snippet|library|Comment|
 |---|---|---|
 | `correlation_matrix = df.corr()`| pandas | create a correlation matrix |
@@ -313,9 +328,13 @@ In addition, it shows that there are 13 columns that contains varibales with a m
 | `plt.figure(), plt.title(), plt.show() | matplotlib.pyplot` | create a graphic |
 | `sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True)` | seaborn | create a graphic/heatmap |
 
+</details>
+
 #### Split into training and test sets
 
 The split into trianing and test data is processed a few times wihtin this project. Both datasets are mandatory to apply a ML pipleline. It is a preparation for the next chapters.
+
+<details><summary>***Code details***</summary>
 
 |**Code snippet**|**library**|**Comment**|
 |---|---|---|
@@ -323,6 +342,8 @@ The split into trianing and test data is processed a few times wihtin this proje
 | `TrainSet, TestSet = train_test_split(df, test_size=0.3, random_state=42)` | sklearn.model_selection | Split the DataFrame into training and testing sets using a 70/30 ratio. |
 | `TestSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False)` | pandas | 	Save the test set as a CSV file without the index column. |
 | `TrainSet.to_csv("outputs/data_cleaned/TestSet.csv", index=False)` | pandas | Save the train set as a CSV file without the index column. |
+
+</details>
 
 ### House Market Study
 
@@ -339,7 +360,7 @@ This study explores the key drivers of house prices within the dataset by valida
 
 Jupyter notebook: [02b_house_market_study](jupyter_notebooks/02b_house_market_study.ipynb)
 
-There are five hpothesis generated at the beginning of the project. In the following you see each hypothesis, the result and how it has been validated.
+There are five hypothesis generated at the beginning of the project. In the following you see each hypothesis, the result and how it has been validated.
 
 ##### Hypothesis (H1): Larger square footage often correlates with higher sales prices. (Correct.)
 
@@ -419,20 +440,11 @@ See correlation analysis above. The Correlation value year_built/SalePrice is me
 
 <img src="images/02b_comparison_of_sale_price_new_vs_old_houses.PNG" alt="comparison_of_old_houses_renovated_vs_not_renovated" width="700">
 
-#### The rationale to map the business requirements to the Data Visualisations and ML tasks
-
-List of business requirements and a rationale to map them to the Data Visualisations and ML tasks.
-
-|**Business requierement**|**relevant section of visualisations and ML task**|
-|---|---|
-| 1 | See [02b_data_cleaning](jupyter_notebooks/02b_house_market_study.ipynb)|
-| 2 | See [04_modeling and evaluation](jupyter_notebooks/04_modeling_and_evaluation.ipynb)|
-
 ### Feature Engineering
 
 Jupyter notebook: [03_featureEngineering](jupyter_notebooks/featureEngineering.ipynb)
 
-Durign the feature Engineering process different tools has been used such as ydata profiling reports, different transformers (categroical encoding, numerical Transformation and SmartCorrelation).
+Durign the feature Engineering process different tools has been used such as ydata profiling reports and different transformers (categroical encoding, numerical Transformation and SmartCorrelation).
 
 #### YData Profiling Report
 
@@ -765,7 +777,7 @@ Result (Top3 + MasnVnrSF + Garage Area)
 
 * MAE: $21,747.55 - On average, the model'spredictions are off by around $21K. For house prices, that’s very acceptable, especially for mid-to-upper priced homes.
 * RMSE: $36,798.42 - This gives an idea of the “typical” error. It’s only slightly higher than MAE, which suggests that large outliers are not dominating the error. However, there are still outliers and it's important to question the result.
-* R² Score: 0.8039 - The model explains 80% of the variance in sale prices — this is good for a regression problem in real estate, where 70–85% is typically strong.
+* R² Score: 0.8039 - The model explains 80% of the variance in sale prices — it meets the project requirement 0.75.
 
 <details><summary>***Code details***</summary>
 
@@ -900,4 +912,4 @@ For detailed Code Credit information, see the content related to testing in [COD
 
 ### Templates
 
-*For this project I reused the provided [Code Institute Template](https://github.com/Code-Institute-Solutions/milestone-project-heritage-housing-issues)
+For this project I reused the provided [Code Institute Template](https://github.com/Code-Institute-Solutions/milestone-project-heritage-housing-issues)
