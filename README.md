@@ -386,7 +386,7 @@ See correlation analysis above. The Correlation value OverallCond/SalePrice is v
 
 <img src="images/02b_distribution_of_overallcond_by_saleprice.PNG" alt="see distribution_of_bedroomabvgr_by_saleprice" width="700">
 
-##### Hypothesis (H4): Renovated houses sell for more (Partly correct.)
+##### Hypothesis (H4): Renovated old houses sell for more than non-renovated old houses (Wrong.)
 
 Here, we hypothesized that houses that have been recently renovated would sell for a higher price. The results revealed a moderate correlation, with renovated houses tending to have higher prices, though the effect was not as strong as initially expected.
 
@@ -401,7 +401,7 @@ See correlation analysis above. The Correlation value YearRemodadd/SalePrice is 
 
 <img src="images/02b_comparison_of_old_houses_renovated_vs_not_renovated.PNG" alt="comparison_of_old_houses_renovated_vs_not_renovated" width="700">
 
-##### Hypothesis (H5): Newer houses are more expensive (Partly correct.)
+##### Hypothesis (H5): Newer houses are more expensive (Correct.)
 
 The final hypothesis suggests that newer houses are more expensive than older ones. Our findings supported this hypothesis to some extent, with a moderate correlation observed between the year of construction and sale price, though other factors also played a significant role in determining the price.
 
