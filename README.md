@@ -14,7 +14,7 @@ This menu is located on the right side and contains 6 links. It can be hidden. T
 
 ### Quick Project Summary, Page 1
 
-[page_project_summary](app_pages\page_project_summary.py)
+[page_project_summary](app_pages/page_project_summary.py)
 
 This site contains info blocks and a redirection to the README.me file.
 
@@ -22,7 +22,7 @@ This site contains info blocks and a redirection to the README.me file.
 
 ### House Market Study, Page 2
 
-[page_house_market_study](app_pages\page_house_market_study.py)
+[page_house_market_study](app_pages/page_house_market_study.py)
 
 This site contains 3 buttons (checkboxes) and graphics and three information blocks.
 
@@ -30,7 +30,7 @@ This site contains 3 buttons (checkboxes) and graphics and three information blo
 
 ### Project Hypothesis and Validation, Page 3
 
-[page_hypothesis_and_validation](app_pages\page_hypothesis_and_validation.py)
+[page_hypothesis_and_validation](app_pages/page_hypothesis_and_validation.py)
 
 This site contains 5 hypothesis with text/info blocks and for each hypothesis there is a graphic to back up the result.
 By using the functions ".success" or ".warning" each hypothesis is visually highlighted if it's correct the box appears green, if it's wrong the box appears yellow. This page solves business requirement 1.
@@ -39,7 +39,7 @@ By using the functions ".success" or ".warning" each hypothesis is visually high
 
 ### Sales Price Predictor, Page 4
 
-[page_sales_price_predictor](app_pages\page_sales_price_predictor.py)
+[page_sales_price_predictor](app_pages/page_sales_price_predictor.py)
 
 This site contains info text, a table, 5 widgets/input forms and 5 buttons to predict the sales prices. The button "Run Predictive Analysis" deals with the manual input of the user. The other 4 buttons represent the parameters of the provided 4 inherited houses. This page solves business requirement 2.
 
@@ -47,7 +47,7 @@ This site contains info text, a table, 5 widgets/input forms and 5 buttons to pr
 
 ### Sales Price Evaluator, Page 5
 
-[page_sales_price_evaluation](app_pages\page_sales_price_evaluation.py)
+[page_sales_price_evaluation](app_pages/page_sales_price_evaluation.py)
 
 This site contains info text, a table, 6 widgets/ input forms and 1 button to check if the provided sales price meets the predicted sales price. THis feature helps to validated if the deal is a good one or not.
 
@@ -55,7 +55,7 @@ This site contains info text, a table, 6 widgets/ input forms and 1 button to ch
 
 ### ML: Pipeline Perfoormance, Page 6
 
-[page_pipeline_performance](app_pages\page_pipeline_performance.py)
+[page_pipeline_performance](app_pages/page_pipeline_performance.py)
 
 This site provides more detailed information about the two pipelines used within this project. The results of the evalaution are also mentioned (MAE, R² score).
 
